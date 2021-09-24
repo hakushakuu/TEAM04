@@ -7,7 +7,4 @@ testing
 
 Hello
 
-Hello World
-hihi
-save ko daw po
-bye
+Hi
