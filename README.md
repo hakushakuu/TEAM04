@@ -7,3 +7,8 @@ testing
 
 Hello
 
+File
+Edit
+Search
+View
+Encoding
