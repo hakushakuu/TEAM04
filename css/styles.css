@@ -1,0 +1,85 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+
+body{
+    font-family: 'Roboto Slab', serif;
+    line-height: 1.4;
+    color: #333;
+}
+
+.nav-container{
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header a{
+    color: #ffffff;
+}
+.navbar{
+    background: #232a34;
+    padding: 1.2rem;
+}
+
+.navbar-brand{
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: 1.5px;
+}
+
+.navbar-nav a{
+    padding-right: 1.2rem;
+    padding-left: 1.2rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.navbar-nav a:hover{
+    color: beige;
+}
+
+.signup-form, .login-form{
+    display: block;
+    text-align: center;
+}
+
+.signup-form input, .login-form input, .delete-confirm input{
+    width: 250px;
+    height: 25px;
+    margin: 5px 0;
+}
+
+.signup-form select{
+    width: 250px;
+    height: 25px;
+    margin: 5px 0;
+    padding: 0 5px;
+}
+
+input{
+    padding: 0 5px;
+}
+
+.try h1{
+    text-transform: lowercase;
+}
+
+.try1 p{
+    text-transform: capitalize;
+}
+
+.try1 h2{
+    font-size: 5rem;
+}
