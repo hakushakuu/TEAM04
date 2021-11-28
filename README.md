@@ -1,10 +1,4 @@
 # TEAM04
-Memories of TEAM 04 in Software Engineering Class of 2021 - 2022.
+Memories of TEAM 04 in Software Engineering Class of 2021 - 2022. Hello, try lang. -w
+part 2
 
-Team 04
-testing
-testing
-YEE IS GOD
-Hello
-
-READMe
