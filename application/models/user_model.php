@@ -16,21 +16,22 @@ class User_model extends CI_Model {
 		} */
 		if($this->uidExist($data['user_uid'])){
 			echo "uidE";
-			return;
+			return false;
 		}
 		else if($this->emailExist($data['user_email'])){
 			echo "emailE";
-			return;
+			return false;
 		}
 		else if($this->pwdMatch($data['user_pwd'], $data['user_pwdRepeat'])){
 			echo "pwdM";
-			return;
+			return false;
 		}
 		else{
 			/* $data['user_pwd'] = password_hash($data['user_pwd'], PASSWORD_DEFAULT); */
 			$data['user_pwd'] = md5($data['user_pwd']);
 			unset($data['user_pwdRepeat']);
 			$this->db->insert($this->table, $data);
+			return true;
 		}
 	}
 
