@@ -5,12 +5,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>E - FOLIO | HOME</title>
-  <link rel="icon" href="img/ee.png">
+  <link rel="icon" href="<?php echo base_url(); ?>assets/img/bahaypahina/ee.png">
 
   	<!------- CSS ------->
+	<link rel="stylesheet" type = "text/css" href="<?php echo base_url(); ?>assets/css/bahaypahina/style.css"></link>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-	<link rel="stylesheet" href="style.css"></link>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
@@ -19,38 +18,7 @@
 	
 	<!------- NAVBAR ------->
 	<header>
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-opacity-50">
-				<div class="container-fluid">
-					<a class="navbar-brand" href="index.html">
-						<img src="img/ee.png" width="30" height="30" class="d-inline-block align-top" alt="">
-						E-FOLIO
-					</a>
-					<button type="button" class="navbar-toggler" 
-					data-bs-toggle="collapse" 
-					data-bs-target="#navbarCollapse">
-			
-					<i class="fas fa-bars"></i>
-					</button>
-		
-					<div class="collapse navbar-collapse" id="navbarCollapse">
-					<div class="navbar-nav ms-auto">
-
-					<form>
-						<input type="text" class="search-input" 
-						placeholder="Search here...">
-						<button type="submit" class="search-btn"> 
-							<i class="fas fa-search"></i>
-						</button>
-					</form>
-					
-					<a class="sect" href="index.html">Home</a>
-					<a class="sect" href="index.html">Browse</a>
-  					<a class="sect" href="index.html">Sign in</a>
-  					<a class="sect" href="index.html">Sign up</a>
-				</div>
-			</div>		
-		</div>
-	</nav>
+	<?php $this->load->view('elements/navbar');?>
 
 	<div class="title">
 		<div class="container">
@@ -79,7 +47,7 @@
 
 		<div class="carousel-inner">
 		  <div class="carousel-item active">
-			<a href="index.html" target="_blank"><img src="img/background1.jpeg" class="d-block w-100" alt=""></a>
+			<a href="<?php echo base_url()?>" target="_blank"><img src="<?php echo base_url(); ?>assets/img/bahaypahina/background1.jpeg" class="d-block w-100" alt=""></a>
 			<div class="carousel-caption d-none d-sm-block">
 			  <h5>Project title</h5>
 			  <p>Some representative placeholder content for the first slide.</p>
@@ -87,7 +55,7 @@
 		  </div>
 
 		  <div class="carousel-item">
-			<a href="index.html" target="_blank"><img src="img/borjpayroll (1).png" class="d-block w-100" alt=""></a>
+			<a href="<?php echo base_url()?>" target="_blank"><img src="<?php echo base_url(); ?>assets/img/bahaypahina/borjpayroll (1).png" class="d-block w-100" alt=""></a>
 			<div class="carousel-caption d-none d-sm-block">
 			  <h5>Second slide label</h5>
 			  <p>Some representative placeholder content for the second slide.</p>
@@ -95,7 +63,7 @@
 		  </div>
 
 		  <div class="carousel-item">
-			<a href="index.html" target="_blank"><img src="img/background4.jpg" class="d-block w-100" alt=""></a>
+			<a href="<?php echo base_url()?>" target="_blank"><img src="<?php echo base_url(); ?>assets/img/bahaypahina/background4.jpg" class="d-block w-100" alt=""></a>
 			<div class="carousel-caption d-none d-sm-block">
 				
 			  <h5>Third slide label</h5>
@@ -118,10 +86,10 @@
 	<!------- FOOTER ------->
 	<footer>
 		<div class="socmed-links">
-			<a href="index.html" target="_blank"> <i class="fab fa-facebook-f"></i></a>
-            <a href="index.html" target="_blank"> <i class="fab fa-instagram"></i></a>
-            <a href="index.html" target="_blank"> <i class="fab fa-twitter"></i></a>
-            <a href="index.html" target="_blank"> <i class="fab fa-linkedin"></i></a>
+			<a href="<?php echo base_url()?>" target="_blank"> <i class="fab fa-facebook-f"></i></a>
+            <a href="<?php echo base_url()?>" target="_blank"> <i class="fab fa-instagram"></i></a>
+            <a href="<?php echo base_url()?>" target="_blank"> <i class="fab fa-twitter"></i></a>
+            <a href="<?php echo base_url()?>" target="_blank"> <i class="fab fa-linkedin"></i></a>
 		</div>
 		<h5>Copyright &copy;2021 E - FOLIO | All Rights Reserved</h5>
 	  </footer>

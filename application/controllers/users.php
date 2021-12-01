@@ -28,7 +28,11 @@ class Users extends CI_Controller {
 		$data = $this->input->post();
 		if(isset($data) && $data != null){
 			$this->load->model('user_model');
-			$this->user_model->createUser($data);
+			$result = $this->user_model->createUser($data);
+
+			if($result == true){
+				redirect(base_url()."users/login");
+			}
 		}
 
 		$this->load->view('users/signup');
@@ -51,7 +55,7 @@ class Users extends CI_Controller {
 			}
 		}
 
-		$this->load->view('users/login');
+		$this->load->view('FRONT-END Folder/signin/index');
 	}
 
 	public function logout(){
