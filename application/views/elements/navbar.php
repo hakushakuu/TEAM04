@@ -28,7 +28,8 @@ if(isset($_SESSION["user_uid"])){ ?>
 					
 					<a class="sect" href="<?php echo base_url()?>">Home</a>
 					<a class="sect" href="<?php echo base_url()?>">Browse</a>
-  					<a class="sect" href="<?php echo base_url()."users/account_settings"?>"><?php echo $_SESSION['user_uid']; ?></a>
+					<a class="sect" href="<?php echo base_url()."users/profile"?>"><?php echo $_SESSION['user_uid']; ?></a>
+  					<a class="sect" href="<?php echo base_url()."users/account_settings"?>">Settings</a>
   					<a class="sect" href="<?php echo base_url()."users/logout"?>">Logout</a>
 				</div>
 			</div>		
