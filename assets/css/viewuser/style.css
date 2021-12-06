@@ -81,30 +81,73 @@ header a{
 }
 
 /* style in content */
-.container{
-    background: rgba(255, 255, 255, 0.481);  
-    border-radius: 30px;
-    padding: 0;
+.userinfo {
+    background-color: #fff;
+    min-height: 100vh;  
+    
 }
-.btn1{
-    border: none;
-    outline: none;
-    height: 50px;
-    width: 100%;
-    background-color: black;
+.userinfo .heading h1{
+    color: #111111;
+    font-size: 3rem;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    padding: 40px 0 40px 0;
+}
+.content {
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+}
+.content img {
+    height: auto;
+    width: 300px;
+    border-radius: 8.5%;
+    margin: 0 3rem;
+}
+.textbox {
+    width:100%;
+    padding-left: 15px;
+    padding-right: 30px;
+    
+}
+.textbox h1 {
+    font-size: 2rem;
+    color: #111111;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.textbox p {
+    color: #111111;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    line-height: 28px;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+.content .textbox .button{
+    width: 125px;
+    padding: 5px;
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid #111111;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 500;
+}
+.content .textbox .button:hover {
+    background-color:#191919;
     color: #fff;
-    border-radius: 4px;
-    font-weight: bold;
+    transform: scale(1.1);
 }
-.btn1:hover{
-    background: #fff;
-    border: 1px solid;
-    color: black;
-}
-.form-row a, span{
-    color: rgba(0, 0, 255, 0.802);
-    text-decoration: none; 
-}
+.content .textbox a{
+    text-decoration: none;
+    color: #111111;
+    font-size: 15px;
+} 
 
 /* style in footer */
 footer{
@@ -133,4 +176,34 @@ footer{
 }
 .socmed-links a:hover{
     transform: scale(1.2);
+}
+@media only screen and (max-width:700px){
+    /*----- style in content -----*/
+    .userinfo .content .textbox{
+        width:100%;
+        text-align: center;
+    }
+    .userinfo .content .textbox img{
+        width:100%;
+    }
+    .userinfo .content{
+        flex-direction: column;
+    } 
+    .userinfo .content img {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width:768px){
+    /*----- style in content -----*/
+    .userinfo .content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .userinfo .content .textbox {
+        padding-bottom: 2rem;
+    }
+    .userinfo .content .textbox h1 {
+        padding: 2rem 0 0 0;
+    }
 }
