@@ -35,7 +35,7 @@ class Users extends CI_Controller {
 			}
 		}
 
-		$this->load->view('users/signup');
+		$this->load->view('FRONT-END Folder/signup/index');
 	}
 
 	public function login(){
