@@ -10,11 +10,15 @@ class Employment_model extends CI_Model {
 
 	public function getEmployment($id = null){
 		if(isset($id) && $id != null){
-			$this->db->where('employment_user_id', $id);
+			$this->db->where('user_id', $id);
 		}
 
 		$query = $this->db->get($this->table);
 		return $query->result_array();
+	}
+
+	public function createEmployment($data){
+		$this->db->insert($this->table, $data);
 	}
 
 	

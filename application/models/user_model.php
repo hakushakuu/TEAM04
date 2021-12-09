@@ -8,7 +8,7 @@ class User_model extends CI_Model {
 		parent::__construct();
 	}
 
-	public function createUser($data){
+	public function checkCreateUser($data){
 		
 		/* if(empty($first_name) || empty($last_name) || empty($email) || empty($username) || empty($password) || empty($password_repeat)){
 			echo "noInput";
@@ -16,24 +16,32 @@ class User_model extends CI_Model {
 		} */
 		if($this->uidExist($data['user_uid'])){
 			echo "uidE";
-			return false;
+			return true;
 		}
 		else if($this->emailExist($data['user_email'])){
 			echo "emailE";
-			return false;
+			return true;
 		}
 		else if($this->pwdMatch($data['user_pwd'], $data['user_pwdRepeat'])){
 			echo "pwdM";
-			return false;
+			return true;
 		}
 		else{
-			/* $data['user_pwd'] = password_hash($data['user_pwd'], PASSWORD_DEFAULT); */
+			return false;
+		}
+	}
+
+	public function createUser($data){
 			$data['user_pwd'] = md5($data['user_pwd']);
 			unset($data['user_pwdRepeat']);
 			$this->db->insert($this->table, $data);
-			return true;
-		}
+			$last_id = $this->db->insert_id();
+			return $last_id;
 	}
+
+	/* public function newUser($data){
+		$this->db->insert($this->table, $data);
+	} */
 
 	public function loginUser($uid, $pwd){
 		$this->db->where('user_uid', $uid)
