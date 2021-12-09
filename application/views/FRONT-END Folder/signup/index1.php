@@ -9,7 +9,7 @@
 
   	<!------- CSS ------->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-	<link rel="stylesheet" type = "text/css" href="<?php echo base_url(); ?>assets/css/signup/style.css"></link>
+	<link rel="stylesheet" type = "text/css" href="<?php echo base_url(); ?>assets/css/signup/style1.css"></link>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
@@ -29,49 +29,29 @@
 						<img src="<?php echo base_url(); ?>assets/img/signup/ee.png" width="50" height="50" class="d-inline-block align-top" alt=""> E-FOLIO
 					</h1>
 					<h5>Register Here:</h5>
-					<form method="POST">
+					<form method="POST" enctype="multipart/form-data">
 						<!-- HIDDEN VALUES FOR USER TYPE -->
 						<!-- BY DEFAULT, USER TYPE WILL BE USER -->
 						<input type="hidden" name="user_type" value="user">
+						<img src="<?php echo base_url(); ?>assets/img/temp/Portrait_Placeholder.png" onclick="triggerClick()" id="profileDisplay"  width="180" height="180" class="d-inline-block align-top" alt="">
+						<p>Click on image to upload profile picture</p>
+						<div class="form-row">
+							<div class="col-lg-6">
+								<input type="file" placeholder="Username" onchange="displayImage(this)" id="uploadProfileImage" class="form-control my-3 p-3" name="user_pic" required style="display: none";>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col-lg-12">
+								<!-- <input type="text" placeholder="Bio"  class="form-control my-3 p-3" name="user_uid" required> -->
+								<textarea name="user_bio" placeholder="Bio" class="form-control my-3 p-3" cols="30" rows="5" required></textarea>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col-lg-12">
+								<input type="text" placeholder="Skills (skill, skill,...)"  class="form-control my-3 p-3" name="user_skills" required>
+							</div>
+						</div>
 
-						<div class="form row">
-							<div class="col-lg-6">
-								<input type="text" placeholder="First name"  class="form-control p-3" name="user_firstName" required>
-							</div>
-							<div class="col-lg-6">
-								<input type="text" placeholder="Last name"  class="form-control p-3" name="user_lastName" required>
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="col-lg-12">
-								<input type="tel" pattern="[0-9]{4}-[0-9]{3}-[0-9]{4}" placeholder="Contact Number (09xx-xxx-xxxx)" class="form-control my-3 p-3" name="user_number" required>
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="col-lg-12">
-								<input type="text" placeholder="Address"  class="form-control my-3 p-3" name="user_address" required>
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="col-lg-12">
-								<input type="email" placeholder="Email"  class="form-control my-3 p-3" name="user_email" required>
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="col-lg-12">
-								<input type="text" placeholder="Username"  class="form-control my-3 p-3" name="user_uid" required>
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="col-lg-12">
-								<input type="password" placeholder="Password" class="form-control my-3 p-3" name="user_pwd" required>
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="col-lg-12">
-								<input type="password" placeholder="Confirm Password" class="form-control my-3 p-3" name="user_pwdRepeat" required>
-							</div>
-						</div>
 						<div>
 							<div class="col-lg-12 mx-auto">
 								<button type="submit" class="btn1 mt-3 mb-4">Next</button>
@@ -82,6 +62,8 @@
 			</div>
 		</div>
 	</section>
+
+	<script src="<?php echo base_url(); ?>assets/js/signup/script1.js"></script>
 
 	<!------- FOOTER ------->
 	<?php

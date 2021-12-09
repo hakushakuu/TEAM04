@@ -17,6 +17,9 @@ class College_model extends CI_Model {
 		return $query->result_array();
 	}
 
+	public function createSchool($data){
+		$this->db->insert($this->table, $data);
+	}
 	
 	
 }

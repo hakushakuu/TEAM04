@@ -17,6 +17,8 @@ class Skills_model extends CI_Model {
 		return $query->result_array();
 	}
 
-	
+	public function createSkills($data){
+		$this->db->insert($this->table, $data);
+	}
 	
 }
