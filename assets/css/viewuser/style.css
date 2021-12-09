@@ -101,7 +101,7 @@ header a{
 }
 .content img {
     height: auto;
-    width: 40%;
+    width: 300px;
     border-radius: 8.5%;
     margin: 0 3rem;
 }
