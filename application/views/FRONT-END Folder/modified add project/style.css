@@ -86,24 +86,27 @@ header a{
     border-radius: 30px;
     padding: 0;
 }
-.btn1{
-    border: none;
-    outline: none;
-    height: 50px;
+.form-control {
+    text-align: left;
+    margin-bottom: 25px;
+}
+.form-control input,
+.form-control textarea {
+    border: 1px solid #777;
+    border-radius: 10px;
+    padding: 10px;
     width: 100%;
-    background-color: black;
-    color: #fff;
-    border-radius: 4px;
-    font-weight: bold;
 }
-.btn1:hover{
-    background: #fff;
-    border: 1px solid;
-    color: black;
+.container .button{ 
+    padding: 8px 15px;
+    background-color: #111111;
+    margin-bottom: 20px;
+    text-decoration: none;
 }
-.form-row a, span{
-    color: rgba(0, 0, 255, 0.802);
-    text-decoration: none; 
+.container .button:hover {
+    color: #111111;
+    background: white;
+    border: 1px solid #111111;
 }
 
 /* style in footer */
