@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<link>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>E - FOLIO | VIEW PROJECT</title>
+  <link rel="icon" href="img/ee.png">
+
+  	<!------- CSS ------->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="style.css"></link>
+	<link rel="stylesheet" href="accountsettings.css">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/css/styles.css">  
+</head>
+<body>
+	
+	<!------- NAVBAR ------->
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-opacity-50">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="index.html">
+						<img src="img/ee.png" width="30" height="30" class="d-inline-block align-top" alt="">
+						E-FOLIO
+					</a>
+					<button type="button" class="navbar-toggler" 
+					data-bs-toggle="collapse" 
+					data-bs-target="#navbarCollapse">
+			
+					<i class="fas fa-bars"></i>
+					</button>
+		
+					<div class="collapse navbar-collapse" id="navbarCollapse">
+					<div class="navbar-nav ms-auto">
+
+					<form>
+						<input type="text" class="search-input" 
+						placeholder="Search here...">
+						<button type="submit" class="search-btn"> 
+							<i class="fas fa-search"></i>
+						</button>
+					</form>
+					
+					<a class="sect" href="index.html">Home</a>
+					<a class="sect" href="index.html">Browse</a>
+  					<a class="sect" href="index.html">Sign in</a>
+  					<a class="sect" href="index.html">Sign up</a>
+				</div>
+			</div>		
+		</div>
+	</nav>
+	
+	<!------- CONTENT ------->
+	<section class="py-5">
+		<div class="container">
+			<h1 class="mb-5" style="color: black; background-color: white; width: 350px;">Account Settings</h1>
+			<div class="bg-white shadow rounded-lg d-block d-sm-flex">
+				<div class="profile-tab-nav border-right">
+					<div class="p-4">
+						<div class="img-circle text-center mb-3">
+							<input type="file" accept="image/*" id="imgupload" style="display:none"> 
+							<button id="OpenImgUpload" style="background-color: rgba(0,0,0,0); border-style:none;"><img src="img/rosales-pic.png" alt="Image" class="shadow"></button>
+						</div>
+						<h4 class="text-center">Earl Benjamin Rosales</h4>
+					</div>
+					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+						<a class="nav-link active" id="account-tab" data-toggle="pill" href="#account" role="tab" aria-controls="account" aria-selected="true">
+							<i class="fa fa-home text-center mr-1"></i> 
+							Account
+						</a>
+						<a class="nav-link" id="password-tab" data-toggle="pill" href="#password" role="tab" aria-controls="password" aria-selected="false">
+							<i class="fa fa-key text-center mr-1"></i> 
+							Password
+						</a>
+						<a class="nav-link" id="deact-tab" data-toggle="pill" href="#deactivate" role="tab" aria-controls="deactivate" aria-selected="false">
+							<i class="fa fa-remove text-center mr-1"></i> 
+							Deactivate
+						</a>
+					</div>
+				</div>
+				<div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
+					<div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
+						<h3 class="mb-4">Account Settings</h3>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>First Name</label>
+								  	<input type="text" class="form-control" value="">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Last Name</label>
+								  	<input type="text" class="form-control" value="">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Email</label>
+								  	<input type="text" class="form-control" value="">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Contact number</label>
+								  	<input type="text" class="form-control" value="">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Profession</label>
+								  	<input type="text" class="form-control" value="">
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+								  	<label>Bio</label>
+									<textarea class="form-control" rows="4"></textarea>
+								</div>
+							</div>
+						</div>
+						<div>
+							<button class="btn btn-primary">Update</button>
+							<button class="btn btn-light">Cancel</button>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
+						<h3 class="mb-4">Password Settings</h3>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Old password</label>
+								  	<input type="password" class="form-control">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>New password</label>
+								  	<input type="password" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Confirm new password</label>
+								  	<input type="password" class="form-control">
+								</div>
+							</div>
+						</div>
+						<div>
+							<button class="btn btn-primary">Update</button>
+							<button class="btn btn-light">Cancel</button>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="deactivate" role="tabpanel" aria-labelledby="deact-tab">
+						<h3 class="mb-4">Deactivate Account</h3>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Password</label>
+								  	<input type="password" class="form-control">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Confirm password</label>
+								  	<input type="password" class="form-control">
+								</div>
+							</div>
+						</div>
+						<div>
+							<button class="btn btn-danger">Deactivate</button>
+							<button class="btn btn-light">Cancel</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	</section>
+
+</header>
+	<!------- FOOTER ------->
+	<footer>
+		<div class="socmed-links">
+            <a href="index.html" target="_blank"> <i class="fab fa-facebook-f"></i></a>
+            <a href="index.html" target="_blank"> <i class="fab fa-instagram"></i></a>
+            <a href="index.html" target="_blank"> <i class="fab fa-twitter"></i></a>
+            <a href="index.html" target="_blank"> <i class="fab fa-linkedin"></i></a>
+        </div>
+        <span>Copyright &copy;2021 E - FOLIO | All Rights Reserved</span>
+	</footer>
+
+
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+	<script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="assets/js/script.js"></script>
+</body>
+</html>
