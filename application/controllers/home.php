@@ -20,6 +20,7 @@ class Home extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('index');
+		/* $page_data['title'] = "HOME"; */
+		$this->load->view('FRONT-END Folder/bahaypahina/index');
 	}
 }

@@ -28,10 +28,14 @@ class Users extends CI_Controller {
 		$data = $this->input->post();
 		if(isset($data) && $data != null){
 			$this->load->model('user_model');
-			$this->user_model->createUser($data);
+			$result = $this->user_model->createUser($data);
+
+			if($result == true){
+				redirect(base_url()."users/login");
+			}
 		}
 
-		$this->load->view('users/signup');
+		$this->load->view('FRONT-END Folder/signup/index');
 	}
 
 	public function login(){
@@ -51,7 +55,7 @@ class Users extends CI_Controller {
 			}
 		}
 
-		$this->load->view('users/login');
+		$this->load->view('FRONT-END Folder/signin/index');
 	}
 
 	public function logout(){
@@ -105,7 +109,38 @@ class Users extends CI_Controller {
 		$this->load->view('users/account_update_form', $output);
 	}
 
-	public function profile(){
-		$this->load->view('users/profile');
+	public function profile($id = NULL){
+		/* $this->load->view('users/profile'); */
+		if($id === NULL){
+			$id = $_SESSION['user_id'];
+		}
+		$this->load->model('user_model');
+		$user = $this->user_model->getUser($id);
+		 	
+		$output['user'] = $user[0];
+
+		$this->load->view('FRONT-END Folder/viewuser/viewuser', $output);
+	}
+
+	public function resume($id = NULL){
+		/* $this->load->view('users/profile'); */
+		if($id === NULL){
+			$id = $_SESSION['user_id'];
+		}
+		$this->load->model('user_model');
+		$this->load->model('skills_model');
+		$this->load->model('employment_model');
+		$this->load->model('college_model');
+		$user = $this->user_model->getUser($id);
+		$skills = $this->skills_model->getSkills($id);
+		$employment = $this->employment_model->getEmployment($id);
+		$college = $this->college_model->getSchool($id);
+
+		$output['skills'] = $skills;
+		$output['user'] = $user[0];
+		$output['employment'] = $employment;
+		$output['college'] = $college;
+
+		$this->load->view('FRONT-END Folder/viewuser/resume', $output);
 	}
 }
