@@ -14,7 +14,7 @@
         define("Associate", "A in ");
         define("Bachelor", "BS in ");
         define("Master", "MS in ");
-        define("Doctoral", "PhD in ");
+        define("Doctor", "PhD in ");
     ?>
     
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
@@ -57,7 +57,7 @@
                </li>
              </ul>
            </div>
-           
+           <?php if(isset($skills[0])){ ?>
            <div class="resume_item resume_skills">
              <div class="title">
                <p class="bold">skills</p>
@@ -72,6 +72,7 @@
                <?php } ?>
                
            </div>
+           <?php } ?>
            
          </div>
       </div>
