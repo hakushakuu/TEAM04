@@ -46,15 +46,15 @@
 								<textarea name="user_bio" placeholder="Bio" class="form-control my-3 p-3" cols="30" rows="5" required></textarea>
 							</div>
 						</div>
-						<div class="form-row">
+						<!-- <div class="form-row">
 							<div class="col-lg-12">
 								<input type="text" placeholder="Skills (skill, skill,...)"  class="form-control my-3 p-3" name="user_skills" required>
 							</div>
-						</div>
+						</div> -->
 
 						<div>
 							<div class="col-lg-12 mx-auto">
-								<button type="submit" class="btn1 mt-3 mb-4">Next</button>
+								<button type="submit" class="btn1 mt-3 mb-4">Submit</button>
 							</div>
 						</div>
 					</form>
