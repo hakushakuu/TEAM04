@@ -1,0 +1,209 @@
+*{
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+header{
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),
+    url(img/bg.jpg) center/cover no-repeat fixed; /* #222831; */
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+header a{
+    color: #ffffff;
+}
+/* style in navigation */
+.navbar{
+    padding: 1.2rem;
+}
+.nav-container{
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar-brand{
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: 1.5px;
+}
+.navbar-nav a{
+    padding-right: 1.2rem;
+    padding-left: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+.navbar-nav a:hover{
+    color: #febc58;
+    transform: scale(1.1);
+}
+.navbar-toggler {
+    padding: 0.3rem;
+}
+.fa-bars{
+    color: #fff;
+}
+
+/* style in search bar */
+::placeholder{
+    color: #1e1e1e;
+    padding:5px;
+}
+.search-input{
+    height: 30px;
+    background-color: #fff;
+    color:#1e1e1e;
+    border-radius: 30px;
+    padding: 10px;
+    width:25vw;
+}
+.search-btn{
+    width: 40px;
+    font-size: 1.1rem;
+    border: #fff;
+    background: transparent;
+    outline: 0;
+    cursor: pointer;
+    color: #fff;
+    margin-left: 0.5rem;
+    margin-right: 1.5rem;
+    padding: 0;
+    text-align: left;
+}
+.search-btn:hover{
+    color: #febc58;
+}
+
+/* style in content */
+.userinfo {
+    background-color: #fff;
+    min-height: 100vh;  
+    
+}
+.userinfo .heading h1{
+    color: #111111;
+    font-size: 3rem;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    padding: 40px 0 40px 0;
+}
+.content {
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+}
+.content img {
+    height: auto;
+    width: 300px;
+    border-radius: 8.5%;
+    margin: 0 3rem;
+}
+.textbox {
+    width:100%;
+    padding-left: 15px;
+    padding-right: 30px;
+    
+}
+.textbox h1 {
+    font-size: 2rem;
+    color: #111111;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.textbox p {
+    color: #111111;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    line-height: 28px;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+.content .textbox .button{
+    width: 125px;
+    padding: 5px;
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid #111111;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 500;
+}
+.content .textbox .button:hover {
+    background-color:#191919;
+    color: #fff;
+    transform: scale(1.1);
+}
+.content .textbox a{
+    text-decoration: none;
+    color: #111111;
+    font-size: 15px;
+} 
+
+/* style in footer */
+footer{
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 2rem 0; 
+}
+.socmed-links{
+    display: flex;
+    justify-content:center;
+    margin-bottom: 1.4rem;
+}
+.socmed-links a{
+    border: 2px solid #fff;
+    color: #fff;
+    display: block;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    text-decoration: none;
+    margin: 0 0.3rem;
+}
+.socmed-links a:hover{
+    transform: scale(1.2);
+}
+@media only screen and (max-width:700px){
+    /*----- style in content -----*/
+    .userinfo .content .textbox{
+        width:100%;
+        text-align: center;
+    }
+    .userinfo .content .textbox img{
+        width:100%;
+    }
+    .userinfo .content{
+        flex-direction: column;
+    } 
+    .userinfo .content img {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width:768px){
+    /*----- style in content -----*/
+    .userinfo .content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .userinfo .content .textbox {
+        padding-bottom: 2rem;
+    }
+    .userinfo .content .textbox h1 {
+        padding: 2rem 0 0 0;
+    }
+}
