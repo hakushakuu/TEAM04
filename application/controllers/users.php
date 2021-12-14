@@ -97,7 +97,14 @@ class Users extends CI_Controller {
 
 		}
 		if($back_again === true){
-			redirect(base_url()."users/signup2");
+			/* redirect(base_url()."users/signup2"); */
+			$this->load->model('user_model');
+			$result = $this->user_model->createUser($_SESSION['info']);
+			$uid = $_SESSION['info']['user_uid'];
+			session_unset();
+			$_SESSION['user_id'] = $result;
+			$_SESSION['user_uid'] = $uid;
+			redirect(base_url());
 		}
 
 
@@ -290,8 +297,209 @@ class Users extends CI_Controller {
 		else{
 			//abang for 404 page not found
 		}
+	}
+
+	public function addCollege($id){
+		if($id == $_SESSION['user_id']){
+			$data = array();
+			$data = $this->input->post();
+			$data['user_id'] = $_SESSION['user_id'];
+
+			if(isset($data['college_name']) && $data['college_name'] != NULL){
+				$this->load->model('college_model');
+				$college = $this->college_model->createSchool($data);
+				redirect(base_url()."users/college/".$_SESSION['user_id']);
+			}
+			
+			$this->load->view('add-college/addcollege');
+		}
+		else{
+			//abang for 404 page not found
+		}
+	}
+
+	public function updateCollege($school_id){
+		if(isset($_SESSION['user_id'])){
+			$this->load->model('college_model');
+			$college = $this->college_model->getSchool($_SESSION['user_id'], $school_id);
+
+			$output['college'] = $college[0];
+
+			$data = array();
+			$data = $this->input->post();
+
+			if(isset($data['college_name']) && $data['college_name'] != NULL){
+				$college = $this->college_model->updateSchool($school_id, $data);
+				redirect(base_url()."users/college/".$_SESSION['user_id']);
+			}
+				
+			$this->load->view('add-college/updatecollege',$output);
+		}
+		else{
+			//abang for 404 page not found
+		}
+		
+	}
+
+	public function deleteCollege($school_id){
+		if(isset($_SESSION['user_id'])){
+			$this->load->model('college_model');;
+			$this->college_model->deleteSchool($school_id);
+			redirect(base_url()."users/college/".$_SESSION['user_id']);
+		}
+		else{
+			//abang for 404 page not found
+		}
 		
 
-		
+	}
+
+	public function college($id){
+		if($id == $_SESSION['user_id']){
+			$this->load->model('college_model');
+			$college = $this->college_model->getSchool($id);
+			
+			$output['college'] = $college;
+			$output['request'] = $id;
+			
+			$this->load->view('add-college/viewallcollege', $output);
+		}
+		else{
+			//abang for 404 page not found
+		}
+	}
+
+	public function employment($id){
+		if($id == $_SESSION['user_id']){
+			$this->load->model('employment_model');
+			$employment = $this->employment_model->getEmployment($id);
+			
+			$output['employment'] = $employment;
+			$output['request'] = $id;
+			
+			$this->load->view('add-employment/viewallemployment', $output);
+		}
+		else{
+			//abang for 404 page not found
+		}
+	}
+
+	public function addEmployment($id){
+		if($id == $_SESSION['user_id']){
+			$data = array();
+			$data = $this->input->post();
+			$data['user_id'] = $_SESSION['user_id'];
+
+			if(isset($data['employment_company']) && $data['employment_company'] != NULL){
+				$this->load->model('employment_model');
+				$college = $this->employment_model->createEmployment($data);
+				redirect(base_url()."users/employment/".$_SESSION['user_id']);
+			}
+			
+			$this->load->view('add-employment/addemployment');
+		}
+		else{
+			//abang for 404 page not found
+		}
+	}
+
+	public function updateEmployment($employment_id){
+		if(isset($_SESSION['user_id'])){
+			$this->load->model('employment_model');
+			$employment = $this->employment_model->getEmployment($_SESSION['user_id'], $employment_id);
+
+			$output['employment'] = $employment[0];
+
+			$data = array();
+			$data = $this->input->post();
+
+				if(isset($data['employment_company']) && $data['employment_company'] != NULL){
+				$college = $this->employment_model->updateEmployment($employment_id, $data);
+				redirect(base_url()."users/employment/".$_SESSION['user_id']);
+			}
+				
+			$this->load->view('add-employment/updateemployment', $output);
+		}
+		else{
+			//abang for 404 page not found
+		}
+	}
+
+	public function deleteEmployment($employment_id){
+		if(isset($_SESSION['user_id'])){
+			$this->load->model('employment_model');;
+			$this->employment_model->deleteEmployment($employment_id);
+			redirect(base_url()."users/employment/".$_SESSION['user_id']);
+		}
+		else{
+			//abang for 404 page not found
+		}
+	}
+
+	public function skill($id){
+		if($id == $_SESSION['user_id']){
+			$this->load->model('skills_model');
+			$skills = $this->skills_model->getSkills($id);
+			
+			$output['skills'] = $skills;
+			$output['request'] = $id;
+			
+			$this->load->view('add-skill/viewallskill', $output);
+		}
+		else{
+			//abang for 404 page not found
+		}
+	}
+
+	public function addSkills($id){
+		if($id == $_SESSION['user_id']){
+			$data = array();
+			$data = $this->input->post();
+			$data['user_id'] = $_SESSION['user_id'];
+
+			if(isset($data['user_skills']) && $data['user_skills'] != NULL){
+				$this->load->model('skills_model');
+				$college = $this->skills_model->createSkills($data);
+				redirect(base_url()."users/skill/".$_SESSION['user_id']);
+			}
+			
+			$this->load->view('add-skill/addskills');
+		}
+		else{
+			//abang for 404 page not found
+		}
+	}
+
+	public function updateSkills($skills_id){
+		if(isset($_SESSION['user_id'])){
+			$this->load->model('skills_model');
+			$skills = $this->skills_model->getSkills($_SESSION['user_id'], $skills_id);
+
+			$output['skills'] = $skills[0];
+
+			$data = array();
+			$data = $this->input->post();
+
+				if(isset($data['user_skills']) && $data['user_skills'] != NULL){
+				$college = $this->skills_model->updateSkills($skills_id, $data);
+				redirect(base_url()."users/skill/".$_SESSION['user_id']);
+			}
+				
+			$this->load->view('add-skill/updateskills', $output);
+		}
+		else{
+			//abang for 404 page not found
+		}
+	}
+
+	public function deleteSkills($skills_id){
+		if(isset($_SESSION['user_id'])){
+			$this->load->model('skills_model');;
+			$this->skills_model->deleteSkills($skills_id);
+			redirect(base_url()."users/skill/".$_SESSION['user_id']);
+		}
+		else{
+			//abang for 404 page not found
+		}
 	}
 }
