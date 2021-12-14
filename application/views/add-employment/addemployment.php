@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>E - FOLIO | SIGN UP</title>
+  <title>E - FOLIO | ADD EMPLOYMENT</title>
   <link rel="icon" href="<?php echo base_url(); ?>assets/img/signup/ee.png">
 
   	<!------- CSS ------->
@@ -28,7 +28,7 @@
 					<h1 class="font-weight-bold py-2">
 						<img src="<?php echo base_url(); ?>assets/img/signup/ee.png" width="50" height="50" class="d-inline-block align-top" alt=""> E-FOLIO
 					</h1>
-					<h5>Register Here:</h5>
+					<h5>Add Employment:</h5>
 					<form method="POST">
 						<!-- HIDDEN VALUES FOR USER TYPE -->
 						<!-- BY DEFAULT, USER TYPE WILL BE USER -->
@@ -55,8 +55,11 @@
 								<input type="text" placeholder="Company End Year" pattern="[0-9]{4}" class="form-control my-3 p-3" name="employment_end" required>
 							</div>
 						</div>
-						<div>
-							<div class="col-lg-12 mx-auto">
+						<div class="row">
+							<div class="col-lg-6 mx-auto">
+								<button class="btn1 mt-3 mb-4"><a href="<?php echo base_url()."users/employment/".$_SESSION['user_id']?>">Cancel</a></button>
+							</div>
+							<div class="col-lg-6 mx-auto">
 								<button type="submit" class="btn1 mt-3 mb-4">Submit</button>
 							</div>
 						</div>

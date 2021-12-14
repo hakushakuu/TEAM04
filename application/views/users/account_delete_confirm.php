@@ -27,7 +27,7 @@
         <?php echo '<input type="hidden" name="user_id" value='.$id.'>'; ?>
         <div class="buttons">
             <button type="submit">Submit</button>
-            <button type="button"><a href="<?php echo base_url()."index.php/users/account_settings"?>">Cancel</a></button>
+            <button type="button"><a href="<?php echo base_url()."users/account_settings"?>">Cancel</a></button>
         </div>
     </form>
 

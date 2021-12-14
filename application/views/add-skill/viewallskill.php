@@ -3,7 +3,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>E - FOLIO | VIEW USER</title>
+  <title>E - FOLIO | VIEW SKILLS</title>
   <link rel="icon" href="<?php echo base_url() ?>assets/img/signup/ee.png">
 
   	<!------- CSS ------->
@@ -18,45 +18,48 @@
 
 <!------- NAVBAR ------->
 <header>
+<header>
 	<?php $this->load->view('elements/navbar');?>
 <!------- CONTENT ------->
 
-<div class="userinfo">
-  <div class="heading">
-      <h1>User Information</h1>
-  </div>
+	<div class="userinfo">
+		<h1>Ito ang all skills</h1>
+		
+		<button><a href="<?php echo base_url()?>users/profile">Go back</a></button>
+		<button><a href="<?php echo base_url()."users/addSkills/".$_SESSION['user_id']?>">Add Skills</a></button>
+		
+	<div class="container">
+		<div class="row g-3">
+		<?php if(isset($skills[0]['skills_id'])){ ?>
+		
+			<div>
+				<table style="width:100%">
+					<tr>
+						<th>Listed Skills</th>
+					</tr>
+					<?php foreach($skills as $skill){?>
+						<tr>
+							<td><?php echo $skill['user_skills']?></td>
+							<td>
+								<a href="<?php echo base_url()."users/updateSkills/".$skill['skills_id'] ?>"style="color:blue">Update</a>
+								<a href="<?php echo base_url()."users/deleteSkills/".$skill['skills_id'] ?>" style="color:blue">Delete</a>
+							</td>
+						</tr>
+					<?php } ?>
+				</table>
+			</div>
+		<?php }else{?>
+			<!-- kapag walang nahanap na project -->
+			<p>No skills listed!</p>
+		<?php } ?>
+		</div>
+	</div>
 
-  <div class="content">
-      <img src="<?php echo ($user['user_pic']===NULL)? base_url()."assets/img/temp/Portrait_Placeholder.png" : "data:image;base64,".$user['user_pic'] ?>">
+	</div>
 
-      <div class="textbox">
-          <h1><b><?php echo $user['user_firstName']." ".$user['user_lastName']; ?></b></h1>
-		  <p><b>Address: </b><?php echo $user['user_address']; ?>
-			<br><b>Email: </b><a href="mailto:" class="email-link"><?php echo $user['user_email']; ?></a>
-          <p><?php echo $user['user_bio']; ?></p>
-        
-      <?php if($_SESSION['user_id'] == $user['user_id']){ ?>
-        <div>
-        <a href="<?php echo base_url()."users/college/".$user['user_id'] ?>" type="button" class="button">College</a>
-        
-        <a href="<?php echo base_url()."users/employment/".$user['user_id']?>" type="button" class="button">Employment</a>
-        
-        <a href="<?php echo base_url()."users/skill/".$user['user_id']?>" type="button" class="button">Skill</a>
-      </div>
-      <?php } ?>
-			
-      <a href="<?php echo base_url()."users/resume" ?>" type="button" class="button" target="_blank">Resume</a>
-			
-		  <a href="<?php echo base_url()."project"."/".$user['user_id'] ?>" type="button" class="button" target="_blank">Projects</a>
-			
-		  <a href="#" type="button" class="button" target="_blank">Fields</a>
-      </div>
 
-  </div>
-</div
-
-	<!------- FOOTER ------->
-	<footer>
+<!------- FOOTER ------->
+<footer>
 		<div class="socmed-links">
 			<a href="index.html" target="_blank"> <i class="fab fa-facebook-f"></i></a>
             <a href="index.html" target="_blank"> <i class="fab fa-instagram"></i></a>
