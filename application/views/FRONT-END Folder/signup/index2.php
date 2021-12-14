@@ -30,46 +30,37 @@
 					</h1>
 					<h5>Register Here:</h5>
 					<form method="POST">
-						<!-- HIDDEN VALUES FOR USER TYPE -->
-						<!-- BY DEFAULT, USER TYPE WILL BE USER -->
-						<input type="hidden" name="user_type" value="user">
 
-						<div class="form row">
-							<div class="col-lg-6">
-								<input type="text" placeholder="First name"  class="form-control p-3" name="user_firstName" required>
-							</div>
-							<div class="col-lg-6">
-								<input type="text" placeholder="Last name"  class="form-control p-3" name="user_lastName" required>
+						<div class="form-row">
+							<div class="col-lg-12">
+								<input type="text" placeholder="College Name"  class="form-control my-3 p-3" name="college_name" required>
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="col-lg-12">
-								<input type="tel" pattern="[0-9]{4}-[0-9]{3}-[0-9]{4}" placeholder="Contact Number (09xx-xxx-xxxx)" class="form-control my-3 p-3" name="user_number" required>
+							<select name="college_degree" class="form-control my-3 p-3" required>
+								<option hidden disabled selected value  > -- select an option -- </option>
+								<option value="Associate">Associate</option>
+								<option value="Bachelor">Bachelor</option>
+								<option value="Master">Master</option>
+								<option value="Doctor">Doctor</option>
+								</select>
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="col-lg-12">
-								<input type="text" placeholder="Address"  class="form-control my-3 p-3" name="user_address" required>
+								<input type="text" placeholder="College Course"  class="form-control my-3 p-3" name="college_course" required>
+							</div>
+						</div>
+						
+						<div class="form-row">
+							<div class="col-lg-12">
+								<input type="text" placeholder="College Start Year" pattern="[0-9]{4}" class="form-control my-3 p-3" name="college_date_start" required>
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="col-lg-12">
-								<input type="email" placeholder="Email"  class="form-control my-3 p-3" name="user_email" required>
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="col-lg-12">
-								<input type="text" placeholder="Username"  class="form-control my-3 p-3" name="user_uid" required>
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="col-lg-12">
-								<input type="password" placeholder="Password" class="form-control my-3 p-3" name="user_pwd" required>
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="col-lg-12">
-								<input type="password" placeholder="Confirm Password" class="form-control my-3 p-3" name="user_pwdRepeat" required>
+								<input type="text" placeholder="College End Year" pattern="[0-9]{4}" class="form-control my-3 p-3" name="college_date_end" required>
 							</div>
 						</div>
 						<div>

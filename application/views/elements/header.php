@@ -25,7 +25,6 @@
                         <a href='<?php echo base_url()."index.php/users/profile"?>'>Profile</a>
                         <a href='<?php echo base_url()."index.php/users/account_settings"?>'>Settings</a>
                         <a href='<?php echo base_url()."index.php/users/logout"?>''>Log Out</a>
-                        
                     <?php } 
                     #header display if hindi naka log-in
                     else{ ?>
