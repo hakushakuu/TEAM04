@@ -190,11 +190,18 @@ class User_model extends CI_Model {
 		}
 	}
 
-	public function getUser($id = null){
+	public function getUser($id = null, $keywords = null){
 		if(isset($id) && $id != null){
 			$this->db->where('user_id', $id);
 		}
-
+		if(isset($keywords) && $keywords != null){
+			$seperated_keywords = explode(" ",$keywords);
+			$this->db->where_in('user_firstName', $seperated_keywords);
+			$this->db->or_where_in('user_lastName', $seperated_keywords);
+			$this->db->or_like('user_firstName', $keywords);
+			$this->db->or_like('user_lastName', $keywords);
+			$this->db->or_like('user_uid', $keywords);
+		}
 		$query = $this->db->get($this->table);
 		return $query->result_array();
 	}
