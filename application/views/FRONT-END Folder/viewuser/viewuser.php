@@ -45,7 +45,7 @@
       </div>
       <?php } ?>
 			
-      <a href="<?php echo base_url()."users/resume" ?>" type="button" class="button" target="_blank">Resume</a>
+      <a href="<?php echo base_url()."users/resume/".$user['user_id'] ?>" type="button" class="button" target="_blank">Resume</a>
 			
 		  <a href="<?php echo base_url()."project"."/".$user['user_id'] ?>" type="button" class="button" target="_blank">Projects</a>
 			
