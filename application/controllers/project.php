@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Users extends CI_Controller {
+class Project extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -18,98 +18,105 @@ class Users extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+
+	
 	public function index()
 	{
 		$this->load->view('welcome_message');
 	}
-		
-	public function signup(){
-		$data = array();
-		$data = $this->input->post();
-		if(isset($data) && $data != null){
-			$this->load->model('user_model');
-			$result = $this->user_model->createUser($data);
 
-			if($result == true){
-				redirect(base_url()."users/login");
-			}
+	public function projects($id = null){
+		#view project
+		if(isset($_SESSION['user_id'])){
+			$this->load->model('project_model');
+			$project = $this->project_model->getProject($id);
+			
+			$output['project'] = $project;
+			$output['request'] = $id;
+			$this->load->view('project/viewallproject', $output);
 		}
-
-		$this->load->view('users/signup');
+		else{
+			//abang for 404 page not found
+		}	
+	}
+		
+	public function add(){
+		if(isset($_SESSION['user_id'])){
+			$data = array();
+			$data = $this->input->post();
+			
+			if(isset($data) && $data != NULL){
+				$data['project_publisher_id'] = $_SESSION['user_id'];
+				$this->load->model('project_model');
+				$this->project_model->createProject($data);
+				redirect(base_url()."project/".$_SESSION['user_id']);
+			}
+			$this->load->view('FRONT-END Folder/modified add project/index');
+			
+		}
+		else{
+			//abang for 404 page not found
+		}	
 	}
 
-	public function login(){
-		$data = array();
-		$data = $this->input->post();
-		if(isset($data) && $data != null){
-			$this->load->model('user_model');
-			$return = $this->user_model->loginUser($data['user_uid'], $data['user_pwd']);
+	public function view($project_id,$id){
+		if(isset($_SESSION['user_id'])){
+			
 
-			if(is_bool($return)){
-				echo "login error";
+			$this->load->model('project_model');
+			$project = $this->project_model->getProject($id, $project_id);
+
+			if(is_bool($project)){
+				//kapag walang nahanap
 			}
 			else{
-				$_SESSION['user_id'] = $return[0]['user_id'];
-				$_SESSION['user_uid'] = $return[0]['user_uid'];
-				redirect(base_url());
+				$output['project'] = $project['0'];
+				$output['request'] = $id;
+				$this->load->view('project/viewproject', $output);
 			}
+			
+			
 		}
-
-		$this->load->view('FRONT-END Folder/signin/index');
+		else{
+			//abang for 404 page not found
+		}	
 	}
 
-	public function logout(){
-		session_unset('user_id');
-		session_unset('user_uid');
-		session_destroy();
-		redirect(base_url());
-	}
-
-	public function account_settings(){
-		$this->load->view('users/account_settings');
-	}
-
-	public function account_delete_confirm(){
-		$data = array();
-		$data = $this->input->post();
-		if(isset($data) && $data != null){
-			$this->load->model('user_model');
-			$return = $this->user_model->deleteAccount($data['user_pwdRepeat'], $data['user_id']);
-
-			if($return == true){
-				session_unset('user_id');
-				session_unset('user_uid');
-				session_destroy();
-				redirect(base_url());
-			}
-			else{
-				echo "WRONG PASSWORD";
-			}
+	public function delete($project_id){
+		if(isset($_SESSION['user_id'])){
+			$this->load->model('project_model');
+			$project = $this->project_model->deleteProject($project_id);
+			redirect(base_url()."project");
 		}
-
-		$this->load->view('users/account_delete_confirm');
-	}
-
-	public function account_update_form(){
-		$this->load->model('user_model');
-		$user = $this->user_model->getUser($_SESSION['user_id']);
-		 	
-		$output['user'] = $user[0];
+		else{
+			//abang for 404 page not found
+		}	
 		
-		$data = array();
-		$data = $this->input->post();
-		/* $data['user_id'] = $_SESSION['user_id']; */
-		/* print_r($data); */
-		
-
-		if(isset($data) && $data != null){
-			$this->load->model('user_model');
-			$this->user_model->updateUser($data);
-		}
-		$this->load->view('users/account_update_form', $output);
 	}
 
-	public function profile(){
-		$this->load->view('users/profile');
+	public function update($project_id){
+		if(isset($_SESSION['user_id'])){
+			$this->load->model('project_model');
+			$project = $this->project_model->getProject($_SESSION['user_id'], $project_id);
+				
+			$output['project'] = $project[0];
+			
+			$data = array();
+			$data = $this->input->post();
+			$data['project_id'] = $project_id;
+			
+			
+
+			if(isset($data['project_details']) && $data['project_details'] != null){
+				$this->load->model('project_model');
+				$this->project_model->updateProject($data);
+				redirect(base_url()."project/view/".$project_id."/".$_SESSION['user_id']);
+			}
+			$this->load->view('project/updateproject',$output);
+		}
+		else{
+			//abang for 404 page not found
+		}		
+		
 	}
 }
