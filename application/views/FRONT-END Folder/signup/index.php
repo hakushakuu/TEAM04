@@ -49,6 +49,11 @@
 						</div>
 						<div class="form-row">
 							<div class="col-lg-12">
+								<input type="text" placeholder="Address"  class="form-control my-3 p-3" name="user_address" required>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col-lg-12">
 								<input type="email" placeholder="Email"  class="form-control my-3 p-3" name="user_email" required>
 							</div>
 						</div>
@@ -69,7 +74,7 @@
 						</div>
 						<div>
 							<div class="col-lg-12 mx-auto">
-								<button type="submit" class="btn1 mt-3 mb-4">Sign Up</button>
+								<button type="submit" class="btn1 mt-3 mb-4">Next</button>
 							</div>
 						</div>
 					</form>

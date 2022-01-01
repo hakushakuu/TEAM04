@@ -12,9 +12,9 @@
     <?php
         define(date("Y"), "Present");
         define("Associate", "A in ");
-        define("Bachelor's", "BS in ");
-        define("Master's", "MS in ");
-        define("Doctoral", "PhD in ");
+        define("Bachelor", "BS in ");
+        define("Master", "MS in ");
+        define("Doctor", "PhD in ");
     ?>
     
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
@@ -23,7 +23,7 @@
        <div class="resume_left">
          <div class="resume_profile">
            <!-- <img src="https://i.imgur.com/eCijVBe.png" alt="profile_pic"> -->
-           <img src="<?php echo ($user['user_pic']===NULL)? base_url()."assets/img/temp/Portrait_Placeholder.png" : base_url()."assets/img/temp/Portrait_Placeholder.png" ?>" alt="profile_pic">
+           <img src="<?php echo ($user['user_pic']===NULL)? base_url()."assets/img/temp/Portrait_Placeholder.png" : "data:image;base64,".$user['user_pic'] ?>" alt="profile_pic">
          </div>
          <div class="resume_content">
            <div class="resume_item resume_info">
@@ -44,7 +44,7 @@
                    <i class="fas fa-mobile-alt"></i>
                  </div>
                  <div class="data">
-                   +324 4445678
+                   <?php echo $user['user_number'] ?>
                  </div>
                </li>
                <li>
@@ -57,7 +57,7 @@
                </li>
              </ul>
            </div>
-           
+           <?php if(isset($skills[0])){ ?>
            <div class="resume_item resume_skills">
              <div class="title">
                <p class="bold">skills</p>
@@ -72,6 +72,7 @@
                <?php } ?>
                
            </div>
+           <?php } ?>
            
          </div>
       </div>
