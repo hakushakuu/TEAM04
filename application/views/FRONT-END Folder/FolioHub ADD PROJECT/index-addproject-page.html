@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>FolioHub | ADD PROJECT</title>
+  <link rel="icon" href="img/foliohub-logo.png">
+  <link rel="stylesheet" href="style-addproject-page.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Goblin+One&family=Noto+Serif+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Quicksand:wght@300;400;500;600;700&family=Ranchers&family=Slackey&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <!-- navigation -->
+  <div class="wrapper">
+   <nav>
+     <input type="checkbox" id="show-search">
+     <input type="checkbox" id="show-menu">
+     <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
+
+     <div class="content">
+     <div class="logo"><a href="#">
+     <img src="img/foliohub-logo.png" width="30" height="30">
+     FolioHub</a></div>
+       <ul class="links">
+         <li>
+           <a href="#" class="navigation-link">Go Back</a>
+           <input type="checkbox" id="show-features">
+           <label for="show-features">Go Back</label>
+         </li>
+        
+       </ul>
+     </div>
+
+     <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
+
+     <form action="#" class="search-box">
+       <input type="text" placeholder="Type Something to Search..." required>
+     </form>
+    
+   </nav>
+ </div>
+</header>
+
+<div class="container">
+  <div class="for-vector-pic">
+    <img src="img/vector-image-addproject.png">
+  </div>
+  <div class="addproject-content">
+    <form>
+        <h2>Add a Project</h2>
+      <div class="wrap-two">
+        <label>Project Title</label>
+        <input type="text">
+      </div>
+      <div class="wrap-two">
+        <label for="file">
+          Select File to Upload
+        </label>
+        <input type="file">
+      </div>
+      <div class="wrap-two">
+        <label>Project Description</label>
+        <textarea type="text" class="form-control"></textarea>
+      </div>
+
+      <div class="for-buttons">
+        <a type="button" class="button-next" href="#">Submit</a></button>
+
+        <a type="button" class="button-cancel" href="#">Cancel</a></button>
+      </div>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
