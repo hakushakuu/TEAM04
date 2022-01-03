@@ -502,4 +502,6 @@ class Users extends CI_Controller {
 			//abang for 404 page not found
 		}
 	}
+
+
 }
