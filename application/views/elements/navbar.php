@@ -30,6 +30,7 @@ if(isset($_SESSION["user_uid"])){ ?>
 					<a class="sect" href="<?php echo base_url()."browse"?>">Browse</a>
 					<a class="sect" href="<?php echo base_url()."users/profile"?>"><?php echo $_SESSION['user_uid']; ?></a>
   					<a class="sect" href="<?php echo base_url()."users/account_settings"?>">Settings</a>
+					<a class="sect" href="<?php echo base_url()."messages/inbox"?>">Inbox</a>
   					<a class="sect" href="<?php echo base_url()."users/logout"?>">Logout</a>
 				</div>
 			</div>		
