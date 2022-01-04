@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>E - FOLIO | RESUME</title>
+    <link rel="icon" href="<?php echo base_url(); ?>assets/img/bahaypahina/ee.png">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/viewuser/resume-css.css">
 </head>
 <body>
@@ -23,7 +24,7 @@
        <div class="resume_left">
          <div class="resume_profile">
            <!-- <img src="https://i.imgur.com/eCijVBe.png" alt="profile_pic"> -->
-           <img src="<?php echo ($user['user_pic']===NULL)? base_url()."assets/img/temp/Portrait_Placeholder.png" : "data:image;base64,".$user['user_pic'] ?>" alt="profile_pic">
+           <img src="<?php echo ($user['user_pic']===NULL)? base_url()."assets/img/temp/Portrait_Placeholder.png" : $user['user_pic'] ?>" alt="profile_pic">
          </div>
          <div class="resume_content">
            <div class="resume_item resume_info">

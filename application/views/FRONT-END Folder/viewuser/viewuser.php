@@ -27,7 +27,7 @@
   </div>
 
   <div class="content">
-      <img src="<?php echo ($user['user_pic']===NULL)? base_url()."assets/img/temp/Portrait_Placeholder.png" : "data:image;base64,".$user['user_pic'] ?>">
+      <img src="<?php echo ($user['user_pic']===NULL)? base_url()."assets/img/temp/Portrait_Placeholder.png" : $user['user_pic'] ?>">
 
       <div class="textbox">
           <h1><b><?php echo $user['user_firstName']." ".$user['user_lastName']; ?></b></h1>
