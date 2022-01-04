@@ -9,7 +9,8 @@
   <title>E - FOLIO | SETTINGS</title>
   <link rel="icon" href="<?php echo base_url(); ?>assets/img/bahaypahina/ee.png">
 
-  	<!------- CSS ------->
+
+  <!------- CSS ------->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<link rel="stylesheet" type = "text/css" href="<?php echo base_url(); ?>assets/styles.css"></link>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -19,17 +20,46 @@
 <body>
 
     <?php $this->load->view('elements/navbar');?>
-
-    <?php
-        $id = $_SESSION['user_id'];
-        echo $_SESSION['user_uid'].">Account Settings"
-    ?>
         <div>
-            <button type='button'><a href='<?php echo base_url()."users/account_update_form"?>'>Update</a></button>
-            <button type='button'><a href='<?php echo base_url()."users/account_delete_confirm"?>'>Delete</a></button>
-           
-        </div>
+            <button type='button'><a href='<?php echo base_url()."messages/addMessage"?>'>New Message</a></button>
+            <button type='button'><a href='<?php echo base_url()."messages/outbox"?>'>Sent Messages</a></button>
+            <br>
+    <?php if($message == null){ ?>
+                <!-- NO MESSAGE  -->
+    <?php } 
+    
+        else{?>
 
+            <table>
+            <tr>
+                <th>#</th>
+                <th>From</th>
+                <th>Email</th>
+                <th>Sent</th>
+                <th>Subject</th>
+
+            </tr>
+            
+        <?php    
+               foreach($message as $output){ ?>
+                <tr>
+                    
+                    <td> <?php echo $output['id']   ?> </td>
+                    <td> <?php echo $output['user_uid']   ?> </td>
+                    <td> <?php echo $output['user_email']   ?> </td>
+                    <td> <?php echo $output['dateCreated']   ?> </td>
+                    <td> <?php echo $output['Subject']   ?> </td>
+                </tr>
+
+                
+       
+            
+          <?php  } ?>
+
+        </table>
+                <?php } ?>
+        </div>
+ 
     <?php $this->load->view('elements/footer');?>
     
 </body>
