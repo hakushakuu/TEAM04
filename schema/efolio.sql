@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2021 at 05:53 PM
+-- Generation Time: Jan 04, 2022 at 10:14 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.30
 
@@ -74,6 +74,24 @@ CREATE TABLE `invoice` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `messages`
+--
+
+DROP TABLE IF EXISTS `messages`;
+CREATE TABLE `messages` (
+  `id` int(11) NOT NULL,
+  `messageId` varchar(255) NOT NULL,
+  `senderId` int(11) DEFAULT NULL,
+  `receiverId` int(11) DEFAULT NULL,
+  `dateCreated` int(11) DEFAULT NULL,
+  `Subject` varchar(255) NOT NULL,
+  `messageContent` varchar(255) DEFAULT NULL,
+  `messageStatus` enum('Sent','Seen','Delete','Edit') DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `order_line`
 --
 
@@ -99,7 +117,7 @@ CREATE TABLE `project` (
   `project_details` varchar(255) DEFAULT NULL,
   `project_category` set('Technology','Science','Engineering','Arts') DEFAULT NULL,
   `project_source_code` varchar(255) DEFAULT NULL,
-  `project_picture` blob NOT NULL,
+  `project_picture` varchar(255) DEFAULT NULL,
   `project_price` int(11) DEFAULT NULL,
   `project_status` enum('on_sale','acquired') NOT NULL DEFAULT 'on_sale',
   `project_client_id` int(11) DEFAULT NULL
@@ -148,7 +166,7 @@ CREATE TABLE `user` (
   `user_pwd` varchar(255) NOT NULL,
   `user_address` varchar(255) NOT NULL,
   `user_number` varchar(255) NOT NULL,
-  `user_pic` longblob DEFAULT NULL,
+  `user_pic` varchar(255) DEFAULT NULL,
   `user_bio` varchar(500) DEFAULT NULL,
   `user_status` enum('Active','Inactive') NOT NULL DEFAULT 'Active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -176,6 +194,12 @@ ALTER TABLE `employment`
 --
 ALTER TABLE `invoice`
   ADD PRIMARY KEY (`invoice_id`);
+
+--
+-- Indexes for table `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `order_line`
@@ -230,6 +254,12 @@ ALTER TABLE `employment`
 --
 ALTER TABLE `invoice`
   MODIFY `invoice_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `order_line`
