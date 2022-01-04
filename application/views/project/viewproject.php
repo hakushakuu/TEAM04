@@ -32,7 +32,6 @@
 		<?php } ?>
 
 		<div class="container text-center">
-			<?php print_r($project) ?>
 			<div id="carouselExampleCaptions" class="carousel slide col-lg-8 col-md-7 col-sm-8 mx-auto py-10" data-bs-ride="carousel">
 			<div class="carousel-indicators">
 			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>

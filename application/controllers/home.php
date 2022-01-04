@@ -19,8 +19,10 @@ class Home extends CI_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index()
-	{
-		/* $page_data['title'] = "HOME"; */
+	{	
+		if(!isset($_SESSION['user_id'])){
+			session_unset();
+		}
 		$this->load->view('FRONT-END Folder/bahaypahina/index');
 	}
 }

@@ -10,21 +10,23 @@ class User_model extends CI_Model {
 
 	public function checkCreateUser($data){
 		
-		/* if(empty($first_name) || empty($last_name) || empty($email) || empty($username) || empty($password) || empty($password_repeat)){
-			echo "noInput";
-			return;
-		} */
 		if($this->uidExist($data['user_uid'])){
-			echo "uidE";
-			return true;
+			return "This username is already taken";
+		}
+		else if(strlen($data['user_uid']) > 30){
+			return "Long username. Atmost 30 characters";
+		}
+		else if(strlen($data['user_uid']) < 6){
+			return "Short username. Atleast 6 characters";
+		}
+		else if(preg_match('/\s/',$data['user_uid'])){
+			return "Spaces are not allowed";
 		}
 		else if($this->emailExist($data['user_email'])){
-			echo "emailE";
-			return true;
+			return "This email is already in used";
 		}
 		else if($this->pwdMatch($data['user_pwd'], $data['user_pwdRepeat'])){
-			echo "pwdM";
-			return true;
+			return "Passwords do not match";
 		}
 		else{
 			return false;
@@ -190,11 +192,18 @@ class User_model extends CI_Model {
 		}
 	}
 
-	public function getUser($id = null){
+	public function getUser($id = null, $keywords = null){
 		if(isset($id) && $id != null){
 			$this->db->where('user_id', $id);
 		}
-
+		if(isset($keywords) && $keywords != null){
+			$seperated_keywords = explode(" ",$keywords);
+			$this->db->where_in('user_firstName', $seperated_keywords);
+			$this->db->or_where_in('user_lastName', $seperated_keywords);
+			$this->db->or_like('user_firstName', $keywords);
+			$this->db->or_like('user_lastName', $keywords);
+			$this->db->or_like('user_uid', $keywords);
+		}
 		$query = $this->db->get($this->table);
 		return $query->result_array();
 	}

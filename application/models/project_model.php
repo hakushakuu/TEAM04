@@ -13,12 +13,19 @@ class Project_model extends CI_Model {
 		$this->db->insert($this->table, $data);
 	}
 
-	public function getProject($id = null, $project_id = null){
+	public function getProject($id = null, $project_id = null, $keywords = null){
 		if(isset($id) && $id != null){
 			$this->db->where('project_publisher_id', $id);
 		}
 		if(isset($project_id) && $project_id != null){
 			$this->db->where('project_id', $project_id);
+		}
+		if(isset($keywords) && $keywords != null){
+			$seperated_keywords = explode(" ",$keywords);
+			$this->db->like('project_title', $keywords);
+			$this->db->or_like('project_details', $keywords);
+			$this->db->or_where_in('project_title', $seperated_keywords);
+			$this->db->or_where_in('project_details', $seperated_keywords);
 		}
 		$query = $this->db->get($this->table);
 		return $query->result_array();
@@ -36,6 +43,21 @@ class Project_model extends CI_Model {
 		unset($data['project_id']);
 		$this->db->update($this->table, $data);
 
+	}
+
+	public function getTotalRows(){
+		return $this->db->count_all_results('project');
+	}
+
+	public function getPageProject($start, $limit){
+		if($start != NULL && $limit != NULL){ 
+			$this->db->limit($start, $limit); 
+		}elseif($start == NULL && $limit != NULL){ 
+			$this->db->limit($limit); 
+		}
+
+		$query = $this->db->get($this->table);
+		return $query->result_array();
 	}
 
 	

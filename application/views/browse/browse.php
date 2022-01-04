@@ -22,38 +22,51 @@
 <!------- CONTENT ------->
 
 <div class="userinfo">
-  <div class="heading">
-      <h1>User Information</h1>
+  <h1>Browse</h1>
+  <div class="container">
+  <?php print_r($_GET); ?>
+    <form method="get" action="<?php echo base_url()."browse/result"?>" class="Form text-align">
+      <input type="text" placeholder="Search" name="keywords" value="<?php echo(isset($_GET['keywords']))? $_GET['keywords']:"" ?>">
+      <button type="submit">Search</button>
+      <div>
+        <input type="radio" name="search" value="project" <?php echo(isset($search)&&$search =='project')?  "checked":"checked" ?>>
+        <label>Projects</label>
+        <input type="radio" name="search" value="user" <?php echo(isset($search)&&$search =='user')?  "checked":"" ?>>
+        <label>Users</label>
+      </div>
+    </form>
   </div>
 
-  <div class="content">
-      <img src="<?php echo ($user['user_pic']===NULL)? base_url()."assets/img/temp/Portrait_Placeholder.png" : $user['user_pic'] ?>">
-
-      <div class="textbox">
-          <h1><b><?php echo $user['user_firstName']." ".$user['user_lastName']; ?></b></h1>
-		  <p><b>Address: </b><?php echo $user['user_address']; ?>
-			<br><b>Email: </b><a href="mailto:" class="email-link"><?php echo $user['user_email']; ?></a>
-          <p><?php echo $user['user_bio']; ?></p>
-        
-      <?php if($_SESSION['user_id'] == $user['user_id']){ ?>
-        <div>
-        <a href="<?php echo base_url()."users/college/".$user['user_id'] ?>" type="button" class="button">College</a>
-        
-        <a href="<?php echo base_url()."users/employment/".$user['user_id']?>" type="button" class="button">Employment</a>
-        
-        <a href="<?php echo base_url()."users/skill/".$user['user_id']?>" type="button" class="button">Skill</a>
-      </div>
-      <?php } ?>
-			
-      <a href="<?php echo base_url()."users/resume/".$user['user_id'] ?>" type="button" class="button" target="_blank">Resume</a>
-			
-		  <a href="<?php echo base_url()."project"."/".$user['user_id'] ?>" type="button" class="button" target="_blank">Projects</a>
-			
-		  <a href="#" type="button" class="button" target="_blank">Fields</a>
-      </div>
-
+  <div>
+    
+    <?php if(isset($project)){
+      if(count($project) != 0){
+        foreach($project as $proj){
+           ?>
+          <a href="<?php echo base_url()."project/view/".$proj['project_id']."/".$proj['project_publisher_id'] ?>" style="color:black"><?php echo $proj['project_id'] ?></a> <br>
+          <?php
+        }
+      }
+      else{
+        echo "No Project Found!";
+      }
+    }else{
+      if(count($users) != 0){
+        foreach($users as $user){
+          ?>
+          <a href="<?php echo base_url()."users/profile/".$user['user_id']?>" style="color:black"><?php echo $user['user_id'] ?></a> <br>
+          <?php
+        }
+      }
+      else{
+        echo "No Users Found!";
+      }
+    } ?>
   </div>
-</div
+  <ul class="pagination pull-right">
+    <?php echo $this->pagination->create_links(); ?>
+  </ul>
+</div>
 
 	<!------- FOOTER ------->
 	<footer>
