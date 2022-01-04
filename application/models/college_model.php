@@ -15,6 +15,7 @@ class College_model extends CI_Model {
 		if(isset($school_id) && $school_id != null){
 			$this->db->where('college_school_id', $school_id);
 		}
+		$this->db->order_by('college_date_start', 'DESC');
 
 		$query = $this->db->get($this->table);
 		return $query->result_array();

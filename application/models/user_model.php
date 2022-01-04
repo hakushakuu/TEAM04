@@ -10,21 +10,23 @@ class User_model extends CI_Model {
 
 	public function checkCreateUser($data){
 		
-		/* if(empty($first_name) || empty($last_name) || empty($email) || empty($username) || empty($password) || empty($password_repeat)){
-			echo "noInput";
-			return;
-		} */
 		if($this->uidExist($data['user_uid'])){
-			echo "uidE";
-			return true;
+			return "This username is already taken";
+		}
+		else if(strlen($data['user_uid']) > 30){
+			return "Long username. Atmost 30 characters";
+		}
+		else if(strlen($data['user_uid']) < 6){
+			return "Short username. Atleast 6 characters";
+		}
+		else if(preg_match('/\s/',$data['user_uid'])){
+			return "Spaces are not allowed";
 		}
 		else if($this->emailExist($data['user_email'])){
-			echo "emailE";
-			return true;
+			return "This email is already in used";
 		}
 		else if($this->pwdMatch($data['user_pwd'], $data['user_pwdRepeat'])){
-			echo "pwdM";
-			return true;
+			return "Passwords do not match";
 		}
 		else{
 			return false;

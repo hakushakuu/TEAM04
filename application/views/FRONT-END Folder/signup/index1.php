@@ -43,7 +43,7 @@
 						<div class="form-row">
 							<div class="col-lg-12">
 								<!-- <input type="text" placeholder="Bio"  class="form-control my-3 p-3" name="user_uid" required> -->
-								<textarea name="user_bio" placeholder="Bio" class="form-control my-3 p-3" cols="30" rows="5" required></textarea>
+								<textarea name="user_bio" placeholder="Bio" class="form-control my-3 p-3" cols="30" rows="5" required><?php echo(isset($_POST['user_bio']))? $_POST['user_bio']:""?></textarea>
 							</div>
 						</div>
 						<!-- <div class="form-row">

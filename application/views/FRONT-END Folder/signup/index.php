@@ -29,6 +29,11 @@
 						<img src="<?php echo base_url(); ?>assets/img/signup/ee.png" width="50" height="50" class="d-inline-block align-top" alt=""> E-FOLIO
 					</h1>
 					<h5>Register Here:</h5>
+					<?php if(isset($error)){ ?>
+						<div class="alert alert-danger" role="alert">
+							<?php echo $error ?>
+						</div>
+					<?php } ?>
 					<form method="POST">
 						<!-- HIDDEN VALUES FOR USER TYPE -->
 						<!-- BY DEFAULT, USER TYPE WILL BE USER -->
@@ -36,30 +41,30 @@
 
 						<div class="form row">
 							<div class="col-lg-6">
-								<input type="text" placeholder="First name"  class="form-control p-3" name="user_firstName" required>
+								<input type="text" placeholder="First name"  class="form-control p-3" name="user_firstName" value="<?php echo(isset($_POST['user_firstName']))? $_POST['user_firstName']:"" ?>" required>
 							</div>
 							<div class="col-lg-6">
-								<input type="text" placeholder="Last name"  class="form-control p-3" name="user_lastName" required>
+								<input type="text" placeholder="Last name"  class="form-control p-3" name="user_lastName" value="<?php echo(isset($_POST['user_lastName']))? $_POST['user_lastName']:"" ?>" required>
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="col-lg-12">
-								<input type="tel" pattern="[0-9]{4}-[0-9]{3}-[0-9]{4}" placeholder="Contact Number (09xx-xxx-xxxx)" class="form-control my-3 p-3" name="user_number" required>
+								<input type="tel" pattern="[0-9]{4}-[0-9]{3}-[0-9]{4}" placeholder="Contact Number (09xx-xxx-xxxx)" class="form-control my-3 p-3" name="user_number" value="<?php echo(isset($_POST['user_number']))? $_POST['user_number']:"" ?>" required>
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="col-lg-12">
-								<input type="text" placeholder="Address"  class="form-control my-3 p-3" name="user_address" required>
+								<input type="text" placeholder="Address"  class="form-control my-3 p-3" name="user_address" value="<?php echo(isset($_POST['user_address']))? $_POST['user_address']:"" ?>" required>
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="col-lg-12">
-								<input type="email" placeholder="Email"  class="form-control my-3 p-3" name="user_email" required>
+								<input type="email" placeholder="Email"  class="form-control my-3 p-3" name="user_email" value="<?php echo(isset($_POST['user_email']))? $_POST['user_email']:"" ?>" required>
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="col-lg-12">
-								<input type="text" placeholder="Username"  class="form-control my-3 p-3" name="user_uid" required>
+								<input type="text" placeholder="Username"  class="form-control my-3 p-3" name="user_uid" value="<?php echo(isset($_POST['user_uid']))? $_POST['user_uid']:"" ?>" required>
 							</div>
 						</div>
 						<div class="form-row">
