@@ -63,6 +63,9 @@
       }
     } ?>
   </div>
+  <ul class="pagination pull-right">
+    <?php echo $this->pagination->create_links(); ?>
+  </ul>
 </div>
 
 	<!------- FOOTER ------->

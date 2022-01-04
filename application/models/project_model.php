@@ -45,6 +45,21 @@ class Project_model extends CI_Model {
 
 	}
 
+	public function getTotalRows(){
+		return $this->db->count_all_results('project');
+	}
+
+	public function getPageProject($start, $limit){
+		if($start != NULL && $limit != NULL){ 
+			$this->db->limit($start, $limit); 
+		}elseif($start == NULL && $limit != NULL){ 
+			$this->db->limit($limit); 
+		}
+
+		$query = $this->db->get($this->table);
+		return $query->result_array();
+	}
+
 	
 	
 }
