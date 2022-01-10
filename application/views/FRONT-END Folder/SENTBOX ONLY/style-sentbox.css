@@ -1,0 +1,224 @@
+*{
+    padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height:200vh;
+    font-family: 'Poppins', sans-serif;
+    background: #092756;
+    background: -moz-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%),-moz-linear-gradient(top,  rgba(57,173,219,.25) 0%, rgba(42,60,87,.4) 100%), -moz-linear-gradient(-45deg,  #670d10 0%, #092756 100%);
+    background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -webkit-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -webkit-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+    background: -o-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -o-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -o-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+    background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -ms-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -ms-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+    background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), linear-gradient(to bottom,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), linear-gradient(135deg,  #670d10 0%,#092756 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
+    margin-top:20px;
+}
+/* for the whole box/container */
+.container{
+    margin-top:50px;
+    background-color: rgba(255, 255, 255, .15);
+    backdrop-filter: blur(5px);
+    background-clip: border-box;
+    padding-top:20px;
+
+}
+/* for banner */
+.banner{
+    display: block;
+    background: #092756;
+    background: -moz-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%),-moz-linear-gradient(top,  rgba(57,173,219,.25) 0%, rgba(42,60,87,.4) 100%), -moz-linear-gradient(-45deg,  #670d10 0%, #092756 100%);
+    background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -webkit-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -webkit-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+    background: -o-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -o-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -o-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+    background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -ms-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -ms-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+    background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), linear-gradient(to bottom,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), linear-gradient(135deg,  #670d10 0%,#092756 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
+    padding:10px;
+    text-decoration: none;
+    color:#fff;
+    border-radius: 5px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+
+/* this is for sentbox menu */
+.sentbox .sentbox-menu ul {
+    margin-top: 30px;
+    padding: 0;
+    list-style: none;
+}
+/* for sentbox-menu list */
+.sentbox .sentbox-menu ul li {
+    height: 30px;
+    padding: 5px 15px;
+    position: relative;
+    color: #fff;
+}
+/* for sentbox-menu  body(hover) */
+.sentbox .sentbox-menu ul li:hover,
+.sentbox .sentbox-menu ul li.active {
+    background: #e4e5e6;
+}
+
+/* for sentbox-menu-compose,sentbox,etc. */
+.sentbox .sentbox-menu ul li a {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    color: #fff;
+}
+/* for sentbox-menu-compose,sentbox,etc. (hover)*/
+.sentbox .sentbox-menu ul li a:hover{
+    color:#1a1a1a;
+}
+/* for sentbox-menu list icon */
+.sentbox .sentbox-menu ul li a i {
+    margin-right: 10px;
+}
+/* for the message-list */
+.sentbox ul.messages-list {
+    list-style: none;
+    margin: 15px -15px 0 -15px;
+    padding: 15px 15px 0 15px;
+    border-top: 1px solid #d1d4d7;
+    text-decoration: none;
+}
+/* for the message-list container*/
+.sentbox ul.messages-list li {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    padding: 10px;
+    text-decoration: none;
+}
+/* for the messagelist a */
+.sentbox ul.messages-list li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+
+/* header part only */
+.sentbox ul.messages-list li.unread .header {
+    font-weight: 600;
+    color:#fff;
+}
+
+/* whole box of messages-list */
+.sentbox ul.messages-list li:hover {
+    border: 1px solid;
+    padding: 9px;
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(5px);
+    background-clip: border-box;
+}
+.sentbox ul.messages-list li .header {
+    margin: 0 0 5px 0;
+}
+ /* sender's name */
+.sentbox ul.messages-list li .header .To {
+    width: 49.9%;
+    white-space: nowrap;
+    overflow: hidden!important;
+    text-overflow: ellipsis;
+    text-decoration: underline;
+}
+/* message's date sent */
+.sentbox ul.messages-list li .header .date {
+    width: 50%;
+    text-align: right;
+    float: right;
+    text-decoration: none;
+}
+
+.sentbox ul.messages-list li .header .label{
+    color: #ffff66;
+    font-style:italic;
+}
+/* the message */
+.sentbox ul.messages-list li .description {
+    font-size: 13px;
+    padding-left: 29px;
+}
+
+/* square beside the name */
+.sentbox ul.messages-list li .action {
+    display: inline-block;
+    width: 16px;
+    text-align: center;
+    margin-right: 10px;
+    color: #d1d4d7;
+}
+.sentbox ul.messages-list li .action .fa-square {
+    float: left;
+    margin-top: -16px;
+    margin-left: 4px;
+    font-size: 11px;
+    color: #fff
+}
+#sentbox-message{
+    background:#A09F57;
+    border-radius: 5px;
+}
+#reply{
+    width:10%;
+	height: 45px;
+	outline: none;
+	border: none;
+	background-size: 200%;
+	font-size: 1.4rem;
+	color: #fff;
+    text-decoration: none;
+	font-family: 'Poppins', sans-serif;
+	margin: 1rem 1rem;
+	cursor: pointer;
+	transition: .5s;
+    background-image: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
+}
+#reply:hover{
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.4), 0 8px 20px 0 rgba(0, 0, 0, 0.20);
+}
+
+#forward{
+    width:10%;
+	height: 45px;
+	outline: none;
+	border: none;
+	background-size: 200%;
+	font-size: 1.4rem;
+	color: #fff;
+    text-decoration: none;
+	font-family: 'Poppins', sans-serif;
+	margin: 1rem 1rem;
+	cursor: pointer;
+	transition: .5s;
+    background-color: #ff8533;
+}
+#forward:hover{
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.4), 0 8px 20px 0 rgba(0, 0, 0, 0.20);
+}
+
+#delete{
+    width:10%;
+	height: 45px;
+	outline: none;
+	border: none;
+	background-size: 200%;
+	font-size: 1.4rem;
+	color: #fff;
+    text-decoration: none;
+	font-family: 'Poppins', sans-serif;
+	margin: 1rem 1rem;
+	cursor: pointer;
+	transition: .5s;
+    background-image: linear-gradient(to right, #be3232, #d33838, #be3232);
+}
+#delete:hover{
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.4), 0 8px 20px 0 rgba(0, 0, 0, 0.20);
+}
