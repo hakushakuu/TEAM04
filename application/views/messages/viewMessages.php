@@ -18,7 +18,7 @@
     <header>
     <?php $this->load->view('elements/navbar');?>
  
-<form method="POST" action="/messages/addMessage">
+<form method="POST" action="<?php echo base_url();?>/messages/addMessage">
     
     <input type="hidden" name="messageId" value="<?=$message[0]['id']?>">
     Sender

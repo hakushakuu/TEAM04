@@ -11,6 +11,8 @@ class Project_model extends CI_Model {
 	public function createProject($data){
 		var_dump($data);
 		$this->db->insert($this->table, $data);
+		$id = $this->db->insert_id();
+		return $id;
 	}
 
 	public function getProject($id = null, $project_id = null, $keywords = null){
@@ -50,9 +52,9 @@ class Project_model extends CI_Model {
 	}
 
 	public function getPageProject($start, $limit){
-		if($start != NULL && $limit != NULL){ 
+		if($start != NULL && $limit != NULL && $start != 0){ 
 			$this->db->limit($start, $limit); 
-		}elseif($start == NULL && $limit != NULL){ 
+		}elseif($start == 0 && $limit != NULL){ 
 			$this->db->limit($limit); 
 		}
 

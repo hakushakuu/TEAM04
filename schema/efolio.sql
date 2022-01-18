@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 04, 2022 at 10:14 AM
+-- Generation Time: Jan 18, 2022 at 06:17 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.30
 
@@ -126,6 +126,21 @@ CREATE TABLE `project` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `project_picture`
+--
+
+DROP TABLE IF EXISTS `project_picture`;
+CREATE TABLE `project_picture` (
+  `project_picture_id` int(11) NOT NULL,
+  `project_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `project_picture` varchar(255) NOT NULL,
+  `is_cover` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `skills`
 --
 
@@ -215,6 +230,12 @@ ALTER TABLE `project`
   ADD KEY `FK_user_id` (`project_publisher_id`);
 
 --
+-- Indexes for table `project_picture`
+--
+ALTER TABLE `project_picture`
+  ADD PRIMARY KEY (`project_picture_id`);
+
+--
 -- Indexes for table `skills`
 --
 ALTER TABLE `skills`
@@ -272,6 +293,12 @@ ALTER TABLE `order_line`
 --
 ALTER TABLE `project`
   MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `project_picture`
+--
+ALTER TABLE `project_picture`
+  MODIFY `project_picture_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `skills`

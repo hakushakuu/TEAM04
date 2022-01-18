@@ -43,12 +43,13 @@
         <?php    
                foreach($message as $output){ ?>
                 <tr>
-                    
-                    <td> <?php echo $output['id']   ?> </td>
-                    <td> <?php echo $output['user_uid']   ?> </td>
-                    <td> <?php echo $output['user_email']   ?> </td>
-                    <td> <?php echo $output['dateCreated']   ?> </td>
-                    <td> <?php echo $output['Subject']   ?> </td>
+                    <?php
+                    echo   '<td><a href="getMessage/'.$output['id'].'">'. $output['id']  .  "</td>";
+                    echo   '<td><a href="getMessage/'.$output['id'].'">'.   $output['user_uid'] .   "</td>";
+                    echo   '<td><a href="getMessage/'.$output['id'].'">'.  $output['user_email']  . "</td>";
+                    echo   '<td><a href="getMessage/'.$output['id'].'">'.   $output['dateCreated'].   "</td>";
+                    echo   '<td><a href="getMessage/'.$output['id'].'">'.   $output['Subject']  .  "</td>";
+                    ?>
                 </tr>
 
                 
