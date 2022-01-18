@@ -36,7 +36,7 @@
 		<?php foreach ($project as $projects){ ?>
 			<div class="col-lg-3 col-md-6">
 			<div class="card">
-				<img src="<?php echo base_url()?>assets/img/temp/no-image.png" class="card-img-top" >
+				<img src="<?php echo ($projects['project_picture']!=NULL)? $projects['project_picture']:base_url()."assets/img/temp/no-image.png"?>" class="card-img-top" >
 				<div class="card-body">
 					<h5 class="card-title"><?php echo $projects['project_title']?></h5>
 					<p class="card-text"><?php echo $projects['project_details']?></p>

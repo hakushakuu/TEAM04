@@ -80,7 +80,7 @@ class Users extends CI_Controller {
 			
 			if(in_array($fileActualExt, $allowed)){
 				if($fileError === 0){
-					if($fileSize < 500000){
+					if($fileSize < 5000000){
 						$uniqID = $this->uniqidReal();
 						$fileNewName = $uniqID.".".$fileActualExt;
 						$fileDestination = $_SERVER['DOCUMENT_ROOT']."./TEAM04/public/uploads/photo/".$fileNewName;
