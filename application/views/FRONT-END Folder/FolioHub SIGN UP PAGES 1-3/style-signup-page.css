@@ -108,7 +108,7 @@ input{
 	background: rgba(255, 255, 255, 0.481);  
     color: 333;
     font-weight: 500;
-    padding: 10px 0px;
+    padding: 10px 10px;
 }
 .signup-content .for-signin {
   color: #38d39f;
