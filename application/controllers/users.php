@@ -22,6 +22,179 @@ class Users extends CI_Controller {
 	{
 		$this->load->view('welcome_message');
 	}
+
+	function uniqidReal($lenght = 13) {
+		// uniqid gives 13 chars, but you could adjust it to your needs.
+		if (function_exists("random_bytes")) {
+			$bytes = random_bytes(ceil($lenght / 2));
+		} elseif (function_exists("openssl_random_pseudo_bytes")) {
+			$bytes = openssl_random_pseudo_bytes(ceil($lenght / 2));
+		} else {
+			throw new Exception("no cryptographically secure random function available");
+		}
+		return substr(bin2hex($bytes), 0, $lenght);
+	}
+
+	public function sign(){
+		if(isset($_SESSION['user_id'])){
+			//page not found
+		}else{
+			$output = array();
+			session_unset();
+			$data = array();
+			$data = $this->input->post();
+			if(isset($data) && $data != null){
+				$this->load->model('user_model');
+				$return = $this->user_model->loginUser($data['user_uid'], $data['user_pwd']);
+
+				if(is_bool($return)){
+					$output['error'] = "Email or Password you entered is incorrect!";
+				}
+				else{
+					$_SESSION['user_id'] = $return[0]['user_id'];
+					$_SESSION['user_uid'] = $return[0]['user_uid'];
+					redirect(base_url());
+				}
+			}
+			$this->load->view('FRONT-END Folder/FolioHub SIGN UP PAGES 1-3/index-signin-page', $output);
+		}	
+	}
+
+	public function signu(){
+		if(isset($_SESSION['user_id'])){
+			redirect(base_url());
+		}else{
+			$output = array();
+			$_SESSION['info'] = $this->input->post();
+
+			//trigger if go to next page
+			$trigger = false;
+			if(isset($_SESSION['info']['trigger'])){
+				$trigger = $_SESSION['info']['trigger'];
+			}
+			else{
+				$trigger = false;
+			}
+
+			if($trigger == true){
+				unset($_SESSION['info']['trigger']);
+				redirect(base_url()."users/signu1"); 
+			}
+
+			$this->load->view('FRONT-END Folder/FolioHub SIGN UP PAGES 1-3/index-signup-page1', $output);
+		}		
+	}
+
+	public function signu1(){
+		if(isset($_SESSION['user_id'])){
+			redirect(base_url());
+		}else{
+			$output = array();
+			$data = $this->input->post();
+
+			//trigger if go to next page
+			$trigger = false;
+			if(isset($data['trigger'])){
+				$trigger = $data['trigger'];
+				unset($data['trigger']);
+			}
+			else{
+				$trigger = false;
+			}
+			//merge data from this page to data from first page of signup
+			$_SESSION['info'] = array_merge($_SESSION['info'], $data);
+
+			if($trigger == true){
+				$this->load->model('user_model');
+				if($output['error'] = $this->user_model->checkCreateUser($_SESSION['info'])){
+					$data['trigger'] = false;
+				}
+				else{
+					redirect(base_url()."users/signu2"); 
+					
+				}		
+			}
+			$this->load->view('FRONT-END Folder/FolioHub SIGN UP PAGES 1-3/index-signup-page2', $output);
+		}
+			
+	}
+
+	public function signu2(){
+		if(isset($_SESSION['user_id'])){
+			redirect(base_url());
+		}else{
+			$data = array();
+			$data = $this->input->post();
+			$output = array();
+
+			//trigger if go to next page
+			$trigger = false;
+			if(isset($data['trigger'])){
+				$trigger = $data['trigger'];
+			}
+			else{
+				$trigger = false;
+			}
+
+			if($trigger == true){
+				$file = $_FILES['user_pic'];
+				$fileName = $_FILES['user_pic']['name'];
+				$fileTmpName = $_FILES['user_pic']['tmp_name'];
+				$fileSize = $_FILES['user_pic']['size'];
+				$fileError = $_FILES['user_pic']['error'];
+				$fileType = $_FILES['user_pic']['type'];
+
+				$image = $fileTmpName;
+
+				$fileExt = explode('.', $fileName);
+				$fileActualExt = strtolower(end($fileExt));
+				
+				$allowed = array('jpg', 'jpeg', 'png');
+				
+				if(in_array($fileActualExt, $allowed)){
+					if($fileError === 0){
+						if($fileSize < 5000000){
+							$uniqID = $this->uniqidReal();
+							$fileNewName = $uniqID.".".$fileActualExt;
+							$fileDestination = $_SERVER['DOCUMENT_ROOT']."./TEAM04/public/uploads/photo/".$fileNewName;
+							move_uploaded_file($fileTmpName, $fileDestination);
+							//$image = base64_encode(file_get_contents(addslashes($image)));
+							//$data['user_pic'] = $image;
+							//$_SESSION['info']['user_pic'] = $data['user_pic'];
+							$_SESSION['info']['user_pic'] = base_url()."public/uploads/photo/".$fileNewName;
+							$_SESSION['info']['user_bio'] = $data['user_bio'];
+							//$_SESSION['info1']['user_skills'] = $data['user_skills'];
+							$data = array();
+						}
+						else{
+							echo "File too big";
+							$trigger = false;
+						}
+					}
+					else{
+						echo "Error uploading file!";
+						$trigger = false;
+					}
+				}
+				else{
+					echo "Not allowed file type!";
+					$trigger = false;
+				}
+
+			}
+			if($trigger == true){
+				$this->load->model('user_model');
+				$result = $this->user_model->createUser($_SESSION['info']);
+				$uid = $_SESSION['info']['user_uid'];
+				session_unset();
+				$_SESSION['user_id'] = $result;
+				$_SESSION['user_uid'] = $uid;
+				redirect(base_url());
+			}
+
+			$this->load->view('FRONT-END Folder/FolioHub SIGN UP PAGES 1-3/index-signup-page3', $output);
+		}
+	}
 		
 	public function signup(){
 		if(isset($_SESSION['user_id'])){
@@ -44,18 +217,6 @@ class Users extends CI_Controller {
 			}
 			$this->load->view('FRONT-END Folder/signup/index', $output);
 		}
-	}
-
-	function uniqidReal($lenght = 13) {
-		// uniqid gives 13 chars, but you could adjust it to your needs.
-		if (function_exists("random_bytes")) {
-			$bytes = random_bytes(ceil($lenght / 2));
-		} elseif (function_exists("openssl_random_pseudo_bytes")) {
-			$bytes = openssl_random_pseudo_bytes(ceil($lenght / 2));
-		} else {
-			throw new Exception("no cryptographically secure random function available");
-		}
-		return substr(bin2hex($bytes), 0, $lenght);
 	}
 
 	public function signup1(){
@@ -90,7 +251,7 @@ class Users extends CI_Controller {
 						//$_SESSION['info']['user_pic'] = $data['user_pic'];
 						$_SESSION['info']['user_pic'] = base_url()."public/uploads/photo/".$fileNewName;
 						$_SESSION['info']['user_bio'] = $data['user_bio'];
-						$_SESSION['info1']['user_skills'] = $data['user_skills'];
+						//$_SESSION['info1']['user_skills'] = $data['user_skills'];
 						$data = array();
 						$back_again = true;
 					}
@@ -223,7 +384,8 @@ class Users extends CI_Controller {
 			$this->load->model('user_model');
 			$user = $this->user_model->getUser($id);
 			$output['user'] = $user[0];
-			$this->load->view('FRONT-END Folder/viewuser/viewuser', $output);
+			//$this->load->view('FRONT-END Folder/viewuser/viewuser', $output);
+			$this->load->view('FRONT-END Folder/FolioHub view user/viewuser', $output);
 		}
 		else{
 			//abang for 404 page not found
@@ -254,6 +416,7 @@ class Users extends CI_Controller {
 		}
 		else{
 			//abang for 404 page not found
+			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}
 	}
 
