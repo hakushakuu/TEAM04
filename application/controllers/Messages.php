@@ -37,7 +37,7 @@ class Messages extends CI_Controller {
 
         $data['senders'] = $this->user_model->getUser();
         $data['receivers'] = $this->user_model->getUser();
-
+        
         $this->load->view('messages/addMessage', $data);
     }
 
