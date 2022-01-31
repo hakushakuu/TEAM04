@@ -1,98 +1,209 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>FolioHub | INBOX</title>
-	<link rel="icon" href="img/foliohub-logo.png">
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+    padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
 
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-	<link rel="stylesheet" href="style-inbox.css">
-	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Goblin+One&family=Noto+Serif+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Quicksand:wght@300;400;500;600;700&family=Ranchers&family=Slackey&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-</head>
+body {
+    height:200vh;
+    font-family: 'Poppins', sans-serif;
+    background: #092756;
+    background: -moz-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%),-moz-linear-gradient(top,  rgba(57,173,219,.25) 0%, rgba(42,60,87,.4) 100%), -moz-linear-gradient(-45deg,  #670d10 0%, #092756 100%);
+    background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -webkit-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -webkit-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+    background: -o-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -o-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -o-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+    background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -ms-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -ms-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+    background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), linear-gradient(to bottom,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), linear-gradient(135deg,  #670d10 0%,#092756 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
+    margin-top:20px;
+}
+/* for the whole box/container */
+.container{
+    margin-top:50px;
+    background-color: rgba(255, 255, 255, .15);
+    backdrop-filter: blur(5px);
+    background-clip: border-box;
+    padding-top:20px;
 
-<body>
-	<div class="container">
-        <div class="row inbox">
-            <!-- for the left-side -->
-            <div class="col-md-3">
-                <div class="panel panel-default">
-                    <div class="panel-body inbox-menu">						
-                        <p class="banner text-center">Messaging</p>
-                        <ul>
-                            <li>
-                            <a href="<?php echo base_url()."messages/addMessage"?>"><i class="fa fa-pen"></i> Compose</a>
-                            </li>
-                            <li>
-                            <a href='<?php echo base_url()."messages/outbox"?>'><i class="fa fa-inbox">Sent </i> </a>
-                            </li>
-                            <li id="inbox-message">
-                            <a href='<?php echo base_url()."messages/inbox"?>'><i class="fa fa-inbox">Inbox </i> </a>
-                            </li>
-                        </ul>
-                    </div>	
-                </div>
-            </div>
-            
-            <!-- for the right side -->
-            <div class="col-md-9">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <!-- for the upper buttons -->
-                        <div class="container-btn">
+}
+/* for banner */
+.banner{
+    display: block;
+    background: #092756;
+    background: -moz-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%),-moz-linear-gradient(top,  rgba(57,173,219,.25) 0%, rgba(42,60,87,.4) 100%), -moz-linear-gradient(-45deg,  #670d10 0%, #092756 100%);
+    background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -webkit-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -webkit-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+    background: -o-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -o-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -o-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+    background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -ms-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -ms-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+    background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), linear-gradient(to bottom,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), linear-gradient(135deg,  #670d10 0%,#092756 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
+    padding:10px;
+    text-decoration: none;
+    color:#fff;
+    border-radius: 5px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
 
-                            <div class="for-buttons">
-                              
-                              <button type="button" class="button">
-                                <span class="button-icon">
-                                  <ion-icon name="home-outline"></ion-icon>
-                                </span>
-                                <span class="button-text"><a class="sect" href="<?php echo base_url()."users/profile"?>">Go to Profile</a></span>
-                              </button>
-                            </div>
-                            
-                    </div> 
-                        <!-- for the messaging list -->
-                        <?php if($message == null){ ?>
-                            <!-- NO MESSAGE  -->
-                        <?php } 
-    
-                        else{?>
-                            <?php  foreach($message as $output){ ?>
-                        <ul class="messages-list">
-                            <li class="unread">
-                                <a href="">
-                                    <div class="header">
-                                        <span class="action"></i><i class="fa fa-square"></i></span> 
-                                        <?php 
-                                        echo   '<a href="getMessage/'.$output['id'].'"><span class="from">'.   $output['user_uid'] . "</span></a>";
-                                        echo   '<a href="getMessage/'.$output['id'].'"><span class="date"><span class="fa fa-paper-clip">'.   $output['dateCreated']. "</span></span></a>";
-                                        ?>
-                                        </div>	
-                                    <div class="description">
-                                    <?php echo   '<a href="getMessage/'.$output['id'].'">'.   $output['Subject']  .  "</a>";?>
-                                    </div>
-                                </a>		
-                            </li>
 
-                        </ul> 
-                        <?php  } ?>
+/* this is for inbox menu */
+.inbox .inbox-menu ul {
+    margin-top: 30px;
+    padding: 0;
+    list-style: none;
+}
+/* for inbox-menu list */
+.inbox .inbox-menu ul li {
+    height: 30px;
+    padding: 5px 15px;
+    position: relative;
+    color: #fff;
+}
+/* for inbox-menu  body(hover) */
+.inbox .inbox-menu ul li:hover,
+.inbox .inbox-menu ul li.active {
+    background: #e4e5e6;
+}
 
-        
-                <?php } ?>
-                    </div>	 
-                </div>	   
-            </div>       
-        </div>
-    </div>
-        
-    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
-    <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-</body>
-</html>
+/* for inbox-menu-compose,inbox,etc. */
+.inbox .inbox-menu ul li a {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    color: #fff;
+}
+/* for inbox-menu-compose,inbox,etc. (hover)*/
+.inbox .inbox-menu ul li a:hover{
+    color:#1a1a1a;
+}
+/* for inbox-menu list icon */
+.inbox .inbox-menu ul li a i {
+    margin-right: 10px;
+}
+/* for the message-list */
+.inbox ul.messages-list {
+    list-style: none;
+    margin: 15px -15px 0 -15px;
+    padding: 15px 15px 0 15px;
+    border-top: 1px solid #d1d4d7;
+    text-decoration: none;
+}
+/* for the message-list container*/
+.inbox ul.messages-list li {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    padding: 10px;
+    text-decoration: none;
+}
+/* for the messagelist a */
+.inbox ul.messages-list li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+
+/* header part only */
+.inbox ul.messages-list li.unread .header {
+    font-weight: 600;
+    color:#fff;
+}
+
+/* whole box of messages-list */
+.inbox ul.messages-list li:hover {
+    border: 1px solid;
+    padding: 9px;
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(5px);
+    background-clip: border-box;
+}
+.inbox ul.messages-list li .header {
+    margin: 0 0 5px 0;
+}
+ /* sender's name */
+.inbox ul.messages-list li .header .from {
+    width: 49.9%;
+    white-space: nowrap;
+    overflow: hidden!important;
+    text-overflow: ellipsis;
+}
+/* message's date recieve */
+.inbox ul.messages-list li .header .date {
+    width: 50%;
+    text-align: right;
+    float: right;
+}
+/* the message */
+.inbox ul.messages-list li .description {
+    font-size: 13px;
+    padding-left: 29px;
+}
+
+/* square beside the name */
+.inbox ul.messages-list li .action {
+    display: inline-block;
+    width: 16px;
+    text-align: center;
+    margin-right: 10px;
+    color: #d1d4d7;
+}
+.inbox ul.messages-list li .action .fa-square {
+    float: left;
+    margin-top: -16px;
+    margin-left: 4px;
+    font-size: 11px;
+    color: #fff
+}
+#inbox-message{
+    background:#A09F57;
+    border-radius: 5px;
+}
+
+.for-buttons{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .button{
+    display: flex;
+    height: 50px;
+    padding: 5px;
+    margin: 1rem;
+    background: #2d66d198;
+    border: none;
+    outline: none;
+    border-radius: 25px;
+    overflow: hidden;
+    font-family: "Quicksand", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.4), 0 8px 20px 0 rgba(0, 0, 0, 0.20);
+  }
+  .button:hover{
+    background: #008168;
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.4), 0 8px 20px 0 rgba(206, 175, 175, 0.2);
+    transform: scale(1.1);
+  }
+  .for-buttons .button-text{
+    display: inline-flex;
+    align-items: center;
+    padding: 0 15px;
+    color: #fff;
+    height: 100%;
+    font-weight: 580;
+  }
+  .for-buttons .button-icon {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 15px;
+    color: #fff;
+    height: 100%;
+  } 
+  .button-icon {
+    font-size: 1.5em;
+    background: rgba(0, 0, 0, 0.08);
+  }
