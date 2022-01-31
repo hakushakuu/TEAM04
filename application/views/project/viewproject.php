@@ -21,6 +21,14 @@
 <header>
 	<?php $this->load->view('elements/navbar');?>
 <!------- CONTENT ------->
+<?php if($image != NULL){
+	echo "<pre>";
+	print_r($image);
+	echo "</pre>";
+	$bilang = count($image);
+	echo $bilang;
+} ?>
+
 
 
 	<div class="userinfo text">
@@ -32,39 +40,37 @@
 		<?php } ?>
 
 		<div class="container text-center">
-			<?php print_r($project) ?>
 			<div id="carouselExampleCaptions" class="carousel slide col-lg-8 col-md-7 col-sm-8 mx-auto py-10" data-bs-ride="carousel">
 			<div class="carousel-indicators">
-			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+			<?php for($i=0;$i<$bilang;$i++){?>
+				<?php if($i==0){?>
+					<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<?= $i ?>" class="active" aria-current="true" aria-label="Slide <?= $i+1 ?>"></button>
+				<?php ;}else{?>
+					<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<?= $i ?>" aria-label="Slide <?= $i+1 ?>"></button>
+				<?php ;}?>
+			<?php } ?>
+			
 			</div>
 
 			<div class="carousel-inner">
-			<div class="carousel-item active">
-				<a href="<?php echo base_url()?>" target="_blank"><img src="<?php echo base_url(); ?>assets/img/temp/no-image.png" class="d-block w-100" alt=""></a>
+			<?php for($i=0;$i<$bilang;$i++){?>
+				<?php echo ($i==0)? '<div class="carousel-item active">':'<div class="carousel-item">' ?>
+                <a href="<?php echo base_url()?>" target="_blank"><img src="<?php echo ($image[$i] != NULL)? $image[$i]['project_picture']: base_url()."assets/img/temp/no-image.png"?>" class="d-block w-100" alt=""></a>
 				<div class="carousel-caption d-none d-sm-block">
 				<h5>Project title</h5>
-				<p>Some representative placeholder content for the first slide.</p>
+				<?php if($project['project_publisher_id'] === $_SESSION['user_id']){?>
+					<?php if($i != 0){ ?>
+						<a href="<?php echo base_url()."project/change_cover/".$project_id."/".$image[$i]['project_picture_id']?>">Make as cover image</a>
+					<?php } ?>
+				<?php } ?>
+				<?php if($project['project_publisher_id'] === $_SESSION['user_id']){?>
+					<?php if($i != 0){ ?>
+						<a href="<?php echo base_url()."project/delete_pic/".$project_id."/".$image[$i]['project_picture_id']?>">Delete Image</a>
+					<?php } ?>
+				<?php } ?>
 				</div>
-			</div>
-
-			<div class="carousel-item">
-				<a href="<?php echo base_url()?>" target="_blank"><img src="<?php echo base_url(); ?>assets/img/temp/no-image.png" class="d-block w-100" alt=""></a>
-				<div class="carousel-caption d-none d-sm-block">
-				<h5>Second slide label</h5>
-				<p>Some representative placeholder content for the second slide.</p>
-				</div>
-			</div>
-
-			<div class="carousel-item">
-				<a href="<?php echo base_url()?>" target="_blank"><img src="<?php echo base_url(); ?>assets/img/temp/no-image.png" class="d-block w-100" alt=""></a>
-				<div class="carousel-caption d-none d-sm-block">
-					
-				<h5>Third slide label</h5>
-				<p>Some representative placeholder content for the third slide.</p>
-				</div>
-			</div>
+            </div>         
+			<?php } ?>
 			</div>
 			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
 			<span class="carousel-control-prev-icon" aria-hidden="true"></span>

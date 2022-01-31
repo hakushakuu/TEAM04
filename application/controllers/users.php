@@ -24,31 +24,38 @@ class Users extends CI_Controller {
 	}
 		
 	public function signup(){
-		/* $data = array();
-		$data = $this->input->post(); */
-		/* if(isset($data) && $data != null){
-			$this->load->model('user_model');
-			$result = $this->user_model->createUser($data);
+		if(isset($_SESSION['user_id'])){
+			redirect(base_url());
+		}else{
+			$output = array();
+			$_SESSION['info'] = $this->input->post();
+			$back_again = false;
+			if(isset($_SESSION['info']['user_pwdRepeat']) && $_SESSION['info']['user_pwdRepeat'] != null && $back_again === false){
+				$this->load->model('user_model');
+				if($output['error'] = $this->user_model->checkCreateUser($_SESSION['info'])){
+					//will check error na sa model 
+				}
+				else{
+					$back_again = true;
+				}
+			}
+			if($back_again === true){
+				redirect(base_url()."users/signup1");
+			}
+			$this->load->view('FRONT-END Folder/signup/index', $output);
+		}
+	}
 
-			if($result == true){
-				redirect(base_url()."users/login");
-			}
-		} */
-		$_SESSION['info'] = $this->input->post();
-		$back_again = false;
-		if(isset($_SESSION['info']['user_pwdRepeat']) && $_SESSION['info']['user_pwdRepeat'] != null && $back_again === false){
-			$this->load->model('user_model');
-			if($this->user_model->checkCreateUser($_SESSION['info'])){
-				//will check error na sa model 
-			}
-			else{
-				$back_again = true;
-			}
+	function uniqidReal($lenght = 13) {
+		// uniqid gives 13 chars, but you could adjust it to your needs.
+		if (function_exists("random_bytes")) {
+			$bytes = random_bytes(ceil($lenght / 2));
+		} elseif (function_exists("openssl_random_pseudo_bytes")) {
+			$bytes = openssl_random_pseudo_bytes(ceil($lenght / 2));
+		} else {
+			throw new Exception("no cryptographically secure random function available");
 		}
-		if($back_again === true){
-			redirect(base_url()."users/signup1");
-		}
-		$this->load->view('FRONT-END Folder/signup/index');
+		return substr(bin2hex($bytes), 0, $lenght);
 	}
 
 	public function signup1(){
@@ -63,7 +70,6 @@ class Users extends CI_Controller {
 			$fileSize = $_FILES['user_pic']['size'];
 			$fileError = $_FILES['user_pic']['error'];
 			$fileType = $_FILES['user_pic']['type'];
-			
 
 			$image = $fileTmpName;
 
@@ -74,10 +80,15 @@ class Users extends CI_Controller {
 			
 			if(in_array($fileActualExt, $allowed)){
 				if($fileError === 0){
-					if($fileSize < 500000){
-						$image = base64_encode(file_get_contents(addslashes($image)));
-						$data['user_pic'] = $image;
-						$_SESSION['info']['user_pic'] = $data['user_pic'];
+					if($fileSize < 5000000){
+						$uniqID = $this->uniqidReal();
+						$fileNewName = $uniqID.".".$fileActualExt;
+						$fileDestination = $_SERVER['DOCUMENT_ROOT']."./TEAM04/public/uploads/photo/".$fileNewName;
+						move_uploaded_file($fileTmpName, $fileDestination);
+						//$image = base64_encode(file_get_contents(addslashes($image)));
+						//$data['user_pic'] = $image;
+						//$_SESSION['info']['user_pic'] = $data['user_pic'];
+						$_SESSION['info']['user_pic'] = base_url()."public/uploads/photo/".$fileNewName;
 						$_SESSION['info']['user_bio'] = $data['user_bio'];
 						$_SESSION['info1']['user_skills'] = $data['user_skills'];
 						$data = array();
@@ -97,7 +108,6 @@ class Users extends CI_Controller {
 
 		}
 		if($back_again === true){
-			/* redirect(base_url()."users/signup2"); */
 			$this->load->model('user_model');
 			$result = $this->user_model->createUser($_SESSION['info']);
 			$uid = $_SESSION['info']['user_uid'];
@@ -111,81 +121,29 @@ class Users extends CI_Controller {
 		$this->load->view('FRONT-END Folder/signup/index1');
 	}
 
-	public function signup2(){
-		$back_again = false;
-		$data = array();
-		$data = $this->input->post();
-
-		if(isset($data) && $data != NULL && $back_again === false){
-			$_SESSION['info2'] = $data;
-			$data = array();
-			$back_again = true;
-		}
-		if($back_again === true){
-			redirect(base_url()."users/signup3");
-		}
-
-		$this->load->view('FRONT-END Folder/signup/index2');
-	}
-
-	public function signup3(){
-		$back_again = false;
-		$data = array();
-		$data = $this->input->post();
-
-		if(isset($data) && $data != NULL && $back_again === false){
-			$_SESSION['info3'] = $data;
-			$data = array();
-			$back_again = true;
-		}
-
-		if($back_again === true){
-			$this->load->model('user_model');
-			$this->load->model('employment_model');
-			$this->load->model('skills_model');
-			$this->load->model('college_model');
-			$result[0] = $this->user_model->createUser($_SESSION['info']);
-			if(is_int($result[0])){
-				$id = $result[0];
-				$result[0] = true;
-			}
-			else{
-				$result[0] = false;
-			}
-			$_SESSION['info1']['user_id'] = $id;
-			$result[1] = $this->skills_model->createSkills($_SESSION['info1']);
-			$_SESSION['info2']['user_id'] = $id;
-			$result[2] = $this->college_model->createSchool($_SESSION['info2']);
-			$_SESSION['info3']['user_id'] = $id;
-			$result[3] = $this->employment_model->createEmployment($_SESSION['info3']);
-
-			redirect(base_url()."users/login");
-
-		}
-
-		
-
-		$this->load->view('FRONT-END Folder/signup/index3');
-	}
-
 	public function login(){
-		$data = array();
-		$data = $this->input->post();
-		if(isset($data) && $data != null){
-			$this->load->model('user_model');
-			$return = $this->user_model->loginUser($data['user_uid'], $data['user_pwd']);
+		if(isset($_SESSION['user_id'])){
+			//page not found
+		}else{
+			$output = array();
+			session_unset();
+			$data = array();
+			$data = $this->input->post();
+			if(isset($data) && $data != null){
+				$this->load->model('user_model');
+				$return = $this->user_model->loginUser($data['user_uid'], $data['user_pwd']);
 
-			if(is_bool($return)){
-				echo "login error";
+				if(is_bool($return)){
+					$output['error'] = "Email or Password you entered is incorrect!";
+				}
+				else{
+					$_SESSION['user_id'] = $return[0]['user_id'];
+					$_SESSION['user_uid'] = $return[0]['user_uid'];
+					redirect(base_url());
+				}
 			}
-			else{
-				$_SESSION['user_id'] = $return[0]['user_id'];
-				$_SESSION['user_uid'] = $return[0]['user_uid'];
-				redirect(base_url());
-			}
+			$this->load->view('FRONT-END Folder/signin/index', $output);
 		}
-
-		$this->load->view('FRONT-END Folder/signin/index');
 	}
 
 	public function logout(){
@@ -503,3 +461,6 @@ class Users extends CI_Controller {
 		}
 	}
 }
+
+	
+

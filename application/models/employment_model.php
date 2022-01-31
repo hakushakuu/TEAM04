@@ -15,6 +15,7 @@ class Employment_model extends CI_Model {
 		if(isset($employment_id) && $employment_id != null){
 			$this->db->where('employment_id', $employment_id);
 		}
+		$this->db->order_by('employment_start', 'DESC');
 
 		$query = $this->db->get($this->table);
 		return $query->result_array();

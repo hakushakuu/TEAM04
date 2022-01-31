@@ -27,7 +27,7 @@
   </div>
 
   <div class="content">
-      <img src="<?php echo ($user['user_pic']===NULL)? base_url()."assets/img/temp/Portrait_Placeholder.png" : "data:image;base64,".$user['user_pic'] ?>">
+      <img src="<?php echo ($user['user_pic']===NULL)? base_url()."assets/img/temp/Portrait_Placeholder.png" : $user['user_pic'] ?>">
 
       <div class="textbox">
           <h1><b><?php echo $user['user_firstName']." ".$user['user_lastName']; ?></b></h1>
@@ -45,7 +45,7 @@
       </div>
       <?php } ?>
 			
-      <a href="<?php echo base_url()."users/resume" ?>" type="button" class="button" target="_blank">Resume</a>
+      <a href="<?php echo base_url()."users/resume/".$user['user_id'] ?>" type="button" class="button" target="_blank">Resume</a>
 			
 		  <a href="<?php echo base_url()."project"."/".$user['user_id'] ?>" type="button" class="button" target="_blank">Projects</a>
 			
