@@ -79,6 +79,7 @@ form{
 }
 .cont-one{
     width: 47%;
+    position: relative;
 }
 .cont-two{
     margin-left: auto;
@@ -110,6 +111,58 @@ input{
     font-weight: 500;
     padding: 10px 0px;
 }
+
+/* animation in span */
+.event-one{
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+.event-one::before{
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    transition: all 0.6s;
+	background: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
+}
+input:focus + .event-one::before{
+    width: 100%;
+}
+textarea:focus + .event-one::before{
+    width: 100%;
+}
+.event-two{
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+.event-two::before{
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    transition: all 0.6s;
+	background: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
+}
+input:focus + .event-two::before{
+    width: 100%;
+}
+
 .signup-content .for-signin {
   color: #38d39f;
   text-decoration: none;
@@ -195,6 +248,4 @@ input{
         margin: 0px;
     }
 }
-
-
 

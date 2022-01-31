@@ -29,10 +29,15 @@
 						<img src="<?php echo base_url(); ?>assets/img/signin/ee.png" width="50" height="50" class="d-inline-block align-top" alt=""> E-FOLIO
 					</h1>
 					<h4>Sign into your account</h4>
+					<?php if(isset($error)){ ?>
+						<div class="alert alert-danger" role="alert">
+							<?php echo $error ?>
+						</div>
+					<?php } ?>
 					<form method="POST">
 						<div class="form-row">
 							<div class="col-lg-12">
-								<input type="text" name="user_uid" placeholder="Username/Email"  class="form-control my-3 p-3">
+								<input type="text" name="user_uid" placeholder="Username/Email"  class="form-control my-3 p-3" value="<?php echo(isset($_POST['user_uid']))? $_POST['user_uid']:"" ?>">
 							</div>
 						</div>
 						<div class="form-row">

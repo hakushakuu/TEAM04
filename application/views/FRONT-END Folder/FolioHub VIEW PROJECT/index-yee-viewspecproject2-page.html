@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FolioHub | VIEW SPECIFIC PROJECT</title>
+    <link rel="stylesheet" href="style-viewspecific-page.css">
+<link rel="icon" href="img/foliohub-logo.png">
+</head>
+<body>
+ 
+  <div class="for-buttons">
+    <button type="button" class="button">
+      <span class="button-icon">
+        <ion-icon name="duplicate-outline"></ion-icon>
+      </span>
+      <span class="button-text">Add Images</span>
+    </button>
+
+    <button type="button" class="button">
+      <span class="button-icon">
+        <ion-icon name="create-outline"></ion-icon>
+      </span>
+      <span class="button-text">Update Project</span>
+    </button>
+
+    <button type="button" class="button">
+      <span class="button-icon">
+        <ion-icon name="trash-outline"></ion-icon>
+      </span>
+      <span class="button-text">Delete Project</span>
+    </button>
+  </div>
+
+<div class="container">
+  <div class="mySlides">
+    <div class="numbertext">1 / 6</div>
+    <img src="yee/PR2yee-page1.png" style="width:100%">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">2 / 6</div>
+    <img src="yee/PR2yee-page2.png">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">3 / 6</div>
+    <img src="yee/PR2yee-page3.png">
+  </div>
+    
+  <div class="mySlides">
+    <div class="numbertext">4 / 6</div>
+    <img src="yee/PR2yee-page4.png">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">5 / 6</div>
+    <img src="yee/PR2yee-page5.png">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">6 / 6</div>
+    <img src="yee/PR2yee-page6.png">
+  </div>
+    
+  <a class="prev" onclick="plusSlides(-1)">❮</a>
+  <a class="next" onclick="plusSlides(1)">❯</a>
+
+  <!-- <div class="caption-container">
+    <p id="caption"></p>
+  </div> -->
+
+  <div class="caption-container">
+    <div class="for-buttons">
+      <button type="button" class="button-carousel">
+        <span class="button-icon">
+          <ion-icon name="image-outline"></ion-icon>
+        </span>
+        <span class="button-text">Make as a Cover</span>
+      </button>
+  
+      <button type="button" class="button-carousel">
+        <span class="button-icon">
+          <ion-icon name="trash-outline"></ion-icon>
+        </span>
+        <span class="button-text">Delete Image</span>
+      </button>
+      <p id="caption"></p>
+    </div></button></div>
+
+  <div class="row">
+
+    <div class="column">
+      <img class="demo cursor" src="yee/PR2yee-page1.png" style="width:100%" onclick="currentSlide(1)">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="yee/PR2yee-page2.png" style="width:100%" onclick="currentSlide(1)">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="yee/PR2yee-page3.png" style="width:100%" onclick="currentSlide(1)">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="yee/PR2yee-page4.png" style="width:100%" onclick="currentSlide(1)">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="yee/PR2yee-page5.png" style="width:100%" onclick="currentSlide(1)">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="yee/PR2yee-page6.png" style="width:100%" onclick="currentSlide(1)">
+    </div>
+    
+  </div>
+</div>
+
+<div class="project-description">
+    <div class="project-content">
+        <h1 class="project-name">Web Robot</h1>
+        <p class="project-developer">Patrick Yee</p>
+
+        <div class="text-content">
+            <p>This Instructible will show you how to build your own Web Connected Robot (using an Arduino micro-controller and Asus pc). Why would you want a Web Connected Robot? To play with of course. Drive your robot from across the room or across the country, using nothing more than Skype and a web browser (nothing to install on the controlling computer). After that? Dig into the software & adapt it however you like, add a GPS so you can watch where you're driving on a map, add temperature sensors to map temperature gradients in your house, or sonar sensors to add controls on what your web drivers can and cannot run into.
+        <br>
+        <br>
+        </div>
+
+        <div class="for-buttons">
+          <a class="button" href="index-yee-viewproject-page.html">
+            <span class="button-icon">
+              <ion-icon name="arrow-undo-outline"></ion-icon>
+            </span>
+            <span class="button-text">Previous Page</span>
+          </a>
+
+          <a class="button" href="" target="_blank">
+            <span class="button-icon">
+              <ion-icon name="home-outline"></ion-icon>
+            </span>
+            <span class="button-text">Back to Home</span>
+          </a>
+        </div>
+    </div> 
+</div> 
+
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  var captionText = document.getElementById("caption");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  captionText.innerHTML = dots[slideIndex-1].alt;
+}
+</script>
+<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+
+    
+</body>
+</html>

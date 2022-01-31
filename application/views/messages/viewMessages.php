@@ -17,12 +17,13 @@
 </head>
 
 <body>
-<<<<<<< Updated upstream
+
     <header>
     <?php $this->load->view('elements/navbar');?>
  
+
 <form method="POST" action="/messages/addMessage">
-=======
+
     <div class="container-buttons">
         <div class="for-buttons">
             <button type="button" class="buttontop">
@@ -57,7 +58,10 @@
             </div>
         </div>
     </div>
->>>>>>> Stashed changes
+
+
+<form method="POST" action="<?php echo base_url();?>/messages/addMessage">
+
     
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <!-- JavaScript Bundle with Popper -->

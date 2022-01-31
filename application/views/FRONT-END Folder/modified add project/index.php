@@ -29,10 +29,10 @@
 						<img src="<?php echo base_url(); ?>assets/img/addproject/ee.png" width="50" height="50" class="d-inline-block align-top" alt=""> E-FOLIO
 					</h1>
 					<h3>Add a Project</h3>
-                    <form method="POST">
+                    <form method="POST" enctype="multipart/form-data">
                         <div class="form-control">
                             <label for="title" id="label-title">
-                                Project Title
+                                Project Title*
                             </label>
                  
                             <input type="text" id="title" name="project_title"
@@ -41,15 +41,21 @@
 
                         <div class="form-control">
                             <label for="file" id="label-file">
-                                Select File to Upload
+                                Select Cover Image*
                             </label>
+                            <input type="file" name="project_picture_cover">
+                        </div>
 
-                            <input type="file" id="file">
+                        <div class="form-control">
+                            <label for="file" id="label-file">
+                                Select more images
+                            </label>
+                            <input type="file" name="project_picture[]" multiple>
                         </div>
                   
                         <div class="form-control">
                             <label for="description">
-                                Project Description</label>
+                                Project Description*</label>
                             
                             <textarea placeholder="Enter description here.." required name="project_details"></textarea>
                         </div>
