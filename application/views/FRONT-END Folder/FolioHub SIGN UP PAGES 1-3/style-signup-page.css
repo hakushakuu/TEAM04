@@ -111,6 +111,7 @@ input{
     font-weight: 500;
     padding: 10px 0px;
 }
+
 /* animation in span */
 .event-one{
     position: absolute;
@@ -161,6 +162,7 @@ textarea:focus + .event-one::before{
 input:focus + .event-two::before{
     width: 100%;
 }
+
 .signup-content .for-signin {
   color: #38d39f;
   text-decoration: none;
@@ -246,3 +248,4 @@ input:focus + .event-two::before{
         margin: 0px;
     }
 }
+
