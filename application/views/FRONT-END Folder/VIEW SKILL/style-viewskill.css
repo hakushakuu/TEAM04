@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+    padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height:100vh;
+    font-family: 'Poppins', sans-serif;
+    background: #092756;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: -moz-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%),-moz-linear-gradient(top,  rgba(57,173,219,.25) 0%, rgba(42,60,87,.4) 100%), -moz-linear-gradient(-45deg,  #670d10 0%, #092756 100%);
+    background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -webkit-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -webkit-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+    background: -o-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -o-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -o-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+    background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -ms-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -ms-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+    background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), linear-gradient(to bottom,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), linear-gradient(135deg,  #670d10 0%,#092756 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
+}
+
+
+.container{
+  width:80%;
+  text-align: center;
+  background-color: rgba(255, 255, 255, .15);  
+  backdrop-filter: blur(5px);
+  margin-top:10px;
+  justify-content: center;
+  align-items: center;
+}
+.header{
+  color: #fff;
+  font-size: 1.5rem;
+  letter-spacing: 1.2px;
+}
+
+/* style in content */
+  .for-buttons{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top:15%;
+  }
+  .button{
+    display: flex;
+    height: 50px;
+    padding: 5px;
+    margin: 1rem;
+    background: #2d66d198;
+    border: none;
+    outline: none;
+    border-radius: 25px;
+    overflow: hidden;
+    font-family: "Quicksand", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.4), 0 8px 20px 0 rgba(0, 0, 0, 0.20);
+  }
+  .button:hover{
+    background: #008168;
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.4), 0 8px 20px 0 rgba(206, 175, 175, 0.2);
+    transform: scale(1.1);
+  }
+  .for-buttons .button-text{
+    display: inline-flex;
+    align-items: center;
+    padding: 0 15px;
+    color: #fff;
+    height: 100%;
+    font-weight: 580;
+  }
+  .for-buttons .button-icon {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 15px;
+    color: #fff;
+    height: 100%;
+  } 
+  .button-icon {
+    font-size: 1.5em;
+  }
+.btn {
+    border: none; 
+    color: white; 
+    padding: 12px 16px; 
+    font-size: 16px;
+    cursor: pointer; 
+    min-width:15%;
+}
+
+

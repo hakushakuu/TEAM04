@@ -49,11 +49,13 @@
                             <div class="for-buttons">
                               
                               <button type="button" class="button">
+                                  <a class="sect" href="<?php echo base_url()?>">
                                 <span class="button-icon">
                                   <ion-icon name="home-outline"></ion-icon>
                                 </span>
-                                <span class="button-text"><a class="sect" href="<?php echo base_url()?>">Home</a></span>
-                              </button>
+                                <span class="button-text">Home</span>
+                              </a>
+                            </button>
                             </div>
                             
                     </div> 
