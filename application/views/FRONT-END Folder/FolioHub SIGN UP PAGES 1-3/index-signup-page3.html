@@ -22,8 +22,9 @@
 		<div class="signup-content">
 			<form>
                 <div class="wrap-two">
-					<label for="fileField"><img src="img/profile-icon.jpg" id="photo"></label>
-					<input type="file" id="fileField" name="file" accept="image/*">
+					<!-- <label for="fileField"><img src="img/profile-icon.jpg" id="photo" onclick="triggerClick()"></label> -->
+					<img src="img/profile-icon.jpg" onclick="triggerClick()" id="photo">
+					<input type="file" id="fileField" onchange="displayImage(this)" name="file" accept="image/*" required style="display: none";>
 					<p>Click on image to upload user icon</p>
 				</div>
                 <div class="wrap-two">
@@ -44,5 +45,22 @@
 			</form>
         </div>
     </div>
+
+	<script>
+		function triggerClick(){
+			document.querySelector('#fileField').click();
+		}
+
+		function displayImage(e){
+			if(e.files[0]){
+				var reader = new FileReader();
+			}
+
+			reader.onload = function(e){
+				document.querySelector('#photo').setAttribute('src', e.target.result);
+			}
+			reader.readAsDataURL(e.files[0]);
+		}
+	</script>
 </body>
 </html>

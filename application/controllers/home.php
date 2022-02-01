@@ -22,7 +22,18 @@ class Home extends CI_Controller {
 	{	
 		if(!isset($_SESSION['user_id'])){
 			session_unset();
+			$this->load->view('FRONT-END Folder/FolioHub HOMEPAGE from NOT LOGGED IN POV/index-home');
+		}else{
+			$this->load->view('FRONT-END Folder/FolioHub HOMEPAGE from LOGGED IN POV/index-home');
 		}
-		$this->load->view('FRONT-END Folder/bahaypahina/index');
+	}
+
+	public function dev(){
+		if(!isset($_SESSION['user_id'])){
+			session_unset();
+			$this->load->view('FRONT-END Folder/FolioHub HOMEPAGE from NOT LOGGED IN POV/index-developers');
+		}else{
+			$this->load->view('FRONT-END Folder/FolioHub HOMEPAGE from LOGGED IN POV/index-developers');
+		}
 	}
 }

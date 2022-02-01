@@ -10,27 +10,27 @@ class User_model extends CI_Model {
 
 	public function checkCreateUser($data){
 		
-		if($this->uidExist($data['user_uid'])){
-			return "This username is already taken";
-		}
-		else if(strlen($data['user_uid']) > 30){
-			return "Long username. Atmost 30 characters";
-		}
-		else if(strlen($data['user_uid']) < 6){
-			return "Short username. Atleast 6 characters";
-		}
-		else if(preg_match('/\s/',$data['user_uid'])){
-			return "Spaces are not allowed";
-		}
-		else if($this->emailExist($data['user_email'])){
-			return "This email is already in used";
-		}
-		else if($this->pwdMatch($data['user_pwd'], $data['user_pwdRepeat'])){
-			return "Passwords do not match";
-		}
-		else{
-			return false;
-		}
+			if($this->emailExist($data['user_email'])){
+				return "This email is already in used";
+			}
+			if(strlen($data['user_uid']) > 30){
+				return "Long username. Atmost 30 characters";
+			}
+			else if(strlen($data['user_uid']) < 6){
+				return "Short username. Atleast 6 characters";
+			}
+			else if(preg_match('/\s/',$data['user_uid'])){
+				return "Spaces are not allowed";
+			}
+			else if($this->uidExist($data['user_uid'])){
+				return "This username is already taken";
+			}
+			else if($this->pwdMatch($data['user_pwd'], $data['user_pwdRepeat'])){
+				return "Passwords do not match";
+			}
+			else{
+				return false;
+			}
 	}
 
 	public function createUser($data){
@@ -81,31 +81,40 @@ class User_model extends CI_Model {
 
 	public function updateUser($data){
 
-		if($this->update_uidExist($data['user_uid'], $data['user_id'])){
-			echo "uidE";
-			return;
+		if(isset($data['user_email'])){
+			if(($this->update_emailExist($data['user_email'], $data['user_id']))){
+				return "This email is already in used";
+			}
 		}
-		else if($this->update_emailExist($data['user_email'], $data['user_id'])){
-			echo "emailE";
-			return;
+		if(isset($data['user_uid'])){
+			if(strlen($data['user_uid']) > 30){
+				return "Long username. Atmost 30 characters";
+			}
+			else if(strlen($data['user_uid']) < 6){
+				return "Short username. Atleast 6 characters";
+			}
+			else if(preg_match('/\s/',$data['user_uid'])){
+				return "Spaces are not allowed";
+			}
+			else if($this->update_uidExist($data['user_uid'], $data['user_id'])){
+				return "This username is already taken";
+			}
 		}
-		else if($this->pwdMatch($data['user_pwd'], $data['user_pwdRepeat'])){
-			echo "pwdM";
-			return;
+		if(isset($data['user_pwd']) && isset($data['user_pwdRepeat'])){
+			if($this->pwdMatch($data['user_pwd'], $data['user_pwdRepeat'])){
+				return "Passwords do not match";
+			}
 		}
-		else if(empty($data['user_pwd'])){
-			echo "noPwd";
-			return;
-		}
-		else{
-			/* $data['user_pwd'] = password_hash($data['user_pwd'], PASSWORD_DEFAULT); */
 			$this->db->where('user_id', $data['user_id']);
 			unset($data['user_id']);
-			unset($data['user_pwdRepeat']);
-			$data['user_pwd'] = md5($data['user_pwd']);
+			if(isset($data['user_pwdRepeat'])){
+				unset($data['user_pwdRepeat']);
+			}
+			if(isset($data['user_pwd'])){
+				$data['user_pwd'] = md5($data['user_pwd']);
+			}
 
 			$this->db->update($this->table, $data);	
-		}
 	}
 
 	public function uidExist($username){

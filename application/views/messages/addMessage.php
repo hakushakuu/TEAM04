@@ -5,11 +5,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>FolioHub | COMPOSE</title>
-	<link rel="icon" href="img/foliohub-logo.png">
+	<link rel="icon" href="<?=base_url()?>assets/css-img/messages/foliohub-logo.png">
 
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-	<link rel="stylesheet" type = "text/css" href="<?php echo base_url(); ?>assets/css/message/style-compose.css"></link>
+	<link rel="stylesheet" type = "text/css" href="<?=base_url()?>assets/css-img/messages/style-compose.css"></link>
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Goblin+One&family=Noto+Serif+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Quicksand:wght@300;400;500;600;700&family=Ranchers&family=Slackey&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -29,11 +29,11 @@
                             <a href="<?php echo base_url()."messages/addMessage"?>"><i class="fa fa-pen"></i> Compose</a>
                             </li>
                             <li>
-                            <a href='<?php echo base_url()."messages/outbox"?>'><i class="fa fa-inbox">Sent </i> </a>
-                            </li>
-                            <li>
                             <a href='<?php echo base_url()."messages/inbox"?>'><i class="fa fa-inbox">Inbox </i> </a>
                             </li>
+                            <li>
+                            <a href='<?php echo base_url()."messages/outbox"?>'><i class="fa fa-rocket">Sent </i> </a>
+                            </li> 
                         </ul>
                     </div>	
                 </div>
@@ -72,7 +72,7 @@
                                         
                                     <div class="form-group for-buttons">	
                                         <button type="submit" class="btn-send" id="send">Send</button>
-                                        <a href="<?php echo base_url()."messages/inbox"?>"><button type="button" class="btn-discard">Discard</button></a>
+                                        <a type="button" class="btn-discard" href="<?php echo base_url()."messages/inbox"?>">Discard</a>
                                 </div>
                                 </form> 
                             </div>	

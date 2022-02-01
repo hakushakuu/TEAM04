@@ -33,10 +33,12 @@ class Project extends CI_Controller {
 			
 			$output['project'] = $project;
 			$output['request'] = $id;
-			$this->load->view('project/viewallproject', $output);
+			//FRONT-END Folder\viewproject\viewallproject
+			//$this->load->view('project/viewallproject', $output);
+			$this->load->view('FRONT-END Folder/viewproject/viewallproject', $output);
 		}
 		else{
-			//abang for 404 page not found
+			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
 		}	
 	}
 
@@ -52,8 +54,11 @@ class Project extends CI_Controller {
 		return substr(bin2hex($bytes), 0, $lenght);
 	}
 		
-	public function add(){
+	public function add($id=null){
 		if(isset($_SESSION['user_id'])){
+			if($id != $_SESSION['user_id']){
+				redirect(base_url()."project/$id");
+			}
 			$data = array();
 			$data = $this->input->post();
 			
@@ -135,19 +140,19 @@ class Project extends CI_Controller {
 								}
 								else{
 									$error = true;
-									echo "File too big";
+									$output['error'] = "File too big";
 									break;
 								}
 							}
 							else{
 								$error = true;
-								echo "Error uploading file!";
+								$output['error'] = "Error uploading file!";
 								break;
 							}
 						}
 						else{
 							$error = true;
-							echo "Not allowed file type!";
+							$output['error'] = "Not allowed file type!";
 							break;
 						}
 
@@ -159,6 +164,7 @@ class Project extends CI_Controller {
 					/* print_r($input1['dst']); */
 					//execution in moving to local files and database
 					$data['project_publisher_id'] = $_SESSION['user_id'];
+					$data['project_publisher_name'] = strtoupper($_SESSION['user_name']);
 					$this->load->model('project_model');
 					$project_id = $this->project_model->createProject($data);
 					
@@ -181,18 +187,18 @@ class Project extends CI_Controller {
 					redirect(base_url()."project/".$_SESSION['user_id']);
 				} 
 			}
-			$this->load->view('FRONT-END Folder/modified add project/index');
+			//$this->load->view('FRONT-END Folder/modified add project/index');
+			$this->load->view('FRONT-END Folder/FolioHub ADD PROJECT/index-addproject-page');
 			
 		}
 		else{
-			//abang for 404 page not found
+			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
 		}	
 	}
 
 	public function view($project_id,$id){
 		if(isset($_SESSION['user_id'])){
 			
-
 			$this->load->model('project_model');
 			$this->load->model('project_image_model');
 			$project = $this->project_model->getProject($id, $project_id);
@@ -206,19 +212,23 @@ class Project extends CI_Controller {
 				$output['request'] = $id;
 				$output['image'] = $image;
 				$output['project_id'] = $project_id;
-				$this->load->view('project/viewproject', $output);
+				//$this->load->view('project/viewproject', $output);
+				$this->load->view('FRONT-END Folder/viewproject/viewproject', $output);
 			}
 			
 		}
 		else{
-			//abang for 404 page not found
+			redirect(base_url()."users/signup");
 		}	
 	}
 
-	public function change_cover($project_id, $project_picture_id){		
+	public function change_cover($project_id, $project_picture_id, $id){		
 		$this->load->model('project_image_model');
 		$this->load->model('project_model');
 
+		if($_SESSION['user_id'] != $id){
+			redirect(base_url()."project/view/$project_id/$id");
+		}
 		//get the value of the project_picture_id of the current project_picture_cover
 		//automatically the current project_picture_cover is in the $image[0]['project_picture_id']
 		$image = $this->project_image_model->getProjectImage($project_id);
@@ -230,27 +240,36 @@ class Project extends CI_Controller {
 		redirect(base_url()."project/view/".$project_id."/".$_SESSION['user_id']);
 	}
 
-	public function delete_pic($project_id, $project_picture_id){
+	public function delete_pic($project_id, $project_picture_id, $id){
+		if($_SESSION['user_id'] != $id){
+			redirect(base_url()."project/view/$project_id/$id");
+		}
 		$this->load->model('project_image_model');
 		$this->project_image_model->delete_pic($project_id, $project_picture_id);
 
 		redirect(base_url()."project/view/".$project_id."/".$_SESSION['user_id']);
 	}
 
-	public function delete($project_id){
+	public function delete($project_id, $id){
 		if(isset($_SESSION['user_id'])){
+			if($_SESSION['user_id'] != $id){
+				redirect(base_url()."project/view/$project_id/$id");
+			}
 			$this->load->model('project_model');
 			$project = $this->project_model->deleteProject($project_id);
 			redirect(base_url()."project/".$_SESSION['user_id']);
 		}
 		else{
-			//abang for 404 page not found
+			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
 		}	
 		
 	}
 
-	public function update($project_id){
+	public function update($project_id,$id){
 		if(isset($_SESSION['user_id'])){
+			if($_SESSION['user_id'] != $id){
+				redirect(base_url()."project/view/$project_id/$id");
+			}
 			$this->load->model('project_model');
 			$project = $this->project_model->getProject($_SESSION['user_id'], $project_id);
 				
@@ -258,23 +277,117 @@ class Project extends CI_Controller {
 			
 			$data = array();
 			$data = $this->input->post();
-			$data['project_id'] = $project_id;
 			
 			
-
 			if(isset($data['project_details']) && $data['project_details'] != null){
+				$ilalagay = $project[0];
+				$ilalagay = $data;
+				$ilalagay['project_id'] = $project_id;
 				$this->load->model('project_model');
-				$this->project_model->updateProject($data);
+				$this->project_model->updateProject($ilalagay);
 				redirect(base_url()."project/view/".$project_id."/".$_SESSION['user_id']);
 			}
-			$this->load->view('project/updateproject',$output);
+			//$this->load->view('project/updateproject',$output);
+			$this->load->view('FRONT-END Folder/FolioHub UPDATE PROJECT/index-updateproject-page',$output);
 		}
 		else{
-			//abang for 404 page not found
+			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
 		}		
 	}
 
-	public function addprojectpic($project_id){
+	public function addprojectpic($project_id, $id){
+		if(isset($_SESSION['user_id'])){
+			if($_SESSION['user_id'] != $id){
+				redirect(base_url()."project/view/$project_id/$id");
+			}
+			$this->load->model('project_model');
+			$project = $this->project_model->getProject($_SESSION['user_id'], $project_id);
+			$output['project'] = $project[0];
 
+			
+			if($this->input->post('trigger')){
+				$allowed = array('jpg', 'jpeg', 'png');
+			
+				//changing index
+				//from array[index][i] to array[i][index]
+				if($_FILES['project_picture']['name'][0] != NULL){
+					$i = 0;
+					foreach($_FILES['project_picture']['name'] as $name){
+						$data1[$i]['name'] = $name;
+						$data1[$i]['type'] = $_FILES['project_picture']['type'][$i];
+						$data1[$i]['tmp_name'] = $_FILES['project_picture']['tmp_name'][$i];
+						$data1[$i]['error'] = $_FILES['project_picture']['error'][$i];
+						$data1[$i]['size'] = $_FILES['project_picture']['size'][$i];
+						
+						$i++;
+					}
+					$i = 0;
+					//checking per more images 
+					$error = false;
+					foreach($data1 as $data1){
+						$fileName = $data1['name'];
+						$FileTmpName = $data1['tmp_name'];
+						$fileSize = $data1['size'];
+						$fileError = $data1['error'];
+
+						$fileExt = explode('.', $fileName);
+						$fileActualExt = strtolower(end($fileExt));
+						
+						if(in_array($fileActualExt, $allowed)){
+							if($fileError === 0){
+								if($fileSize < 15000000){ //15MB
+									$uniqID = $this->uniqidReal();
+									$fileNewName = $uniqID.".".$fileActualExt;
+									$tempName[$i] = $FileTmpName;
+									$FileDestination = $_SERVER['DOCUMENT_ROOT']."/TEAM04/public/uploads/projects/".$fileNewName;
+									$input[$i]['project_picture'] = base_url()."public/uploads/projects/".$fileNewName;
+									$input[$i]['is_cover'] = "false";
+									$input1[$i]['tmp'] = $FileTmpName;
+									$input1[$i]['dst'] = $FileDestination;
+								}
+								else{
+									$error = true;
+									$output['error'] = "File too big";
+									break;
+								}
+							}
+							else{
+								$error = true;
+								$output['error'] = "Error uploading file!";
+								break;
+							}
+						}
+						else{
+							$error = true;
+							$output['error'] = "Not allowed file type!";
+							break;
+						}
+					$i++;
+					}
+				}
+				if($error!=true){
+					
+					//insertion to db
+					$i = 0;
+					foreach($input as $ilalagay){
+						$ilalagay['user_id'] = $_SESSION['user_id'];
+						$ilalagay['project_id'] = $project_id;
+
+						$this->load->model('project_image_model');
+						$this->project_image_model->insert_image($ilalagay);
+					}
+					//moving files locally
+					foreach($input1 as $ilalagay){
+						move_uploaded_file($ilalagay['tmp'], $ilalagay['dst']);
+					}
+				}
+				redirect(base_url()."project/view/".$project_id."/".$id);
+			}
+			$this->load->view('FRONT-END Folder\FolioHub ADD PROJECT\index-addpic-page.php', $output);
+		}
+		else{
+			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+		}		
+		
 	}
 }
