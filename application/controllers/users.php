@@ -35,7 +35,7 @@ class Users extends CI_Controller {
 		return substr(bin2hex($bytes), 0, $lenght);
 	}
 
-	public function sign(){
+	public function login(){
 		if(isset($_SESSION['user_id'])){
 			//page not found
 		}else{
@@ -53,6 +53,7 @@ class Users extends CI_Controller {
 				else{
 					$_SESSION['user_id'] = $return[0]['user_id'];
 					$_SESSION['user_uid'] = $return[0]['user_uid'];
+					$_SESSION['user_name'] = $return[0]['user_firstName']." ".$return[0]['user_lastName'];
 					redirect(base_url());
 				}
 			}
@@ -60,7 +61,7 @@ class Users extends CI_Controller {
 		}	
 	}
 
-	public function signu(){
+	public function signup(){
 		if(isset($_SESSION['user_id'])){
 			redirect(base_url());
 		}else{
@@ -78,14 +79,14 @@ class Users extends CI_Controller {
 
 			if($trigger == true){
 				unset($_SESSION['info']['trigger']);
-				redirect(base_url()."users/signu1"); 
+				redirect(base_url()."users/signup1"); 
 			}
 
 			$this->load->view('FRONT-END Folder/FolioHub SIGN UP PAGES 1-3/index-signup-page1', $output);
 		}		
 	}
 
-	public function signu1(){
+	public function signup1(){
 		if(isset($_SESSION['user_id'])){
 			redirect(base_url());
 		}else{
@@ -110,7 +111,7 @@ class Users extends CI_Controller {
 					$data['trigger'] = false;
 				}
 				else{
-					redirect(base_url()."users/signu2"); 
+					redirect(base_url()."users/signup2"); 
 					
 				}		
 			}
@@ -119,7 +120,7 @@ class Users extends CI_Controller {
 			
 	}
 
-	public function signu2(){
+	public function signup2(){
 		if(isset($_SESSION['user_id'])){
 			redirect(base_url());
 		}else{
@@ -158,26 +159,22 @@ class Users extends CI_Controller {
 							$fileNewName = $uniqID.".".$fileActualExt;
 							$fileDestination = $_SERVER['DOCUMENT_ROOT']."./TEAM04/public/uploads/photo/".$fileNewName;
 							move_uploaded_file($fileTmpName, $fileDestination);
-							//$image = base64_encode(file_get_contents(addslashes($image)));
-							//$data['user_pic'] = $image;
-							//$_SESSION['info']['user_pic'] = $data['user_pic'];
 							$_SESSION['info']['user_pic'] = base_url()."public/uploads/photo/".$fileNewName;
 							$_SESSION['info']['user_bio'] = $data['user_bio'];
-							//$_SESSION['info1']['user_skills'] = $data['user_skills'];
 							$data = array();
 						}
 						else{
-							echo "File too big";
+							$output['error'] = "File too big";
 							$trigger = false;
 						}
 					}
 					else{
-						echo "Error uploading file!";
+						$output['error'] = "Error uploading file!";
 						$trigger = false;
 					}
 				}
 				else{
-					echo "Not allowed file type!";
+					$output['error'] = "Not allowed file type!";
 					$trigger = false;
 				}
 
@@ -195,117 +192,6 @@ class Users extends CI_Controller {
 			$this->load->view('FRONT-END Folder/FolioHub SIGN UP PAGES 1-3/index-signup-page3', $output);
 		}
 	}
-		
-	public function signup(){
-		if(isset($_SESSION['user_id'])){
-			redirect(base_url());
-		}else{
-			$output = array();
-			$_SESSION['info'] = $this->input->post();
-			$back_again = false;
-			if(isset($_SESSION['info']['user_pwdRepeat']) && $_SESSION['info']['user_pwdRepeat'] != null && $back_again === false){
-				$this->load->model('user_model');
-				if($output['error'] = $this->user_model->checkCreateUser($_SESSION['info'])){
-					//will check error na sa model 
-				}
-				else{
-					$back_again = true;
-				}
-			}
-			if($back_again === true){
-				redirect(base_url()."users/signup1");
-			}
-			$this->load->view('FRONT-END Folder/signup/index', $output);
-		}
-	}
-
-	public function signup1(){
-		$back_again = false;
-		$data = array();
-		$data = $this->input->post();
-
-		if(isset($data['user_bio']) && $data['user_bio'] != null && $back_again === false){
-			$file = $_FILES['user_pic'];
-			$fileName = $_FILES['user_pic']['name'];
-			$fileTmpName = $_FILES['user_pic']['tmp_name'];
-			$fileSize = $_FILES['user_pic']['size'];
-			$fileError = $_FILES['user_pic']['error'];
-			$fileType = $_FILES['user_pic']['type'];
-
-			$image = $fileTmpName;
-
-			$fileExt = explode('.', $fileName);
-			$fileActualExt = strtolower(end($fileExt));
-			
-			$allowed = array('jpg', 'jpeg', 'png');
-			
-			if(in_array($fileActualExt, $allowed)){
-				if($fileError === 0){
-					if($fileSize < 5000000){
-						$uniqID = $this->uniqidReal();
-						$fileNewName = $uniqID.".".$fileActualExt;
-						$fileDestination = $_SERVER['DOCUMENT_ROOT']."./TEAM04/public/uploads/photo/".$fileNewName;
-						move_uploaded_file($fileTmpName, $fileDestination);
-						//$image = base64_encode(file_get_contents(addslashes($image)));
-						//$data['user_pic'] = $image;
-						//$_SESSION['info']['user_pic'] = $data['user_pic'];
-						$_SESSION['info']['user_pic'] = base_url()."public/uploads/photo/".$fileNewName;
-						$_SESSION['info']['user_bio'] = $data['user_bio'];
-						//$_SESSION['info1']['user_skills'] = $data['user_skills'];
-						$data = array();
-						$back_again = true;
-					}
-					else{
-						echo "File too big";
-					}
-				}
-				else{
-					echo "Error uploading file!";
-				}
-			}
-			else{
-				echo "Not allowed file type!";
-			}
-
-		}
-		if($back_again === true){
-			$this->load->model('user_model');
-			$result = $this->user_model->createUser($_SESSION['info']);
-			$uid = $_SESSION['info']['user_uid'];
-			session_unset();
-			$_SESSION['user_id'] = $result;
-			$_SESSION['user_uid'] = $uid;
-			redirect(base_url());
-		}
-
-
-		$this->load->view('FRONT-END Folder/signup/index1');
-	}
-
-	public function login(){
-		if(isset($_SESSION['user_id'])){
-			//page not found
-		}else{
-			$output = array();
-			session_unset();
-			$data = array();
-			$data = $this->input->post();
-			if(isset($data) && $data != null){
-				$this->load->model('user_model');
-				$return = $this->user_model->loginUser($data['user_uid'], $data['user_pwd']);
-
-				if(is_bool($return)){
-					$output['error'] = "Email or Password you entered is incorrect!";
-				}
-				else{
-					$_SESSION['user_id'] = $return[0]['user_id'];
-					$_SESSION['user_uid'] = $return[0]['user_uid'];
-					redirect(base_url());
-				}
-			}
-			$this->load->view('FRONT-END Folder/signin/index', $output);
-		}
-	}
 
 	public function logout(){
 		session_unset();
@@ -318,9 +204,116 @@ class Users extends CI_Controller {
 			$this->load->view('users/account_settings');
 		}
 		else{
-			//abang for 404 page not found
+			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
 		}
-		
+	}
+
+	public function settings(){
+		if(isset($_SESSION['user_id'])){
+			$this->load->model('user_model');
+			$data = array();
+			$ilalagay = array();
+			$data = $this->input->post();
+			$user = $this->user_model->getUser($_SESSION['user_id']);
+			$output['user'] = $user[0];
+			
+			if($this->input->post('submit')){
+				$ilalagay['user_id'] = $_SESSION['user_id'];
+				$ilalagay['user_firstName'] = $this->input->post('user_firstName');
+				$ilalagay['user_lastName'] = $this->input->post('user_lastName');
+				$ilalagay['user_email'] = $this->input->post('user_email');
+				$ilalagay['user_uid'] = $this->input->post('user_uid');
+				$ilalagay['user_number'] = $this->input->post('user_number');
+				$ilalagay['user_bio'] = $this->input->post('user_bio');
+				$output['error'] = $this->user_model->updateUser($ilalagay);
+				if(is_bool($output['error'])){
+					$_SESSION['user_name'] = $ilalagay['user_firstName']." ".$ilalagay['user_lastName'];
+					$_SESSION['user_uid'] = $ilalagay['user_uid'];
+				}
+			}else if($this->input->post('submit1')){
+				$newPwd = $this->input->post('user_pwd');
+				$repeatNewPwd = $this->input->post('user_pwdRepeat');
+				$oldPwd = $this->input->post('user_oldPwd');
+				$ilalagay = $user[0];
+
+				if($this->user_model->verify_password($oldPwd, $_SESSION['user_id'])){
+					$output['error'] = "Old password is incorrect";
+				}
+				else if($newPwd != $repeatNewPwd){
+					$output['error'] = "Passwords do not match";
+				}
+				else{
+					$ilalagay['user_id'] = $_SESSION['user_id'];
+					$ilalagay['user_pwd'] = $newPwd;
+					$output['error'] = $this->user_model->updateUser($ilalagay);
+				}	
+			}else if($this->input->post('submit2')){
+				$pwd = $this->input->post('user_pwd');
+				$repeatPwd = $this->input->post('user_pwdRepeat');
+
+				if($pwd != $repeatPwd){
+					$output['error'] = "Passwords do not match";
+				}
+				else if($this->user_model->verify_password($pwd, $_SESSION['user_id'])){
+					$output['error'] = "Password is incorrect";
+				}
+				else{
+					$return = $this->user_model->deleteAccount($pwd, $_SESSION['user_id']);
+					if($return == true){
+						session_unset();
+						session_destroy();
+						redirect(base_url());
+					}
+				}
+			}else if($this->input->post('pic_trigger')){
+
+				$file = $_FILES['user_pic'];
+				$fileName = $_FILES['user_pic']['name'];
+				$fileTmpName = $_FILES['user_pic']['tmp_name'];
+				$fileSize = $_FILES['user_pic']['size'];
+				$fileError = $_FILES['user_pic']['error'];
+				$fileType = $_FILES['user_pic']['type'];
+
+				$image = $fileTmpName;
+
+				$fileExt = explode('.', $fileName);
+				$fileActualExt = strtolower(end($fileExt));
+				
+				$allowed = array('jpg', 'jpeg', 'png');
+
+				if(in_array($fileActualExt, $allowed)){
+					if($fileError === 0){
+						if($fileSize < 5000000){
+							$uniqID = $this->uniqidReal();
+							$fileNewName = $uniqID.".".$fileActualExt;
+							$fileDestination = $_SERVER['DOCUMENT_ROOT']."./TEAM04/public/uploads/photo/".$fileNewName;
+							move_uploaded_file($fileTmpName, $fileDestination);
+							$ilalagay['user_pic'] = base_url()."public/uploads/photo/".$fileNewName;
+							$ilalagay['user_id'] = $_SESSION['user_id'];
+							$output['error'] = $this->user_model->updateUser($ilalagay);
+						}
+						else{
+							$output['error'] = "File too big";
+						}
+					}
+					else{
+						$output['error'] = "Error uploading file!";
+					}
+				}
+				else{
+					$output['error'] = "Not allowed file type!";
+				}
+				
+				
+			}
+
+			$user = $this->user_model->getUser($_SESSION['user_id']);
+			$output['user'] = $user[0];
+			$this->load->view('FRONT-END Folder\FolioHub Account Settings\index', $output);
+		}
+		else{
+			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+		}
 	}
 
 	public function account_delete_confirm(){
@@ -343,7 +336,7 @@ class Users extends CI_Controller {
 			$this->load->view('users/account_delete_confirm');
 		}
 		else{
-			//abang for 404 page not found
+			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
 		}
 
 		
@@ -370,7 +363,7 @@ class Users extends CI_Controller {
 			$this->load->view('users/account_update_form', $output);
 		}
 		else{
-			//abang for 404 page not found
+			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
 		}
 		
 	}
@@ -385,10 +378,10 @@ class Users extends CI_Controller {
 			$user = $this->user_model->getUser($id);
 			$output['user'] = $user[0];
 			//$this->load->view('FRONT-END Folder/viewuser/viewuser', $output);
-			$this->load->view('FRONT-END Folder/FolioHub view user/viewuser', $output);
+			$this->load->view('FRONT-END Folder/viewuser/viewuser', $output);
 		}
 		else{
-			//abang for 404 page not found
+			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
 		}
 
 		
@@ -415,7 +408,6 @@ class Users extends CI_Controller {
 			$this->load->view('FRONT-END Folder/viewuser/resume', $output);
 		}
 		else{
-			//abang for 404 page not found
 			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}
 	}
@@ -429,13 +421,14 @@ class Users extends CI_Controller {
 			if(isset($data['college_name']) && $data['college_name'] != NULL){
 				$this->load->model('college_model');
 				$college = $this->college_model->createSchool($data);
-				redirect(base_url()."users/college/".$_SESSION['user_id']);
+				redirect(base_url()."users/education/".$_SESSION['user_id']);
 			}
 			
-			$this->load->view('add-college/addcollege');
+			//$this->load->view('add-college/addcollege');
+			$this->load->view('FRONT-END Folder/FolioHub ADD EDUCATION/index-add-education');
 		}
 		else{
-			//abang for 404 page not found
+			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
 		}
 	}
 
@@ -451,13 +444,14 @@ class Users extends CI_Controller {
 
 			if(isset($data['college_name']) && $data['college_name'] != NULL){
 				$college = $this->college_model->updateSchool($school_id, $data);
-				redirect(base_url()."users/college/".$_SESSION['user_id']);
+				redirect(base_url()."users/education/".$_SESSION['user_id']);
 			}
 				
-			$this->load->view('add-college/updatecollege',$output);
+			//$this->load->view('add-college/updatecollege',$output);
+			$this->load->view('FRONT-END Folder/FolioHub ADD EDUCATION/index-update-education',$output);
 		}
 		else{
-			//abang for 404 page not found
+			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
 		}
 		
 	}
@@ -466,16 +460,16 @@ class Users extends CI_Controller {
 		if(isset($_SESSION['user_id'])){
 			$this->load->model('college_model');;
 			$this->college_model->deleteSchool($school_id);
-			redirect(base_url()."users/college/".$_SESSION['user_id']);
+			redirect(base_url()."users/education/".$_SESSION['user_id']);
 		}
 		else{
-			//abang for 404 page not found
+			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
 		}
 		
 
 	}
 
-	public function college($id){
+	public function education($id){
 		if($id == $_SESSION['user_id']){
 			$this->load->model('college_model');
 			$college = $this->college_model->getSchool($id);
@@ -483,10 +477,11 @@ class Users extends CI_Controller {
 			$output['college'] = $college;
 			$output['request'] = $id;
 			
-			$this->load->view('add-college/viewallcollege', $output);
+			//$this->load->view('add-college/viewallcollege', $output);
+			$this->load->view('FRONT-END Folder\FolioHub VIEW EDUCATION\view-educ', $output);
 		}
 		else{
-			//abang for 404 page not found
+			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
 		}
 	}
 
@@ -498,10 +493,11 @@ class Users extends CI_Controller {
 			$output['employment'] = $employment;
 			$output['request'] = $id;
 			
-			$this->load->view('add-employment/viewallemployment', $output);
+			//$this->load->view('add-employment/viewallemployment', $output);
+			$this->load->view('FRONT-END Folder/FolioHub VIEW EMPLOY/view-employment', $output);
 		}
 		else{
-			//abang for 404 page not found
+			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
 		}
 	}
 
@@ -517,10 +513,11 @@ class Users extends CI_Controller {
 				redirect(base_url()."users/employment/".$_SESSION['user_id']);
 			}
 			
-			$this->load->view('add-employment/addemployment');
+			//$this->load->view('add-employment/addemployment');
+			$this->load->view('FRONT-END Folder\FolioHub ADD EMPLOYMENT\index-addemployment');
 		}
 		else{
-			//abang for 404 page not found
+			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
 		}
 	}
 
@@ -538,11 +535,12 @@ class Users extends CI_Controller {
 				$college = $this->employment_model->updateEmployment($employment_id, $data);
 				redirect(base_url()."users/employment/".$_SESSION['user_id']);
 			}
-				
-			$this->load->view('add-employment/updateemployment', $output);
+			
+			//$this->load->view('add-employment/updateemployment', $output);
+			$this->load->view('FRONT-END Folder\FolioHub UPDATE EMPLOYMENT\index-updateemployment', $output);
 		}
 		else{
-			//abang for 404 page not found
+			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
 		}
 	}
 
@@ -553,7 +551,7 @@ class Users extends CI_Controller {
 			redirect(base_url()."users/employment/".$_SESSION['user_id']);
 		}
 		else{
-			//abang for 404 page not found
+			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
 		}
 	}
 
@@ -565,10 +563,11 @@ class Users extends CI_Controller {
 			$output['skills'] = $skills;
 			$output['request'] = $id;
 			
-			$this->load->view('add-skill/viewallskill', $output);
+			//$this->load->view('add-skill/viewallskill', $output);
+			$this->load->view('FRONT-END Folder\FolioHub ADD SKILL\view-skills', $output);
 		}
 		else{
-			//abang for 404 page not found
+			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
 		}
 	}
 
@@ -584,10 +583,11 @@ class Users extends CI_Controller {
 				redirect(base_url()."users/skill/".$_SESSION['user_id']);
 			}
 			
-			$this->load->view('add-skill/addskills');
+			//$this->load->view('add-skill/addskills');
+			$this->load->view('FRONT-END Folder\FolioHub ADD SKILL\index-addskill');
 		}
 		else{
-			//abang for 404 page not found
+			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
 		}
 	}
 
@@ -609,7 +609,7 @@ class Users extends CI_Controller {
 			$this->load->view('add-skill/updateskills', $output);
 		}
 		else{
-			//abang for 404 page not found
+			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
 		}
 	}
 
@@ -620,7 +620,7 @@ class Users extends CI_Controller {
 			redirect(base_url()."users/skill/".$_SESSION['user_id']);
 		}
 		else{
-			//abang for 404 page not found
+			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
 		}
 	}
 }

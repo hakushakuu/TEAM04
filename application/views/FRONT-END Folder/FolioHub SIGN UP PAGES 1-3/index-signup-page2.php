@@ -5,9 +5,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>FolioHub | SIGN UP PAGE 2</title>
-	<link rel="icon" href="<?=base_url()?>assets\img\sign\img\foliohub-logo.png">
+	<link rel="icon" href="<?=base_url()?>assets\css-img\signin-signup\foliohub-logo.png">
 
-	<link rel="stylesheet" href="<?=base_url()?>assets\css\sign\style-signup-page.css">
+	<link rel="stylesheet" href="<?=base_url()?>assets\css-img\signin-signup\style-signup-page.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
@@ -17,7 +17,7 @@
 <body>
 	<div class="container">
 		<div class="for-vector-pic">
-			<img src="<?=base_url()?>assets\img\sign\img\vector-image-signup.png">
+			<img src="<?=base_url()?>assets\css-img\signin-signup\vector-image-signup.png">
 		</div>
 
 		<div class="signup-content">
@@ -32,18 +32,22 @@
 				<div class="wrap-two">
 					<label>Email</label>
 					<input type="email" name="user_email" value="<?php echo(isset($_POST['user_email']))? $_POST['user_email']:"" ?>" required>
+					<span class="event-one"></span>
 				</div>
 				<div class="wrap-two">
 					<label>Username</label>
 					<input type="text" name="user_uid" value="<?php echo(isset($_POST['user_uid']))? $_POST['user_uid']:"" ?>" required>
+					<span class="event-one"></span>
 				</div>
                 <div class="wrap-two">
 					<label>Password</label>
 					<input type="password" name="user_pwd" required>
+					<span class="event-two"></span>
 				</div>
                 <div class="wrap-two">
 					<label>Confirm Password</label>
 					<input type="password" name="user_pwdRepeat" required>
+					<span class="event-two"></span>
 				</div>
 
 				<div class="for-buttons">
@@ -53,7 +57,7 @@
 					<a type="button" class="button-cancel" href="<?=base_url()?>">Cancel</a></button>
 				</div>
 
-              <p>Already have an account? <a class="for-signin" href="<?=base_url()?>users/sign">Sign In</a></p>
+              <p>Already have an account? <a class="for-signin" href="<?=base_url()?>users/login">Sign In</a></p>
 			</form>
         </div>
     </div>

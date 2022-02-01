@@ -10,6 +10,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 	<link rel="stylesheet" type = "text/css" href="<?php echo base_url(); ?>assets/css/viewuser/style.css"></link>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
@@ -25,8 +26,8 @@
   <h1>Browse</h1>
   <div class="container">
   <?php print_r($_GET); ?>
-    <form method="get" action="<?php echo base_url()."browse/result"?>" class="Form text-align">
-      <input type="text" placeholder="Search" name="keywords" value="<?php echo(isset($_GET['keywords']))? $_GET['keywords']:"" ?>">
+    <form method="post" action="<?php echo base_url()."browse/result"?>" class="Form text-align">
+      <input type="text" placeholder="Search" name="keywords" value="<?php echo(isset($_POST['keywords']))? $_POST['keywords']:"" ?>">
       <button type="submit">Search</button>
       <div>
         <input type="radio" name="search" value="project" <?php echo(isset($search)&&$search =='project')?  "checked":"checked" ?>>
@@ -37,7 +38,7 @@
     </form>
   </div>
 
-  <div>
+  <div id=dataList>
     
     <?php if(isset($project)){
       if(count($project) != 0){
@@ -62,10 +63,11 @@
         echo "No Users Found!";
       }
     } ?>
-  </div>
-  <ul class="pagination pull-right">
+    <ul class="pagination pull-right">
     <?php echo $this->pagination->create_links(); ?>
   </ul>
+  </div>
+  
 </div>
 
 	<!------- FOOTER ------->

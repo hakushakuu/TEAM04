@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E - FOLIO | RESUME</title>
-    <link rel="icon" href="<?php echo base_url(); ?>assets/img/bahaypahina/ee.png">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/viewuser/resume-css.css">
+    <link rel="icon" href="<?=base_url()?>assets/css-img/home-dev/foliohub-logo.png">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css-img/resume/resume-css.css">
 </head>
 <body>
     <?php $full_name = $user['user_firstName']." ".$user['user_lastName']; ?>

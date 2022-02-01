@@ -5,8 +5,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>FolioHub | SIGN IN</title>
-	<link rel="icon" href="<?=base_url()?>\assets\img\sign\img\foliohub-logo.png">
-	<link rel="stylesheet" href="<?=base_url()?>assets\css\sign\style-signin-page.css">
+	<link rel="icon" href="<?=base_url()?>assets\css-img\signin-signup\foliohub-logo.png">
+	<link rel="stylesheet" href="<?=base_url()?>assets\css-img\signin-signup\style-signin-page.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
@@ -16,7 +16,7 @@
 <body>
 	<div class="container">
 		<div class="for-vector-pic">
-			<img src="<?=base_url()?>assets\img\sign\img\vector-image-signin.jpg">
+			<img src="<?=base_url()?>assets\css-img\signin-signup\vector-image-signin.jpg">
 		</div>
 		<div class="signin-content">
 			<form method="post">
@@ -48,9 +48,10 @@
             	<a class="for-forgot" href="#">Forgot Password?</a>
             	
               <input type="submit" class="button-login">
-              <p>Don't have an account? <a class="for-create" href="<?=base_url()?>users/signu">Sign Up</a></p>
+              <p>Don't have an account? <a class="for-create" href="<?=base_url()?>users/signup">Sign Up</a></p>
             </form>
         </div>
     </div>
+	<script src="<?=base_url()?>assets\css-img\signin-signup\event.js"></script>
 </body>
 </html>

@@ -54,3 +54,4 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['project/(:num)'] = 'project/projects/$1';
+$route['dev'] = 'home/dev';

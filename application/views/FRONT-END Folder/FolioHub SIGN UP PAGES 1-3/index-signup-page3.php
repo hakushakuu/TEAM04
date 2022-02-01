@@ -5,10 +5,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>FolioHub | SIGN UP PAGE 3</title>
-	<link rel="icon" href="<?=base_url()?>assets\img\sign\img\foliohub-logo.png">
+	<link rel="icon" href="<?=base_url()?>assets\css-img\signin-signup\foliohub-logo.png">
 
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-	<link rel="stylesheet" href="<?=base_url()?>assets\css\sign\style-signup-page.css">
+	<link rel="stylesheet" href="<?=base_url()?>assets\css-img\signin-signup\style-signup-page.css">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
   	<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Goblin+One&family=Noto+Serif+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Quicksand:wght@300;400;500;600;700&family=Ranchers&family=Slackey&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
 <body>
 	<div class="container">
 		<div class="for-vector-pic">
-			<img src="<?=base_url()?>assets\img\sign\img\vector-image-signup.png">
+			<img src="<?=base_url()?>assets\css-img\signin-signup\vector-image-signup.png">	
 		</div>
 
 		<div class="signup-content">
@@ -29,9 +29,15 @@
 					<input type="file" id="fileField" onchange="displayImage(this)" name="user_pic" accept="image/*" required style="display: none";>
 					<p>Click on image to upload user icon</p>
 				</div>
+				<?php if(isset($error)){ ?>
+					<div class="alert alert-danger" role="alert">
+						<?php echo $error ?>
+				</div>
+				<?php } ?>
                 <div class="wrap-two">
 					<label>Biography</label>
 					<textarea type="text" class="form-control" name="user_bio" required><?php echo(isset($_POST['user_bio']))? $_POST['user_bio']:""?></textarea>
+					<span class="event-one"></span>
 				</div>
 
 				<div class="for-buttons">
@@ -41,7 +47,7 @@
 					<a type="button" class="button-cancel" href="<?=base_url()?>">Cancel</a></button>
 				</div>
 
-              <p>Already have an account? <a class="for-signin" href="<?=base_url()?>users/sign">Sign In</a></p>
+              <p>Already have an account? <a class="for-signin" href="<?=base_url()?>users/login">Sign In</a></p>
 			</form>
         </div>
     </div>

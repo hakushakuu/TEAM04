@@ -1,76 +1,97 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>E - FOLIO | VIEW USER</title>
-  <link rel="icon" href="<?php echo base_url() ?>assets/img/signup/ee.png">
-
-  	<!------- CSS ------->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-	<link rel="stylesheet" type = "text/css" href="<?php echo base_url(); ?>assets/css/viewuser/style.css"></link>
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>FolioHub | VIEW USER</title>
+  <link rel="icon" href="<?=base_url()?>assets/css-img/viewuser/foliohub-logo.png">
+  <link rel="stylesheet" href="<?=base_url()?>assets/css-img/viewuser/style-viewuser-page.css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 </head>
 <body>
 
-<!------- NAVBAR ------->
-<header>
-	<?php $this->load->view('elements/navbar');?>
+  <header>
+    <!-- navigation -->
+   <?php $this->load->view('elements/navbar-logged'); ?>
+</header>
+
 <!------- CONTENT ------->
+<div class="user-info">
+    <div class="heading">
+        <h2>User Information</h2>
+    </div>
+  
+    <div class="main-content">
+    <img src="<?php echo ($user['user_pic']===NULL)? base_url()."assets/img/temp/Portrait_Placeholder.png" : $user['user_pic'] ?>">
+  
+        <div class="text-box">
+            <h1><b><?= $user['user_firstName']." ".$user['user_lastName'] ?></b></h1>
+            <p><b><span>Address:</span> </b><?=$user['user_address']?>
+              <br><b><span>Email:</span>
+              </b><?=$user['user_email']?></a>
+              
+              <?php if($_SESSION['user_id'] == $user['user_id']){ ?>
+              <div class="for-buttons">
+              <a href="<?php echo base_url()."users/education/".$user['user_id'] ?>">
+              <button type="button" class="button">
+                <span class="button-icon">
+                <ion-icon name="create-outline"></ion-icon>
+                </span>
+                <span class="button-text">Education</span>
+              </button>
+              </a>
 
-<div class="userinfo">
-  <div class="heading">
-      <h1>User Information</h1>
-  </div>
+              <a href="<?php echo base_url()."users/employment/".$user['user_id']?>">
+              <button type="button" class="button">
+                <span class="button-icon">
+                <ion-icon name="create-outline"></ion-icon>
+                </span>
+                <span class="button-text">Employment</span>
+              </button>
+               </a>
 
-  <div class="content">
-      <img src="<?php echo ($user['user_pic']===NULL)? base_url()."assets/img/temp/Portrait_Placeholder.png" : $user['user_pic'] ?>">
+              <a href="<?php echo base_url()."users/skill/".$user['user_id']?>">
+              <button type="button" class="button">  
+                <span class="button-icon">
+                <ion-icon name="create-outline"></ion-icon>
+                </span>
+                <span class="button-text">Skills</span>
+              </button>
+              </a>
+            </div><br>
+            <?php } ?>
+              
+            <p><?=$user['user_bio']?></p>
 
-      <div class="textbox">
-          <h1><b><?php echo $user['user_firstName']." ".$user['user_lastName']; ?></b></h1>
-		  <p><b>Address: </b><?php echo $user['user_address']; ?>
-			<br><b>Email: </b><a href="mailto:" class="email-link"><?php echo $user['user_email']; ?></a>
-          <p><?php echo $user['user_bio']; ?></p>
-        
-      <?php if($_SESSION['user_id'] == $user['user_id']){ ?>
-        <div>
-        <a href="<?php echo base_url()."users/college/".$user['user_id'] ?>" type="button" class="button">College</a>
-        
-        <a href="<?php echo base_url()."users/employment/".$user['user_id']?>" type="button" class="button">Employment</a>
-        
-        <a href="<?php echo base_url()."users/skill/".$user['user_id']?>" type="button" class="button">Skill</a>
-      </div>
-      <?php } ?>
-			
-      <a href="<?php echo base_url()."users/resume/".$user['user_id'] ?>" type="button" class="button" target="_blank">Resume</a>
-			
-		  <a href="<?php echo base_url()."project"."/".$user['user_id'] ?>" type="button" class="button" target="_blank">Projects</a>
-			
-		  <a href="#" type="button" class="button" target="_blank">Fields</a>
-      </div>
+            <div class="for-buttons">
+              <a href="<?php echo base_url()."users/resume/".$user['user_id'] ?>">
+              <button type="button" class="button">
+                <span class="button-icon">
+                  <ion-icon name="arrow-down-circle-outline"></ion-icon>
+                </span>
+                <span class="button-text">Resume</span>
+              </button>
+              </a>
+     
+              <a href="<?php echo base_url()."project"."/".$user['user_id'] ?>">
+              <button type="button" class="button">
+                <span class="button-icon">
+                  <ion-icon name="documents-outline"></ion-icon>
+                </span>
+                <span class="button-text">Projects</span>
+              </button>
+              </a>
+            </div>
+    </div>
+   </div>
 
-  </div>
-</div
+        <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
 
-	<!------- FOOTER ------->
-	<footer>
-		<div class="socmed-links">
-			<a href="index.html" target="_blank"> <i class="fab fa-facebook-f"></i></a>
-            <a href="index.html" target="_blank"> <i class="fab fa-instagram"></i></a>
-            <a href="index.html" target="_blank"> <i class="fab fa-twitter"></i></a>
-            <a href="index.html" target="_blank"> <i class="fab fa-linkedin"></i></a>
-		</div>
-		<h5>Copyright &copy;2021 E - FOLIO | All Rights Reserved</h5>
-	  </footer>
+</div>
 
-	
+ 
 
-	 
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-</body>
-</html>
+

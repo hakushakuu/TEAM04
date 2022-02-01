@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 18, 2022 at 06:17 AM
+-- Generation Time: Feb 01, 2022 at 03:24 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.30
 
@@ -36,8 +36,8 @@ CREATE TABLE `college_school` (
   `college_name` varchar(255) DEFAULT NULL,
   `college_degree` enum('Associate','Bachelor','Master','Doctor') DEFAULT NULL,
   `college_course` varchar(255) DEFAULT NULL,
-  `college_date_start` int(4) DEFAULT NULL,
-  `college_date_end` int(4) DEFAULT NULL
+  `college_date_start` varchar(255) DEFAULT NULL,
+  `college_date_end` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -50,8 +50,8 @@ DROP TABLE IF EXISTS `employment`;
 CREATE TABLE `employment` (
   `employment_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `employment_start` int(4) NOT NULL,
-  `employment_end` int(4) DEFAULT NULL,
+  `employment_start` varchar(255) NOT NULL,
+  `employment_end` varchar(255) DEFAULT NULL,
   `employment_company` varchar(255) NOT NULL,
   `employment_position` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -85,7 +85,7 @@ CREATE TABLE `messages` (
   `receiverId` int(11) DEFAULT NULL,
   `dateCreated` int(11) DEFAULT NULL,
   `Subject` varchar(255) NOT NULL,
-  `messageContent` varchar(255) DEFAULT NULL,
+  `messageContent` text DEFAULT NULL,
   `messageStatus` enum('Sent','Seen','Delete','Edit') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -113,8 +113,9 @@ DROP TABLE IF EXISTS `project`;
 CREATE TABLE `project` (
   `project_id` int(11) NOT NULL,
   `project_publisher_id` int(11) DEFAULT NULL,
+  `project_publisher_name` varchar(255) NOT NULL,
   `project_title` varchar(255) NOT NULL,
-  `project_details` varchar(255) DEFAULT NULL,
+  `project_details` text DEFAULT NULL,
   `project_category` set('Technology','Science','Engineering','Arts') DEFAULT NULL,
   `project_source_code` varchar(255) DEFAULT NULL,
   `project_picture` varchar(255) DEFAULT NULL,
@@ -338,7 +339,7 @@ ALTER TABLE `employment`
 -- Constraints for table `project`
 --
 ALTER TABLE `project`
-  ADD CONSTRAINT `FK_user_id` FOREIGN KEY (`project_publisher_id`) REFERENCES `user` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_user_id` FOREIGN KEY (`project_publisher_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `skills`
