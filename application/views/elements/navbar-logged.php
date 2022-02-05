@@ -16,7 +16,7 @@
             <label for="show-featuresone"><i class="fab fa-firefox-browser"><span> Browse </span></i></label>
             <ul>
               <li><a href="<?=base_url()?>search">Projects</a></li>
-              <li><a href="<?=base_url()?>dev" target="_blank">Developers</a></li>
+              <li><a href="<?=base_url()?>dev">Developers</a></li>
             </ul>
           </li>
 
@@ -46,8 +46,9 @@
      </div>
 
       <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
-      <form action="#" class="search-box">
-        <input type="text" placeholder="Type Something to Search..." required>
+      <form method="post" action="<?=base_url()."search"?>" class="search-box">
+            <input type="text" name="searchKeyword" placeholder="Type Something to Search...">
+            <button type="hidden" class="btn-disable" name="submitSearch" value="Search" hidden>Submit</button>
       </form>
    
     </nav>

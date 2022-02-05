@@ -157,7 +157,7 @@ class Users extends CI_Controller {
 						if($fileSize < 5000000){
 							$uniqID = $this->uniqidReal();
 							$fileNewName = $uniqID.".".$fileActualExt;
-							$fileDestination = $_SERVER['DOCUMENT_ROOT']."./TEAM04/public/uploads/photo/".$fileNewName;
+							$fileDestination = APPPATH."../public/uploads/photo/".$fileNewName;
 							move_uploaded_file($fileTmpName, $fileDestination);
 							$_SESSION['info']['user_pic'] = base_url()."public/uploads/photo/".$fileNewName;
 							$_SESSION['info']['user_bio'] = $data['user_bio'];
@@ -183,9 +183,11 @@ class Users extends CI_Controller {
 				$this->load->model('user_model');
 				$result = $this->user_model->createUser($_SESSION['info']);
 				$uid = $_SESSION['info']['user_uid'];
+				$full_name = ['info']['user_firstName']." ".['info']['user_lastName'];
 				session_unset();
 				$_SESSION['user_id'] = $result;
 				$_SESSION['user_uid'] = $uid;
+				$_SESSION['user_name'] = $full_name;
 				redirect(base_url());
 			}
 
@@ -286,7 +288,7 @@ class Users extends CI_Controller {
 						if($fileSize < 5000000){
 							$uniqID = $this->uniqidReal();
 							$fileNewName = $uniqID.".".$fileActualExt;
-							$fileDestination = $_SERVER['DOCUMENT_ROOT']."./TEAM04/public/uploads/photo/".$fileNewName;
+							$fileDestination = APPPATH."../public/uploads/photo/".$fileNewName;
 							move_uploaded_file($fileTmpName, $fileDestination);
 							$ilalagay['user_pic'] = base_url()."public/uploads/photo/".$fileNewName;
 							$ilalagay['user_id'] = $_SESSION['user_id'];

@@ -35,7 +35,8 @@ class Project extends CI_Controller {
 			$output['request'] = $id;
 			//FRONT-END Folder\viewproject\viewallproject
 			//$this->load->view('project/viewallproject', $output);
-			$this->load->view('FRONT-END Folder/viewproject/viewallproject', $output);
+			//$this->load->view('FRONT-END Folder/viewproject/viewallproject', $output);
+			$this->load->view('FRONT-END Folder/viewproject/viewallproject1', $output);
 		}
 		else{
 			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
@@ -60,9 +61,10 @@ class Project extends CI_Controller {
 				redirect(base_url()."project/$id");
 			}
 			$data = array();
-			$data = $this->input->post();
+			$data['project_title'] = $this->input->post('project_title');
+			$data['project_details'] = $this->input->post('project_details');
 			
-			if(isset($data) && $data != NULL){
+			if(isset($data) && $data['project_title'] != NULL && $_FILES['project_picture_cover']['name'] != NULL && $data['project_details'] != NULL){
 				//checking ng cover image
 				$fileName = $_FILES['project_picture_cover']['name'];
 				$coverFileTmpName = $_FILES['project_picture_cover']['tmp_name'];
@@ -79,7 +81,7 @@ class Project extends CI_Controller {
 						if($fileSize < 15000000){ //15MB
 							$uniqID = $this->uniqidReal();
 							$fileNewName = $uniqID.".".$fileActualExt;
-							$coverFileDestination = $_SERVER['DOCUMENT_ROOT']."/TEAM04/public/uploads/projects/".$fileNewName;
+							$coverFileDestination = APPPATH."../public/uploads/projects/".$fileNewName;
 							$data['project_picture'] = base_url()."public/uploads/projects/".$fileNewName;
 							$input[0]['project_picture'] = $data['project_picture'];
 							$input[0]['is_cover'] = "true";
@@ -132,7 +134,7 @@ class Project extends CI_Controller {
 									$uniqID = $this->uniqidReal();
 									$fileNewName = $uniqID.".".$fileActualExt;
 									$tempName[$i] = $FileTmpName;
-									$FileDestination = $_SERVER['DOCUMENT_ROOT']."/TEAM04/public/uploads/projects/".$fileNewName;
+									$FileDestination = APPPATH."../public/uploads/projects/".$fileNewName;
 									$input[$i+1]['project_picture'] = base_url()."public/uploads/projects/".$fileNewName;
 									$input[$i+1]['is_cover'] = "false";
 									$input1[$i+1]['tmp'] = $FileTmpName;
@@ -339,7 +341,7 @@ class Project extends CI_Controller {
 									$uniqID = $this->uniqidReal();
 									$fileNewName = $uniqID.".".$fileActualExt;
 									$tempName[$i] = $FileTmpName;
-									$FileDestination = $_SERVER['DOCUMENT_ROOT']."/TEAM04/public/uploads/projects/".$fileNewName;
+									$FileDestination = APPPATH."../public/uploads/projects/".$fileNewName;
 									$input[$i]['project_picture'] = base_url()."public/uploads/projects/".$fileNewName;
 									$input[$i]['is_cover'] = "false";
 									$input1[$i]['tmp'] = $FileTmpName;

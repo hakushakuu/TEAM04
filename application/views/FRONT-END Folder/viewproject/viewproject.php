@@ -14,7 +14,7 @@
   if($image != NULL){
     $bilang = count($image);
   } ?>
- <?php if($project['project_publisher_id'] === $_SESSION['user_id']){?>
+ <?php if($project['project_publisher_id'] == $_SESSION['user_id']){?>
  <a href="<?php echo base_url()."project/addprojectpic/".$project['project_id']."/".$_SESSION['user_id']?>">
   <div class="for-buttons">
     <button type="button" class="button">
@@ -51,7 +51,7 @@
     <div class="numbertext"><?=$i?> / <?=$bilang?></div>
     <img src="<?php echo ($image[$i-1] != NULL)? $image[$i-1]['project_picture']: base_url()."assets/img/temp/no-image.png"?>" style="width:100%">
       <div class="caption-container" style="height: 86px;">
-      <?php if($project['project_publisher_id'] === $_SESSION['user_id']){?>
+      <?php if($project['project_publisher_id'] == $_SESSION['user_id']){?>
       <?php if($i != 1){ ?>
         <div class="for-buttons">
         <a href="<?php echo base_url()."project/change_cover/".$project_id."/".$image[$i-1]['project_picture_id']."/".$_SESSION['user_id']?>">

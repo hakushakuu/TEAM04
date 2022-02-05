@@ -13,7 +13,9 @@
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Goblin+One&family=Noto+Serif+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Quicksand:wght@300;400;500;600;700&family=Ranchers&family=Slackey&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 </head>
 
 <body>
@@ -48,15 +50,16 @@
                                         <div class="row">
 
                                         <input type="hidden" name="senderId" value="<?php echo $_SESSION['user_id'] ?>">
+                                        <input type="hidden" id="userid" name="receiverId" value="0">
 
                                             <div class="form-group col-lg-6 col-md-12 col-sm-12 col-12">
                                                 <label for="username" class="col-sm control-label">Username:</label>
-                                                <!-- <input type="" class="form-control" placeholder="Type username" tabindex="-1"> -->
-                                                <select name="receiverId">
+                                                <input type="text" id="uidText" class="form-control" placeholder="Type username" tabindex="-1">
+                                                <!-- <select name="receiverId">
                                                     <?php foreach($receivers as $receive) : ?>
                                                     <option value="<?=$receive['user_id']?>"><?=$receive['user_uid']?></option>
                                                     <?php endforeach; ?>
-                                                </select>
+                                                </select> -->
                                             </div>
                                             
                                             <div class="form-group col-lg-6 col-md-12 col-sm-12 col-12">
@@ -81,6 +84,36 @@
         </div>		
     </div>
         
+
+    <script type='text/javascript'>
+    $(document).ready(function(){
+
+     // Initialize 
+     $( "#uidText" ).autocomplete({
+        source: function( request, response ) {
+          // Fetch data
+          $.ajax({
+            url: "<?=base_url()?>messages/userList",
+            type: 'post',
+            dataType: "json",
+            data: {
+              search: request.term
+            },
+            success: function( data ) {
+              response( data );
+            }
+          });
+        },
+        select: function (event, ui) {
+          // Set selection
+          $('#uidText').val(ui.item.label); // display the selected text
+          $('#userid').val(ui.item.value); // save selected id to input
+          return false;
+        }
+      });
+
+    });
+    </script>
     <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>

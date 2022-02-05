@@ -73,8 +73,10 @@ class User_model extends CI_Model {
 		}
 		else{
 			$this->db->where('user_id', $id);
-			$data['user_status'] = 'Inactive';
-			$this->db->update($this->table, $data);
+			$this->db->where('user_id', $id);
+			$this->db->delete($this->table);
+			//$data['user_status'] = 'Inactive';
+			//$this->db->update($this->table, $data);
 			return true;
 		}
 	}
@@ -217,7 +219,30 @@ class User_model extends CI_Model {
 		return $query->result_array();
 	}
 
+	function getUsers($postData){
 
-	
+		$response = array();
+   
+		if(isset($postData['search']) ){
+		  // Select record
+		  $this->db->select('*');
+		  $this->db->like('user_uid',$postData['search']);
+		  $seperated_keywords = explode(" ",$postData['search']);
+			$this->db->where_in('user_firstName', $seperated_keywords);
+			$this->db->or_where_in('user_lastName', $seperated_keywords);
+			$this->db->or_like('user_firstName', $postData['search']);
+			$this->db->or_like('user_lastName', $postData['search']);
+			$this->db->or_like('user_uid', $postData['search']);
+   
+		  $records = $this->db->get($this->table)->result();
+   
+		  foreach($records as $row ){
+			 $response[] = array("value"=>$row->user_id,"label"=>$row->user_uid);
+		  }
+   
+		}
+   
+		return $response;
+	 }
 	
 }

@@ -15,6 +15,7 @@ class Message_model extends CI_Model {
                 $this->db->where('receiverId', $userId);
             }
 		}
+		$this->db->order_by('id', 'desc');
 
 		$query = $this->db->get($this->table);
 
