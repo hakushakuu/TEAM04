@@ -39,7 +39,7 @@ class Project extends CI_Controller {
 			$this->load->view('FRONT-END Folder/viewproject/viewallproject1', $output);
 		}
 		else{
-			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}	
 	}
 
@@ -190,11 +190,12 @@ class Project extends CI_Controller {
 				} 
 			}
 			//$this->load->view('FRONT-END Folder/modified add project/index');
-			$this->load->view('FRONT-END Folder/FolioHub ADD PROJECT/index-addproject-page');
+			//$this->load->view('FRONT-END Folder/FolioHub ADD PROJECT/index-addproject-page');
+			$this->load->view('FRONT-END Folder/FolioHub ADD PROJECT UPDATED/index-addproject-page');
 			
 		}
 		else{
-			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}	
 	}
 
@@ -262,7 +263,7 @@ class Project extends CI_Controller {
 			redirect(base_url()."project/".$_SESSION['user_id']);
 		}
 		else{
-			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}	
 		
 	}
@@ -293,7 +294,7 @@ class Project extends CI_Controller {
 			$this->load->view('FRONT-END Folder/FolioHub UPDATE PROJECT/index-updateproject-page',$output);
 		}
 		else{
-			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}		
 	}
 
@@ -385,10 +386,10 @@ class Project extends CI_Controller {
 				}
 				redirect(base_url()."project/view/".$project_id."/".$id);
 			}
-			$this->load->view('FRONT-END Folder\FolioHub ADD PROJECT\index-addpic-page.php', $output);
+			$this->load->view('FRONT-END Folder/FolioHub ADD PROJECT/index-addpic-page.php', $output);
 		}
 		else{
-			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}		
 		
 	}

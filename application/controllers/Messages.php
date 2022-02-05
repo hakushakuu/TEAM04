@@ -45,7 +45,7 @@ class Messages extends CI_Controller {
             
             $this->load->view('messages/addMessage', $data);
         }else{
-            $this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+            $this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
         }
     }
 
@@ -68,7 +68,7 @@ class Messages extends CI_Controller {
            
             $this->load->view('messages/viewMessages', $data);
         }else{
-            $this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+            $this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
         }
     }
 
@@ -158,7 +158,7 @@ class Messages extends CI_Controller {
         
 		}
 		else{
-			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}
     }
 
@@ -183,7 +183,7 @@ class Messages extends CI_Controller {
         
 		}
 		else{
-			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}
     }
 
