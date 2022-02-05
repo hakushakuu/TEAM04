@@ -157,7 +157,7 @@ class Users extends CI_Controller {
 						if($fileSize < 5000000){
 							$uniqID = $this->uniqidReal();
 							$fileNewName = $uniqID.".".$fileActualExt;
-							$fileDestination = $_SERVER['DOCUMENT_ROOT']."./TEAM04/public/uploads/photo/".$fileNewName;
+							$fileDestination = APPPATH."../public/uploads/photo/".$fileNewName;
 							move_uploaded_file($fileTmpName, $fileDestination);
 							$_SESSION['info']['user_pic'] = base_url()."public/uploads/photo/".$fileNewName;
 							$_SESSION['info']['user_bio'] = $data['user_bio'];
@@ -183,9 +183,11 @@ class Users extends CI_Controller {
 				$this->load->model('user_model');
 				$result = $this->user_model->createUser($_SESSION['info']);
 				$uid = $_SESSION['info']['user_uid'];
+				$full_name = ['info']['user_firstName']." ".['info']['user_lastName'];
 				session_unset();
 				$_SESSION['user_id'] = $result;
 				$_SESSION['user_uid'] = $uid;
+				$_SESSION['user_name'] = $full_name;
 				redirect(base_url());
 			}
 
@@ -204,7 +206,7 @@ class Users extends CI_Controller {
 			$this->load->view('users/account_settings');
 		}
 		else{
-			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}
 	}
 
@@ -286,7 +288,7 @@ class Users extends CI_Controller {
 						if($fileSize < 5000000){
 							$uniqID = $this->uniqidReal();
 							$fileNewName = $uniqID.".".$fileActualExt;
-							$fileDestination = $_SERVER['DOCUMENT_ROOT']."./TEAM04/public/uploads/photo/".$fileNewName;
+							$fileDestination = APPPATH."../public/uploads/photo/".$fileNewName;
 							move_uploaded_file($fileTmpName, $fileDestination);
 							$ilalagay['user_pic'] = base_url()."public/uploads/photo/".$fileNewName;
 							$ilalagay['user_id'] = $_SESSION['user_id'];
@@ -309,10 +311,10 @@ class Users extends CI_Controller {
 
 			$user = $this->user_model->getUser($_SESSION['user_id']);
 			$output['user'] = $user[0];
-			$this->load->view('FRONT-END Folder\FolioHub Account Settings\index', $output);
+			$this->load->view('FRONT-END Folder/FolioHub Account Settings/index', $output);
 		}
 		else{
-			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}
 	}
 
@@ -336,7 +338,7 @@ class Users extends CI_Controller {
 			$this->load->view('users/account_delete_confirm');
 		}
 		else{
-			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}
 
 		
@@ -363,7 +365,7 @@ class Users extends CI_Controller {
 			$this->load->view('users/account_update_form', $output);
 		}
 		else{
-			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}
 		
 	}
@@ -381,7 +383,7 @@ class Users extends CI_Controller {
 			$this->load->view('FRONT-END Folder/viewuser/viewuser', $output);
 		}
 		else{
-			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}
 
 		
@@ -428,7 +430,7 @@ class Users extends CI_Controller {
 			$this->load->view('FRONT-END Folder/FolioHub ADD EDUCATION/index-add-education');
 		}
 		else{
-			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}
 	}
 
@@ -451,7 +453,7 @@ class Users extends CI_Controller {
 			$this->load->view('FRONT-END Folder/FolioHub ADD EDUCATION/index-update-education',$output);
 		}
 		else{
-			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}
 		
 	}
@@ -463,7 +465,7 @@ class Users extends CI_Controller {
 			redirect(base_url()."users/education/".$_SESSION['user_id']);
 		}
 		else{
-			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}
 		
 
@@ -478,10 +480,10 @@ class Users extends CI_Controller {
 			$output['request'] = $id;
 			
 			//$this->load->view('add-college/viewallcollege', $output);
-			$this->load->view('FRONT-END Folder\FolioHub VIEW EDUCATION\view-educ', $output);
+			$this->load->view('FRONT-END Folder/FolioHub VIEW EDUCATION/view-educ', $output);
 		}
 		else{
-			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}
 	}
 
@@ -497,7 +499,7 @@ class Users extends CI_Controller {
 			$this->load->view('FRONT-END Folder/FolioHub VIEW EMPLOY/view-employment', $output);
 		}
 		else{
-			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}
 	}
 
@@ -514,10 +516,10 @@ class Users extends CI_Controller {
 			}
 			
 			//$this->load->view('add-employment/addemployment');
-			$this->load->view('FRONT-END Folder\FolioHub ADD EMPLOYMENT\index-addemployment');
+			$this->load->view('FRONT-END Folder/FolioHub ADD EMPLOYMENT/index-addemployment');
 		}
 		else{
-			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}
 	}
 
@@ -537,10 +539,10 @@ class Users extends CI_Controller {
 			}
 			
 			//$this->load->view('add-employment/updateemployment', $output);
-			$this->load->view('FRONT-END Folder\FolioHub UPDATE EMPLOYMENT\index-updateemployment', $output);
+			$this->load->view('FRONT-END Folder/FolioHub UPDATE EMPLOYMENT/index-updateemployment', $output);
 		}
 		else{
-			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}
 	}
 
@@ -551,7 +553,7 @@ class Users extends CI_Controller {
 			redirect(base_url()."users/employment/".$_SESSION['user_id']);
 		}
 		else{
-			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}
 	}
 
@@ -564,10 +566,10 @@ class Users extends CI_Controller {
 			$output['request'] = $id;
 			
 			//$this->load->view('add-skill/viewallskill', $output);
-			$this->load->view('FRONT-END Folder\FolioHub ADD SKILL\view-skills', $output);
+			$this->load->view('FRONT-END Folder/FolioHub ADD SKILL/view-skills', $output);
 		}
 		else{
-			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}
 	}
 
@@ -584,10 +586,10 @@ class Users extends CI_Controller {
 			}
 			
 			//$this->load->view('add-skill/addskills');
-			$this->load->view('FRONT-END Folder\FolioHub ADD SKILL\index-addskill');
+			$this->load->view('FRONT-END Folder/FolioHub ADD SKILL/index-addskill');
 		}
 		else{
-			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}
 	}
 
@@ -609,7 +611,7 @@ class Users extends CI_Controller {
 			$this->load->view('add-skill/updateskills', $output);
 		}
 		else{
-			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}
 	}
 
@@ -620,7 +622,7 @@ class Users extends CI_Controller {
 			redirect(base_url()."users/skill/".$_SESSION['user_id']);
 		}
 		else{
-			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}
 	}
 }

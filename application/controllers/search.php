@@ -35,7 +35,6 @@ class Search extends CI_Controller {
     public function index(){
         $data = array();
         
-        
         // Get messages from the session
         if($this->session->userdata('success_msg')){
             $data['success_msg'] = $this->session->userdata('success_msg');
@@ -109,6 +108,7 @@ class Search extends CI_Controller {
         $conditions['limit'] = $this->perPage;
         $data['project'] = $this->project_model->getRows3($conditions);
         $data['title'] = 'Members List';
+        $this->session->unset_userdata('searchKeyword');
         
         // Load the list page view
         //$this->load->view('browse/browse3', $data);

@@ -16,7 +16,7 @@
             <label for="show-featuresone"><i class="fab fa-firefox-browser"><span> Browse </span></i></label>
             <ul>
               <li><a href="<?=base_url()?>search">Projects</a></li>
-              <li><a href="<?=base_url()?>dev" target="_blank">Developers</a></li>
+              <li><a href="<?=base_url()?>dev">Developers</a></li>
             </ul>
           </li>
 

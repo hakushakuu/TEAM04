@@ -31,9 +31,9 @@ class Home extends CI_Controller {
 	public function dev(){
 		if(!isset($_SESSION['user_id'])){
 			session_unset();
-			$this->load->view('FRONT-END Folder/FolioHub HOMEPAGE from NOT LOGGED IN POV/index-developers');
+			$this->load->view('FRONT-END Folder/FolioHub HOMEPAGE from NOT LOGGED IN POV/index-developers1');
 		}else{
-			$this->load->view('FRONT-END Folder/FolioHub HOMEPAGE from LOGGED IN POV/index-developers');
+			$this->load->view('FRONT-END Folder/FolioHub HOMEPAGE from LOGGED IN POV/index-developers1');
 		}
 	}
 }

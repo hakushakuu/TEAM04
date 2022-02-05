@@ -29,6 +29,7 @@ class Project_model extends CI_Model {
 			$this->db->or_where_in('project_title', $seperated_keywords);
 			$this->db->or_where_in('project_details', $seperated_keywords);
 		}
+        $this->db->order_by('project_id', 'desc'); 
 		$query = $this->db->get($this->table);
 		return $query->result_array();
 		
@@ -159,6 +160,7 @@ class Project_model extends CI_Model {
         return $result; 
     } 
 
+    //working pagination get project
 	function getRows3($params = array()){
         $this->db->select('*');
         $this->db->from($this->table);
@@ -168,7 +170,7 @@ class Project_model extends CI_Model {
                 $this->db->where($key, $val);
             }
         }
-        
+        $this->db->order_by('project_id', 'desc'); 
         if(!empty($params['searchKeyword'])){
             $search = $params['searchKeyword'];
             $likeArr = array('project_title' => $search, 'project_details' => $search);

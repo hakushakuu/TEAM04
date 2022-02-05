@@ -92,7 +92,7 @@
             <ul>
                 <?php foreach ($employment as $job){ ?>
                     <li>
-                    <div class="date"><?php echo $job['employment_start']." - "?><?php echo (date("Y")===$job['employment_end'])? "Present":$job['employment_end']; ?></div> 
+                    <div class="date"> <?= date("F Y", strtotime($job['employment_start']))." - "?><?= ($job['employment_end'] =='Present')?$job['employment_end']:date("F Y", strtotime($job['employment_end']))?></div> 
                     <div class="info">
                          <p class="semi-bold"><?php echo $job['employment_company']?></p> 
                       <p><?php echo $job['employment_position']?></p>
@@ -110,7 +110,7 @@
           <ul>
                 <?php foreach ($college as $school){?>
                     <li>
-                    <div class="date"><?php echo $school['college_date_start'] ?> - <?php echo (date("Y")===$school['college_date_end'])? "Present":$school['college_date_end'];?></div> 
+                    <div class="date"><?=date("F Y", strtotime($school['college_date_start']))?> - <?=($school['college_date_end'] =='Present')?$school['college_date_end']:date("F Y", strtotime($school['college_date_end']))?></div> 
                     <div class="info">
                          <p class="semi-bold"><?php echo constant($school['college_degree'])." ".$school['college_course'] ?> <br> (<?php echo $school['college_name'] ?>)</p> 
                     </div>

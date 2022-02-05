@@ -32,12 +32,12 @@
             </div>
         </div>
 
-        <!-- <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label> -->
+        <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
         
 
-        <form method="post">
+        <form method="post" class="search-box">
             <input type="text" name="searchKeyword" value="<?php echo $searchKeyword ?>" placeholder="Type Something to Search...">
-            <button type="submit" name="submitSearch" value="Search">Submit</button>
+            <button type="hidden" class="btn-disable" name="submitSearch" value="Search" hidden>Submit</button>
         </form> 
     </nav>
 </div>

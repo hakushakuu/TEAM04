@@ -67,11 +67,10 @@
                         else{?>
                             <?php  foreach($message as $output){ ?>
                         <ul class="messages-list">
-                             <a href="<?=base_url()."messages/getMessage/".$output['id']?>">
+                             <a href="<?=base_url()."messages/getMessage/".$output['id']?>" style="text-decoration: none; color:#FFF">
                             <li class="unread">
                                
                                     <div class="header">
-                                        <span class="action"></i><i class="fa fa-square"></i></span> 
                                         <span class="from"><?=$output['user_uid']?></span>
                                         <span class="date"><span class="fa fa-paper-clip"></span> <?=$output['dateCreated']?></span>
                                     </div>	

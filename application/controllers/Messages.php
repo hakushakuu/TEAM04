@@ -18,9 +18,12 @@ class Messages extends CI_Controller {
     public function addMessage() {
         if(isset($_SESSION['user_id'])){
             $data = array();
-            $post = $this->input->post();
+            $post['receiverId'] = $this->input->post('receiverId');
+            $post['senderId'] = $this->input->post('senderId');
+            $post['Subject'] = $this->input->post('Subject');
+            $post['messageContent'] = $this->input->post('messageContent');
             $this->load->model('user_model');
-            if(isset($post) && count($post) > 0) {
+            if(isset($post) && $post['receiverId'] != 0 && $post['Subject'] != NULL && $post['messageContent'] != NULL) {
                 $this->load->model('message_model');
 
                 $id = null;
@@ -42,7 +45,7 @@ class Messages extends CI_Controller {
             
             $this->load->view('messages/addMessage', $data);
         }else{
-            $this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+            $this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
         }
     }
 
@@ -63,24 +66,9 @@ class Messages extends CI_Controller {
             $data['sender'] = $this->user_model->getUser($messages[0]['senderId']);
             $data['receiver'] = $this->user_model->getUser($messages[0]['receiverId']);
            
-            $this->load->view('messages/viewMessages', $data); $data = array();
-            if(!isset($messageId) && $messageId == null){
-                $data['message'] = "Error loading message";
-            } else {
-                $this->load->model('message_model');
-                $messages = $this->message_model->getMessage($messageId);
-    
-                $data['message'] = $messages;
-            }
-            
-            $this->load->model('user_model');
-    
-            $data['sender'] = $this->user_model->getUser($messages[0]['senderId']);
-            $data['receiver'] = $this->user_model->getUser($messages[0]['receiverId']);
-           
             $this->load->view('messages/viewMessages', $data);
         }else{
-            $this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+            $this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
         }
     }
 
@@ -170,7 +158,7 @@ class Messages extends CI_Controller {
         
 		}
 		else{
-			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}
     }
 
@@ -195,8 +183,23 @@ class Messages extends CI_Controller {
         
 		}
 		else{
-			$this->load->view('FRONT-END Folder\FolioHub PAGE NOT FOUND\index-pagenotfound');
+			$this->load->view('FRONT-END Folder/FolioHub PAGE NOT FOUND/index-pagenotfound');
 		}
     }
+
+    public function test(){
+        $this->load->view('messages/test');
+    }
+
+    public function userList(){
+        // POST data
+        $postData = $this->input->post();
+    
+        // Get data
+        $this->load->model('user_model');
+        $data = $this->user_model->getUsers($postData);
+    
+        echo json_encode($data);
+      }
 
 }
