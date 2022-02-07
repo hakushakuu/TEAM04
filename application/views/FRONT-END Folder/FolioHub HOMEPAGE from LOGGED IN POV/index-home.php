@@ -32,7 +32,8 @@
          <div class="content-container">
             <h1>what is folioHub</h1>
             <p>
-               Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore rem sint reiciendis consequatur maiores praesentium quibusdam blanditiis in nam officiis a eos repellat mollitia, deserunt perferendis corrupti incidunt aut error eaque at? Quaerat laborum doloribus tempora recusandae expedita corporis. Veritatis fuga necessitatibus dolorum ullam, repudiandae facilis quam ratione voluptas soluta, earum cupiditate! Possimus itaque provident ullam fugit commodi fugiat consequatur quis quam atque consectetur harum dolorem reprehenderit explicabo non laudantium amet odio numquam id qui iusto sequi, aut adipisci sed.
+            FolioHub is an online portfolio, which is a platform that represents the work, achievements, and skills of Team 4 or the developers. This includes their biography, a summary of their skills and qualifications, achievements, projects, or design samples and more. Team 4 decided to develop an online portfolio to make a way to showcase and promote their work individually or the group. 
+            This FolioHub will give people an access to the Team’s work and will have a better idea of their abilities and skills. There are also articles or projects that a user can view, and possibly for marketing and scouting purposes. This portfolio doesn’t only focus on programming, the user may indicate what field his project is in. 
             </p>
          </div>
       </div>
@@ -45,39 +46,10 @@
          <div class="content-container">
             <h1>how folioHub works</h1>
             <p>
-               Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore rem sint reiciendis consequatur maiores praesentium quibusdam blanditiis in nam officiis a eos repellat mollitia, deserunt perferendis corrupti incidunt aut error eaque at? Quaerat laborum doloribus tempora recusandae expedita corporis. Veritatis fuga necessitatibus dolorum ullam, repudiandae facilis quam ratione voluptas soluta, earum cupiditate! Possimus itaque provident ullam fugit commodi fugiat consequatur quis quam atque consectetur harum dolorem reprehenderit explicabo non laudantium amet odio numquam id qui iusto sequi, aut adipisci sed.
-            </p>
-         </div>
-      </div>
-   </div>
-
-   <div class="section-container">
-      <div class="columns content">
-         <div class="content-container">
-            <h1>meet the team</h1>
-            <p>
-               Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore rem sint reiciendis consequatur maiores praesentium quibusdam blanditiis in nam officiis a eos repellat mollitia, deserunt perferendis corrupti incidunt aut error eaque at? Quaerat laborum doloribus tempora recusandae expedita corporis. Veritatis fuga necessitatibus dolorum ullam, repudiandae facilis quam ratione voluptas soluta, earum cupiditate! Possimus itaque provident ullam fugit commodi fugiat consequatur quis quam atque consectetur harum dolorem reprehenderit explicabo non laudantium amet odio numquam id qui iusto sequi, aut adipisci sed.
+               This project also tends to be used in the future. With this portfolio, other users can also create their own account in FolioHub. Upon registration, the new user may also indicate information about him, such as his name, contact info, education, and even employment history if he is employed. And by having an account, they can now also start showcasing their own works and projects.
             </p>
             <div class="for-buttons">
-               <a class="button-meet" href="<?=base_url()?>dev" target="_blank">
-                 <span class="button-text">Meet the Team</span>
-               </a>
-            </div>
-         </div>
-      </div>
-      <div class="columns image"><img src="<?=base_url()?>assets/css-img/home-dev/vector3.png" width="100%" height="100%">&nbsp;</div>
-   </div>
-
-   <div class="section-container">
-      <div class="columns image"><img src="<?=base_url()?>assets/css-img/home-dev/vector4.png" width="100%" height="100%">&nbsp;</div>
-      <div class="columns content">
-         <div class="content-container">
-            <h1>Learn More</h1>
-            <p>
-               Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore rem sint reiciendis consequatur maiores praesentium quibusdam blanditiis in nam officiis a eos repellat mollitia, deserunt perferendis corrupti incidunt aut error eaque at? Quaerat laborum doloribus tempora recusandae expedita corporis. Veritatis fuga necessitatibus dolorum ullam, repudiandae facilis quam ratione voluptas soluta, earum cupiditate! Possimus itaque provident ullam fugit commodi fugiat consequatur quis quam atque consectetur harum dolorem reprehenderit explicabo non laudantium amet odio numquam id qui iusto sequi, aut adipisci sed.
-            </p>
-            <div class="for-buttons">
-               <a class="button-contact" href="#" target="_blank">
+               <a class="button-contact" href="mailto:bscs3abteam04@gmail.com" target="_blank">
                  <span class="button-text">Contact Us!</span>
                </a>
             </div>
@@ -88,10 +60,10 @@
       <!-- footer -->
 <footer>
    <div class="socmed-links">
-         <a href="index.html" target="_blank"> <i class="fab fa-facebook-f"></i></a>
-         <a href="index.html" target="_blank"> <i class="fab fa-instagram"></i></a>
-         <a href="index.html" target="_blank"> <i class="fab fa-twitter"></i></a>
-         <a href="index.html" target="_blank"> <i class="fab fa-linkedin"></i></a>
+         <a href="#" > <i class="fab fa-facebook-f"></i></a>
+         <a href="#" > <i class="fab fa-instagram"></i></a>
+         <a href="#" > <i class="fab fa-twitter"></i></a>
+         <a href="#" > <i class="fab fa-linkedin"></i></a>
    </div>
          <span>Copyright &copy;2021 FolioHub | All Rights Reserved</span>
 </footer>

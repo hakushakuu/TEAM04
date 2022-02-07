@@ -321,11 +321,11 @@ nav .content .links{
   display: flex;
   justify-content: center;
 }
-.button-meet, .button-contact{
+.button-contact{
   display: flex;
   height: 65px;
   padding: 0;
-  margin: 1.2rem;
+  margin: 0;
   background: #2d66d198;
   border: none;
   outline: none;
@@ -337,7 +337,7 @@ nav .content .links{
   cursor: pointer;
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.4), 0 8px 20px 0 rgba(0, 0, 0, 0.20);
 }
-.button-meet:hover, .button-contact:hover {
+.button-contact:hover {
   background: #008168;
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.4), 0 8px 20px 0 rgba(206, 175, 175, 0.2);
   transform: scale(1.1);
