@@ -2,6 +2,7 @@
     padding: 0;
 	margin: 0;
 	box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 body {
     height:100vh;
@@ -81,11 +82,16 @@ body {
     text-transform: uppercase;
 }
 
+a{
+    font-family: 'Poppins', sans-serif;
+}
 #compose{
     background:#A09F57;
     border-radius: 5px;
 }
-
+#compose a{
+    font-family: 'Poppins', sans-serif;
+}
 .upper{
     font-size:3rem;
     font-weight: bolder;

@@ -31,10 +31,10 @@
                             <a href="<?php echo base_url()."messages/addMessage"?>"><i class="fa fa-pen"></i> Compose</a>
                             </li>
                             <li>
-                            <a href='<?php echo base_url()."messages/inbox"?>'><i class="fa fa-inbox">Inbox </i> </a>
+                            <a href='<?php echo base_url()."messages/inbox"?>'><i class="fa fa-inbox"> Inbox </i> </a>
                             </li>
                             <li>
-                            <a href='<?php echo base_url()."messages/outbox"?>'><i class="fa fa-rocket">Sent </i> </a>
+                            <a href='<?php echo base_url()."messages/outbox"?>'><i class="fa fa-rocket"> Sent </i> </a>
                             </li> 
                         </ul>
                     </div>	

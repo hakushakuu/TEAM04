@@ -40,6 +40,9 @@ body {
 }
 
 /* style in content */
+a {
+  text-decoration: none;
+}
 .for-buttons{
     display: flex;
     flex-direction: row;

@@ -40,12 +40,16 @@ body {
 }
 
 /* style in content */
+a {
+  text-decoration: none;
+}
 .for-buttons{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     margin-top:15%;
+    text-decoration: none;
   }
   .button{
     display: flex;
@@ -75,6 +79,7 @@ body {
     color: #fff;
     height: 100%;
     font-weight: 580;
+    text-decoration: none;
   }
   .for-buttons .button-icon {
     display: inline-flex;
