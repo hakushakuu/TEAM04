@@ -183,7 +183,7 @@ class Users extends CI_Controller {
 				$this->load->model('user_model');
 				$result = $this->user_model->createUser($_SESSION['info']);
 				$uid = $_SESSION['info']['user_uid'];
-				$full_name = ['info']['user_firstName']." ".['info']['user_lastName'];
+				$full_name = $_SESSION['info']['user_firstName']." ".$_SESSION['info']['user_lastName'];
 				session_unset();
 				$_SESSION['user_id'] = $result;
 				$_SESSION['user_uid'] = $uid;
