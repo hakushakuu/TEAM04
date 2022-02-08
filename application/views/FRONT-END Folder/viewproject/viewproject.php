@@ -111,7 +111,7 @@
         <div class="for-buttons">
           <a class="button" href="<?php echo base_url()."project/".$request?>" target="_blank">
             <span class="button-icon">
-              <ion-icon name="arrow-undo-outline"></ion-icon>
+            <ion-icon name="paper-plane-outline"></ion-icon>
             </span>
             <span class="button-text">View Projects</span>
           </a>

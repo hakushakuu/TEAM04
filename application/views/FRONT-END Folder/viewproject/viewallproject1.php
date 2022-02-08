@@ -45,7 +45,7 @@
          <div class="for-buttons">
           <button type="button" class="button">
             <span class="button-icon">
-              <ion-icon name="arrow-undo-outline"></ion-icon>
+              <ion-icon name="person-outline"></ion-icon>
             </span>
             <span class="button-text">View User</span>
           </button>
