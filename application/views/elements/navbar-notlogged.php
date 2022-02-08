@@ -27,9 +27,10 @@
        </ul>
      </div>
 
-      <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
-      <form action="#" class="search-box">
-        <input type="text" placeholder="Type Something to Search..." required>
+     <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
+      <form method="post" action="<?=base_url()."search"?>" class="search-box">
+            <input type="text" name="searchKeyword" placeholder="Type Something to Search...">
+            <button type="hidden" class="btn-disable" name="submitSearch" value="Search" hidden>Submit</button>
       </form>
    
     </nav>
