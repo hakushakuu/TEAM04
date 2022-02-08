@@ -113,7 +113,7 @@
             <span class="button-icon">
               <ion-icon name="arrow-undo-outline"></ion-icon>
             </span>
-            <span class="button-text">Previous Page</span>
+            <span class="button-text">View Projects</span>
           </a>
 
           <a class="button" href="<?=base_url()?>" target="_blank">
